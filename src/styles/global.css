@@ -190,4 +190,46 @@
   .border-metallic {
     border-color: var(--color-border-metallic);
   }
+
+  .motion-fade-up {
+    animation: fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .motion-hero-bg {
+    animation: hero-drift 14s ease-in-out infinite alternate;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .motion-fade-up,
+    .motion-hero-bg {
+      animation: none;
+    }
+  }
 }
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes hero-drift {
+  from {
+    transform: scale(1.05);
+  }
+  to {
+    transform: scale(1.08) translate3d(-1%, 0, 0);
+  }
+}
+
+@layer base {
+  details > summary::-webkit-details-marker {
+    display: none;
+  }
+}
+

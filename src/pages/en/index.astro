@@ -1,11 +1,15 @@
 ---
 import SiteLayout from '../../layouts/SiteLayout.astro';
-import ShellPreview from '../../components/pages/ShellPreview.astro';
+import HomePage from '../../components/home/HomePage.astro';
 import { siteConfig } from '../../config/site';
 
 const locale = 'en' as const;
 ---
 
-<SiteLayout locale={locale} title={siteConfig.workingTitle[locale]}>
-  <ShellPreview locale={locale} />
+<SiteLayout
+  locale={locale}
+  title={siteConfig.workingTitle[locale]}
+  description={siteConfig.tagline[locale]}
+>
+  <HomePage locale={locale} />
 </SiteLayout>
