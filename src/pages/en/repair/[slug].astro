@@ -1,0 +1,33 @@
+---
+import SiteLayout from '../../../layouts/SiteLayout.astro';
+import ApplianceLanding from '../../../components/appliances/ApplianceLanding.astro';
+import { appliances, siteConfig } from '../../../config/site';
+import { getAppliancePage, listAppliancePages } from '../../../content/appliances';
+
+export function getStaticPaths() {
+  return listAppliancePages().map((page) => ({
+    params: { slug: page.slug },
+  }));
+}
+
+const slug = Astro.params.slug ?? '';
+const page = getAppliancePage(slug);
+if (!page) {
+  return Astro.redirect('/en/');
+}
+
+const meta = appliances.find((a) => a.slug === page.slug);
+const label = meta?.label.en ?? page.slug;
+const title = `${label} Gaggenau repair · ${siteConfig.geo.en}`;
+---
+
+<SiteLayout
+  locale="en"
+  title={title}
+  description={page.subtitle.en}
+  applianceSlug={page.slug}
+  applianceLabel={label}
+  showPromo={false}
+>
+  <ApplianceLanding locale="en" page={page} />
+</SiteLayout>

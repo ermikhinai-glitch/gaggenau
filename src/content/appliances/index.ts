@@ -1,17 +1,25 @@
 import type { ApplianceSlug } from '../../config/site';
+import { coffeeMachinesPage } from './coffee-machines';
+import { dishwashersPage } from './dishwashers';
 import { ovensPage } from './ovens';
+import { refrigeratorsPage } from './refrigerators';
+import { washingMachinesPage } from './washing-machines';
 import type { AppliancePageContent } from './types';
 
-const pages: Partial<Record<ApplianceSlug, AppliancePageContent>> = {
+const pages: Record<ApplianceSlug, AppliancePageContent> = {
+  'washing-machines': washingMachinesPage,
+  dishwashers: dishwashersPage,
+  refrigerators: refrigeratorsPage,
   ovens: ovensPage,
+  'coffee-machines': coffeeMachinesPage,
 };
 
-export function getAppliancePage(slug: ApplianceSlug): AppliancePageContent | undefined {
-  return pages[slug];
+export function getAppliancePage(slug: string): AppliancePageContent | undefined {
+  return pages[slug as ApplianceSlug];
 }
 
 export function listAppliancePages(): AppliancePageContent[] {
-  return Object.values(pages) as AppliancePageContent[];
+  return Object.values(pages);
 }
 
 export type { AppliancePageContent } from './types';

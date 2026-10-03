@@ -1,6 +1,5 @@
 import type { AppliancePageContent } from './types';
 
-/** Demo content for task 5 — full five packs in task 6 */
 export const ovensPage: AppliancePageContent = {
   slug: 'ovens',
   heroImage: '/images/home/ovens.png',
