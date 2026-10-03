@@ -5,9 +5,11 @@ import { localizePath, switchLocalePath } from '../i18n/utils';
 
 interface Props {
   locale: Locale;
+  applianceSlug?: string;
+  applianceLabel?: string;
 }
 
-const { locale } = Astro.props;
+const { locale, applianceSlug, applianceLabel } = Astro.props;
 const pathname = Astro.url.pathname;
 const otherLocale: Locale = locale === 'ru' ? 'en' : 'ru';
 ---
@@ -117,6 +119,8 @@ const otherLocale: Locale = locale === 'ru' ? 'en' : 'ru';
       <button
         type="button"
         data-open-lead-modal
+        data-appliance-prefill={applianceSlug}
+        data-appliance-label={applianceLabel}
         class="inline-flex h-11 items-center justify-center rounded-DEFAULT bg-primary-container px-4 sm:px-5 text-[13px] font-semibold text-on-primary-container shadow-[0_0_20px_rgba(197,160,89,0.25)] hover:shadow-[0_0_28px_rgba(197,160,89,0.45)] transition active:scale-[0.98]"
       >
         {t(locale, 'cta.request')}

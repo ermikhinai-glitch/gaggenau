@@ -1,0 +1,19 @@
+---
+import SiteLayout from '../../../layouts/SiteLayout.astro';
+import ApplianceLanding from '../../../components/appliances/ApplianceLanding.astro';
+import { ovensPage } from '../../../content/appliances/ovens';
+import { siteConfig } from '../../../config/site';
+
+const locale = 'ru' as const;
+const title = `Ремонт духовых шкафов Gaggenau · ${siteConfig.geo.ru}`;
+---
+
+<SiteLayout
+  locale={locale}
+  title={title}
+  description={ovensPage.subtitle.ru}
+  applianceSlug={ovensPage.slug}
+  applianceLabel="Духовые шкафы"
+>
+  <ApplianceLanding locale={locale} page={ovensPage} />
+</SiteLayout>

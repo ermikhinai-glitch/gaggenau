@@ -4,9 +4,11 @@ import { t } from '../i18n/ui';
 
 interface Props {
   locale: Locale;
+  applianceSlug?: string;
+  applianceLabel?: string;
 }
 
-const { locale } = Astro.props;
+const { locale, applianceSlug, applianceLabel } = Astro.props;
 ---
 
 <div
@@ -22,6 +24,8 @@ const { locale } = Astro.props;
     <button
       type="button"
       data-open-lead-modal
+      data-appliance-prefill={applianceSlug}
+      data-appliance-label={applianceLabel}
       class="flex items-center justify-center py-3 rounded-DEFAULT bg-gradient-to-r from-accent-champagne-base to-status-warning text-xs font-semibold uppercase tracking-wider text-surface-base shadow-[0_0_20px_rgba(197,160,89,0.35)]"
     >
       {t(locale, 'cta.requestShort')}
