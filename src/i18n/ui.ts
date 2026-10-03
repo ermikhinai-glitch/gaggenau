@@ -5,8 +5,11 @@ export const ui = {
     'nav.services': 'Услуги',
     'nav.about': 'О сервисе',
     'nav.contacts': 'Контакты',
+    'nav.privacy': 'Политика конфиденциальности',
+    'nav.terms': 'Договор оферты',
     'cta.call': 'Позвонить',
     'cta.request': 'Оставить заявку',
+    'cta.requestShort': 'Заявка',
     'lang.ru': 'RU',
     'lang.en': 'EN',
     'thankyou.day':
@@ -15,18 +18,25 @@ export const ui = {
       'Заявка успешно создана. Специалист свяжется после 8:00.',
     'sla.callback': 'перезвоним в течение 15 минут',
     'sla.visit': 'выезд специалиста от 30 минут',
-    'scaffold.eyebrow': 'Каркас · Задача 2',
-    'scaffold.title': 'i18n и плейсхолдеры',
+    'footer.geo': 'Москва и Подмосковье до 100 км',
+    'footer.note':
+      'Специализированный сервис ремонта техники Gaggenau. Выезд к клиенту.',
+    'footer.rights': 'Все права защищены.',
+    'open.now': 'Сейчас открыто',
+    'scaffold.eyebrow': 'Каркас · Задача 3',
+    'scaffold.title': 'Глобальная оболочка',
     'scaffold.body':
-      'Локали RU/EN, конфиг телефона и working title. Переключатель языка в шапке — в задаче 3.',
-    'scaffold.switchHint': 'Сейчас:',
+      'Шапка, футер, промо-баннер и sticky «Позвонить» на мобиле. Модалка заявки — в задаче 7.',
   },
   en: {
     'nav.services': 'Services',
     'nav.about': 'About',
     'nav.contacts': 'Contacts',
+    'nav.privacy': 'Privacy policy',
+    'nav.terms': 'Terms of service',
     'cta.call': 'Call',
     'cta.request': 'Request a visit',
+    'cta.requestShort': 'Request',
     'lang.ru': 'RU',
     'lang.en': 'EN',
     'thankyou.day':
@@ -35,11 +45,15 @@ export const ui = {
       'Request received. A specialist will contact you after 8:00.',
     'sla.callback': 'callback within 15 minutes',
     'sla.visit': 'engineer visit from 30 minutes',
-    'scaffold.eyebrow': 'Scaffold · Task 2',
-    'scaffold.title': 'i18n and placeholders',
+    'footer.geo': 'Moscow and Moscow Region within 100 km',
+    'footer.note':
+      'Specialized Gaggenau appliance repair. On-site service.',
+    'footer.rights': 'All rights reserved.',
+    'open.now': 'Open now',
+    'scaffold.eyebrow': 'Scaffold · Task 3',
+    'scaffold.title': 'Global chrome',
     'scaffold.body':
-      'RU/EN locales, phone config and working title. Language switch lands in task 3.',
-    'scaffold.switchHint': 'Current:',
+      'Header, footer, promo banner and mobile sticky call bar. Lead modal comes in task 7.',
   },
 } as const;
 

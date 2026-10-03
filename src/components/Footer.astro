@@ -1,0 +1,79 @@
+---
+import { appliances, siteConfig, type Locale } from '../config/site';
+import { t } from '../i18n/ui';
+import { localizePath } from '../i18n/utils';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t border-hairline bg-surface-container-lowest pb-24 md:pb-0">
+  <div
+    class="mx-auto max-w-[1520px] px-4 sm:px-6 lg:px-10 py-space-2xl grid gap-space-xl md:grid-cols-12"
+  >
+    <div class="md:col-span-5 space-y-space-md">
+      <p class="text-label-caps text-text-primary">{siteConfig.workingTitle[locale]}</p>
+      <p class="text-sm text-text-secondary max-w-md leading-relaxed">
+        {t(locale, 'footer.note')}
+      </p>
+      <p class="text-tech-data text-text-tertiary">{t(locale, 'footer.geo')}</p>
+    </div>
+
+    <div class="md:col-span-3 space-y-space-sm">
+      <p class="text-label-caps text-primary mb-space-sm">{t(locale, 'nav.services')}</p>
+      {
+        appliances.map((item) => (
+          <a
+            href={localizePath(locale, item.path)}
+            class="block text-sm text-text-secondary hover:text-primary transition-colors"
+          >
+            {item.label[locale]}
+          </a>
+        ))
+      }
+    </div>
+
+    <div class="md:col-span-4 space-y-space-sm">
+      <p class="text-label-caps text-primary mb-space-sm">{t(locale, 'nav.contacts')}</p>
+      <a
+        href={siteConfig.phoneHref}
+        class="block font-tech text-tech-data text-text-primary hover:text-primary transition-colors"
+      >
+        {siteConfig.phoneDisplay}
+      </a>
+      <a
+        href={`mailto:${siteConfig.email}`}
+        class="block text-sm text-text-secondary hover:text-primary transition-colors"
+      >
+        {siteConfig.email}
+      </a>
+      <p class="text-sm text-text-tertiary">{siteConfig.hours.label[locale]}</p>
+      <div class="pt-space-md flex flex-col gap-2">
+        <a href={localizePath(locale, 'about')} class="text-sm text-text-secondary hover:text-primary">
+          {t(locale, 'nav.about')}
+        </a>
+        <a href={localizePath(locale, 'contacts')} class="text-sm text-text-secondary hover:text-primary">
+          {t(locale, 'nav.contacts')}
+        </a>
+        <a href={localizePath(locale, 'privacy')} class="text-sm text-text-secondary hover:text-primary">
+          {t(locale, 'nav.privacy')}
+        </a>
+        <a href={localizePath(locale, 'terms')} class="text-sm text-text-secondary hover:text-primary">
+          {t(locale, 'nav.terms')}
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="border-t border-hairline">
+    <div
+      class="mx-auto max-w-[1520px] px-4 sm:px-6 lg:px-10 py-space-md flex flex-wrap justify-between gap-2 text-[11px] text-text-tertiary"
+    >
+      <span>© {year} {siteConfig.workingTitle[locale]}</span>
+      <span>{t(locale, 'footer.rights')}</span>
+    </div>
+  </div>
+</footer>

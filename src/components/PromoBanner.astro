@@ -1,0 +1,36 @@
+---
+import { promoA } from '../content/promo';
+import type { Locale } from '../config/site';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const promo = promoA;
+---
+
+<section class="w-full px-4 sm:px-6 lg:px-10 py-space-xl">
+  <div
+    class="mx-auto max-w-[1520px] rounded-lg border border-[rgba(197,160,89,0.25)] bg-gradient-to-br from-surface-overlay to-surface-raised p-space-lg md:p-space-xl flex flex-col md:flex-row md:items-center md:justify-between gap-space-lg"
+  >
+    <div class="max-w-2xl space-y-space-sm">
+      <h2 class="font-display text-xl md:text-2xl font-medium text-text-primary tracking-tight">
+        {promo.title[locale]}
+      </h2>
+      <p class="text-sm md:text-[15px] text-text-secondary leading-relaxed">
+        {promo.subtitle[locale]}
+      </p>
+      <p class="text-[11px] text-text-tertiary leading-relaxed">
+        {promo.fineprint[locale]}
+      </p>
+    </div>
+    <button
+      type="button"
+      data-open-lead-modal
+      class="shrink-0 inline-flex h-12 items-center justify-center rounded-DEFAULT bg-primary-container px-space-xl text-[13px] font-semibold uppercase tracking-wider text-on-primary-container shadow-[0_0_24px_rgba(197,160,89,0.3)] hover:shadow-[0_0_32px_rgba(197,160,89,0.45)] transition active:scale-[0.98]"
+    >
+      {promo.cta[locale]}
+    </button>
+  </div>
+</section>

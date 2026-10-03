@@ -1,0 +1,36 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import PromoBanner from '../components/PromoBanner.astro';
+import MobileStickyBar from '../components/MobileStickyBar.astro';
+import type { Locale } from '../config/site';
+
+interface Props {
+  locale: Locale;
+  title?: string;
+  description?: string;
+  showPromo?: boolean;
+}
+
+const { locale, title, description, showPromo = true } = Astro.props;
+---
+
+<BaseLayout locale={locale} title={title} description={description}>
+  <Header locale={locale} />
+  <main class="min-h-screen pt-20 pb-[5.5rem] md:pb-0">
+    <slot />
+    {showPromo && <PromoBanner locale={locale} />}
+  </main>
+  <Footer locale={locale} />
+  <MobileStickyBar locale={locale} />
+  <script is:inline>
+    document.addEventListener('click', (event) => {
+      const target = event.target;
+      if (!(target instanceof Element)) return;
+      if (!target.closest('[data-open-lead-modal]')) return;
+      // Lead modal arrives in task 7 — temporary feedback for chrome wiring.
+      console.info('[lead-modal] open requested');
+    });
+  </script>
+</BaseLayout>

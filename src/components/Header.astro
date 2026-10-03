@@ -1,0 +1,126 @@
+---
+import { appliances, siteConfig, type Locale } from '../config/site';
+import { t } from '../i18n/ui';
+import { localizePath, switchLocalePath } from '../i18n/utils';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const pathname = Astro.url.pathname;
+const otherLocale: Locale = locale === 'ru' ? 'en' : 'ru';
+---
+
+<header
+  class="fixed top-0 inset-x-0 z-50 border-b border-white/10 bg-[rgba(12,14,18,0.85)] backdrop-blur-xl"
+>
+  <div
+    class="mx-auto flex h-20 max-w-[1520px] items-center justify-between gap-space-md px-4 sm:px-6 lg:px-10"
+  >
+    <a href={localizePath(locale)} class="flex min-w-0 flex-col">
+      <span class="text-label-caps text-text-primary truncate">
+        {siteConfig.workingTitle[locale]}
+      </span>
+      <span class="hidden sm:block font-body text-[11px] text-text-tertiary">
+        {siteConfig.geo[locale]}
+      </span>
+    </a>
+
+    <nav class="hidden xl:flex items-center gap-6 text-[13px] font-medium tracking-wide">
+      <div class="relative group py-2">
+        <button
+          type="button"
+          class="flex items-center gap-1 text-text-secondary hover:text-text-primary transition-colors"
+        >
+          {t(locale, 'nav.services')}
+          <span class="text-primary text-xs">▾</span>
+        </button>
+        <div
+          class="absolute left-0 top-full z-50 hidden group-hover:flex flex-col w-64 p-2 rounded-DEFAULT border border-hairline bg-surface-raised/95 backdrop-blur-xl shadow-[0_20px_40px_rgba(0,0,0,0.8)]"
+        >
+          {
+            appliances.map((item) => (
+              <a
+                href={localizePath(locale, item.path)}
+                class="px-3 py-2 text-xs text-text-secondary hover:text-primary hover:bg-white/5 rounded-DEFAULT transition-colors"
+              >
+                {item.label[locale]}
+              </a>
+            ))
+          }
+        </div>
+      </div>
+      <a
+        href={localizePath(locale, 'about')}
+        class="text-text-secondary hover:text-text-primary transition-colors"
+      >
+        {t(locale, 'nav.about')}
+      </a>
+      <a
+        href={localizePath(locale, 'contacts')}
+        class="text-text-secondary hover:text-text-primary transition-colors"
+      >
+        {t(locale, 'nav.contacts')}
+      </a>
+    </nav>
+
+    <div class="flex items-center gap-3 sm:gap-4 shrink-0">
+      <div class="hidden md:flex flex-col items-end">
+        <span class="flex items-center gap-1.5 mb-0.5">
+          <span class="w-1.5 h-1.5 rounded-full bg-status-active shadow-[0_0_8px_#4ade80]"></span>
+          <span class="font-tech text-[10px] tracking-wider text-text-secondary uppercase">
+            {siteConfig.hours.label[locale]}
+          </span>
+        </span>
+        <a
+          href={siteConfig.phoneHref}
+          class="font-tech text-[15px] font-semibold tracking-wide text-text-primary hover:text-primary transition-colors"
+        >
+          {siteConfig.phoneDisplay}
+        </a>
+      </div>
+
+      <div
+        class="hidden sm:flex items-center rounded-full border border-hairline bg-surface-container p-0.5 font-tech text-[10px] font-bold"
+      >
+        <a
+          href={switchLocalePath(pathname, 'ru')}
+          class:list={[
+            'px-2.5 py-0.5 rounded-full uppercase transition',
+            locale === 'ru'
+              ? 'bg-primary-container text-on-primary-container'
+              : 'text-text-tertiary hover:text-text-primary',
+          ]}
+        >
+          {t(locale, 'lang.ru')}
+        </a>
+        <a
+          href={switchLocalePath(pathname, 'en')}
+          class:list={[
+            'px-2.5 py-0.5 rounded-full uppercase transition',
+            locale === 'en'
+              ? 'bg-primary-container text-on-primary-container'
+              : 'text-text-tertiary hover:text-text-primary',
+          ]}
+        >
+          {t(locale, 'lang.en')}
+        </a>
+      </div>
+
+      <a
+        href={siteConfig.phoneHref}
+        class="hidden lg:inline-flex h-11 items-center justify-center rounded-DEFAULT border border-white/15 bg-white/[0.03] px-4 text-[13px] font-medium text-text-primary hover:border-primary/60 hover:bg-white/[0.08] transition"
+      >
+        {t(locale, 'cta.call')}
+      </a>
+      <button
+        type="button"
+        data-open-lead-modal
+        class="inline-flex h-11 items-center justify-center rounded-DEFAULT bg-primary-container px-4 sm:px-5 text-[13px] font-semibold text-on-primary-container shadow-[0_0_20px_rgba(197,160,89,0.25)] hover:shadow-[0_0_28px_rgba(197,160,89,0.45)] transition active:scale-[0.98]"
+      >
+        {t(locale, 'cta.request')}
+      </button>
+    </div>
+  </div>
+</header>
