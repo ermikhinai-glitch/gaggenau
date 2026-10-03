@@ -12,11 +12,7 @@ export const homeContent = {
     },
     titleAccent: {
       ru: 'Gaggenau',
-      en: 'Gaggenau',
-    },
-    titleTail: {
-      ru: 'на дому',
-      en: 'appliances at home',
+      en: 'Gaggenau appliances',
     },
     subtitle: {
       ru: 'Выезд инженера, диагностика и ремонт техники Gaggenau. Оригинальные запчасти, прозрачные условия и быстрый ответ в рабочие часы.',
