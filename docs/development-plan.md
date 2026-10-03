@@ -8,7 +8,7 @@
 - [`дизайн/stitch_ui_ux_design_implementation/`](../дизайн/stitch_ui_ux_design_implementation/) — HTML-прототипы Stitch + [`atelier_dark_luxury_engineering/DESIGN.md`](../дизайн/stitch_ui_ux_design_implementation/atelier_dark_luxury_engineering/DESIGN.md)
 
 **Статус:** в разработке по задачам 0→12. Стек: Astro static + PHP под базовые хостинги РФ.  
-**Прогресс:** задачи 0–9 — done; дальше задача 10 (SEO-оболочка).  
+**Прогресс:** задачи 0–10 — done; дальше задача 11 (полировка).  
 **URL языков:** `/ru/...` и `/en/...` (`prefixDefaultLocale: true`).  
 **Режим работы:** одна задача → проверка → коммит → отчёт → ждать указаний.
 
@@ -378,10 +378,10 @@ Motion: 2–3 осознанных эффекта. Без калькулятор
 
 **Проверить:**
 
-- [ ] У каждой посадочной свой title с Gaggenau + тип + Москва (смысл)
-- [ ] Sitemap содержит все публичные URL
-- [ ] Preview build локально (`astro preview`) — мета на месте
-- [ ] Коммит
+- [x] У каждой посадочной свой title с Gaggenau + тип + Москва (смысл)
+- [x] Sitemap содержит все публичные URL
+- [x] Preview build локально (`astro preview`) — мета на месте
+- [x] Коммит
 
 **Коммит:** `feat: seo meta sitemap robots`
 

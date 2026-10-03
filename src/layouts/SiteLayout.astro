@@ -11,6 +11,8 @@ interface Props {
   locale: Locale;
   title?: string;
   description?: string;
+  ogImage?: string;
+  noindex?: boolean;
   showPromo?: boolean;
   applianceSlug?: string;
   applianceLabel?: string;
@@ -20,13 +22,15 @@ const {
   locale,
   title,
   description,
+  ogImage,
+  noindex,
   showPromo = true,
   applianceSlug,
   applianceLabel,
 } = Astro.props;
 ---
 
-<BaseLayout locale={locale} title={title} description={description}>
+<BaseLayout locale={locale} title={title} description={description} ogImage={ogImage} noindex={noindex}>
   <Header
     locale={locale}
     applianceSlug={applianceSlug}

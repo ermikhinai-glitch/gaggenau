@@ -13,6 +13,7 @@
     "api": "php -S 127.0.0.1:8080 -t ."
   },
   "dependencies": {
+    "@astrojs/sitemap": "^3.7.4",
     "@tailwindcss/vite": "^4.3.3",
     "astro": "^7.3.5",
     "tailwindcss": "^4.3.3"

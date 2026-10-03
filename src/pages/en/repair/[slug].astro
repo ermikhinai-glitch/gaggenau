@@ -1,8 +1,9 @@
 ---
 import SiteLayout from '../../../layouts/SiteLayout.astro';
 import ApplianceLanding from '../../../components/appliances/ApplianceLanding.astro';
-import { appliances, siteConfig } from '../../../config/site';
+import { appliances } from '../../../config/site';
 import { getAppliancePage, listAppliancePages } from '../../../content/appliances';
+import { getApplianceSeo } from '../../../content/seo';
 
 export function getStaticPaths() {
   return listAppliancePages().map((page) => ({
@@ -10,6 +11,7 @@ export function getStaticPaths() {
   }));
 }
 
+const locale = 'en' as const;
 const slug = Astro.params.slug ?? '';
 const page = getAppliancePage(slug);
 if (!page) {
@@ -18,16 +20,17 @@ if (!page) {
 
 const meta = appliances.find((a) => a.slug === page.slug);
 const label = meta?.label.en ?? page.slug;
-const title = `${label} Gaggenau repair · ${siteConfig.geo.en}`;
+const seo = getApplianceSeo(page.slug, locale);
 ---
 
 <SiteLayout
-  locale="en"
-  title={title}
-  description={page.subtitle.en}
+  locale={locale}
+  title={seo.title}
+  description={seo.description}
+  ogImage={page.heroImage}
   applianceSlug={page.slug}
   applianceLabel={label}
   showPromo={false}
 >
-  <ApplianceLanding locale="en" page={page} />
+  <ApplianceLanding locale={locale} page={page} />
 </SiteLayout>

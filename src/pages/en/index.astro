@@ -1,15 +1,15 @@
 ---
 import SiteLayout from '../../layouts/SiteLayout.astro';
 import HomePage from '../../components/home/HomePage.astro';
-import { siteConfig } from '../../config/site';
+import { homeSeo } from '../../content/seo';
 
 const locale = 'en' as const;
 ---
 
 <SiteLayout
   locale={locale}
-  title={siteConfig.workingTitle[locale]}
-  description={siteConfig.tagline[locale]}
+  title={homeSeo.title[locale]}
+  description={homeSeo.description[locale]}
   showPromo={false}
 >
   <HomePage locale={locale} />

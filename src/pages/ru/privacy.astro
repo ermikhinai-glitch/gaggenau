@@ -2,11 +2,17 @@
 import SiteLayout from '../../layouts/SiteLayout.astro';
 import UtilityPage from '../../components/utility/UtilityPage.astro';
 import { getUtilityPage } from '../../content/utility';
+import { withBrandTitle } from '../../content/seo';
 
 const locale = 'ru' as const;
 const page = getUtilityPage('privacy');
 ---
 
-<SiteLayout locale={locale} title={page.title[locale]} description={page.description[locale]} showPromo={false}>
+<SiteLayout
+  locale={locale}
+  title={withBrandTitle(page.title[locale], locale)}
+  description={page.description[locale]}
+  showPromo={false}
+>
   <UtilityPage locale={locale} page={page} />
 </SiteLayout>
