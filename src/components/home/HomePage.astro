@@ -14,59 +14,63 @@ const c = homeContent;
 ---
 
 <!-- Hero -->
-<section class="relative min-h-[100svh] flex items-center overflow-hidden border-b border-hairline">
+<section class="relative min-h-[100svh] flex flex-col overflow-hidden border-b border-hairline">
   <div class="absolute inset-0 z-0">
     <img
       src="/images/home/hero-kitchen.png"
       alt=""
-      class="h-full w-full object-cover object-center brightness-[0.72] contrast-[1.05] scale-105 motion-hero-bg"
+      class="h-full w-full object-cover object-center brightness-[0.65] contrast-[1.05] scale-105 motion-hero-bg"
     />
-    <div class="absolute inset-0 bg-gradient-to-r from-surface-base via-surface-base/85 to-surface-base/35"></div>
-    <div class="absolute inset-0 bg-gradient-to-t from-surface-base via-transparent to-surface-base/70"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-[#0c0e12] via-[#0c0e12]/92 to-[#0c0e12]/40"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-[#0c0e12] via-[#0c0e12]/35 to-[#0c0e12]/75"></div>
   </div>
 
   <div
-    class="relative z-10 w-full max-w-[1520px] mx-auto px-4 sm:px-6 lg:px-10 pt-28 pb-20 sm:pt-32 sm:pb-24 lg:pt-36 lg:pb-28 motion-fade-up"
+    class="relative z-10 flex flex-1 flex-col w-full max-w-[1520px] mx-auto px-4 sm:px-6 lg:px-10 pt-28 pb-10 sm:pt-32 lg:pt-36 lg:pb-14 motion-fade-up"
   >
-    <div
-      class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-surface-container/90 border border-primary/30 backdrop-blur-md mb-8 lg:mb-10"
-    >
-      <span class="w-2 h-2 rounded-full bg-status-active shadow-[0_0_8px_#4ade80]"></span>
-      <span class="text-label-caps text-status-warning tracking-[0.16em]">{c.hero.badge[locale]}</span>
+    <div class="flex-1 flex flex-col justify-start max-w-3xl pt-6 lg:pt-10">
+      <div
+        class="inline-flex w-fit items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-surface-container/90 border border-primary/30 backdrop-blur-md mb-8 lg:mb-12"
+      >
+        <span class="w-2 h-2 rounded-full bg-status-active shadow-[0_0_8px_#4ade80]"></span>
+        <span class="text-label-caps text-status-warning tracking-[0.16em]">{c.hero.badge[locale]}</span>
+      </div>
+
+      <h1 class="text-display-hero text-text-primary uppercase mb-8 lg:mb-10">
+        <span class="block">{c.hero.titleLead[locale]}</span>
+        <span class="block text-primary mt-1 lg:mt-2">{c.hero.titleAccent[locale]}</span>
+      </h1>
+
+      <p
+        class="max-w-xl text-lg sm:text-xl text-[#e8eaef] leading-relaxed mb-10 lg:mb-12 rounded-DEFAULT border border-white/10 bg-[#0c0e12]/55 backdrop-blur-md px-5 py-4"
+      >
+        {c.hero.subtitle[locale]}
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4 max-w-xl">
+        <button
+          type="button"
+          data-open-lead-modal
+          class="inline-flex h-14 items-center justify-center rounded-DEFAULT bg-primary-container px-10 text-sm font-semibold uppercase tracking-wider text-on-primary-container shadow-[0_0_24px_rgba(197,160,89,0.3)] hover:brightness-110 transition active:scale-[0.98]"
+        >
+          {t(locale, 'cta.request')}
+        </button>
+        <a
+          href={siteConfig.phoneHref}
+          class="inline-flex h-14 items-center justify-center rounded-DEFAULT border border-white/20 bg-surface-raised/90 px-10 font-tech text-tech-data uppercase tracking-wider text-text-primary hover:border-primary transition"
+        >
+          {siteConfig.phoneDisplay}
+        </a>
+      </div>
     </div>
 
-    <h1 class="max-w-5xl text-display-hero text-text-primary uppercase mb-8 lg:mb-10">
-      {c.hero.titleLead[locale]}
-      <span class="text-primary"> {c.hero.titleAccent[locale]}</span>
-    </h1>
-
-    <p class="max-w-2xl text-lg sm:text-xl text-text-secondary leading-relaxed mb-12 lg:mb-14">
-      {c.hero.subtitle[locale]}
-    </p>
-
-    <div class="flex flex-col sm:flex-row gap-4 mb-16 lg:mb-20 max-w-xl">
-      <button
-        type="button"
-        data-open-lead-modal
-        class="inline-flex h-14 items-center justify-center rounded-DEFAULT bg-primary-container px-10 text-sm font-semibold uppercase tracking-wider text-on-primary-container shadow-[0_0_24px_rgba(197,160,89,0.3)] hover:brightness-110 transition active:scale-[0.98]"
-      >
-        {t(locale, 'cta.request')}
-      </button>
-      <a
-        href={siteConfig.phoneHref}
-        class="inline-flex h-14 items-center justify-center rounded-DEFAULT border border-white/20 bg-surface-raised/90 px-10 font-tech text-tech-data uppercase tracking-wider text-text-primary hover:border-primary transition"
-      >
-        {siteConfig.phoneDisplay}
-      </a>
-    </div>
-
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5 pt-8 lg:pt-10 border-t border-white/10">
+    <div class="mt-14 lg:mt-20 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 lg:gap-5">
       {
         c.sla.map((item) => (
-          <div class="p-5 sm:p-6 lg:p-7 rounded-DEFAULT border border-hairline bg-surface-raised/80 backdrop-blur-md hover:border-border-metallic transition-colors min-h-[140px] flex flex-col justify-center">
+          <div class="p-6 lg:p-8 rounded-DEFAULT border border-hairline bg-[#14171d]/90 backdrop-blur-md hover:border-border-metallic transition-colors min-h-[168px] lg:min-h-[188px] flex flex-col justify-center">
             <div class="text-label-caps text-primary mb-3">{item.label[locale]}</div>
-            <div class="text-tech-data-lg text-text-primary mb-2">{item.value[locale]}</div>
-            <p class="text-sm text-text-secondary leading-snug">{item.text[locale]}</p>
+            <div class="text-tech-data-lg text-text-primary mb-3">{item.value[locale]}</div>
+            <p class="text-sm text-[#c5cad3] leading-snug">{item.text[locale]}</p>
           </div>
         ))
       }
