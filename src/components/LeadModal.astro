@@ -111,64 +111,84 @@ const inputClass =
           </span>
         </label>
 
-        <fieldset class="border border-white/15 rounded-DEFAULT p-space-md space-y-space-sm">
-          <legend class="px-1 text-[12px] uppercase tracking-wider text-[#c5cad3] font-medium">
-            {copy.optional}
-          </legend>
+        <details
+          data-lead-optional
+          class="group rounded-DEFAULT border border-white/15 bg-[#141820] open:border-border-metallic/50"
+        >
+          <summary
+            class="cursor-pointer list-none px-4 py-3.5 flex items-center justify-between gap-3 select-none"
+          >
+            <span>
+              <span class="block text-[12px] uppercase tracking-wider text-[#e2e5ec] font-medium">
+                {copy.optional}
+              </span>
+              <span class="block text-xs text-[#a3a8b5] mt-0.5 group-open:hidden">
+                {copy.optionalHint}
+              </span>
+            </span>
+            <span
+              class="text-primary text-sm transition-transform duration-200 group-open:rotate-180"
+              aria-hidden="true"
+            >
+              ▾
+            </span>
+          </summary>
 
-          <div>
-            <label class={labelClass} for="lead-city">{copy.city}</label>
-            <input id="lead-city" name="city" type="text" class={inputClass} />
-          </div>
+          <div class="px-4 pb-4 pt-1 space-y-space-sm border-t border-white/10">
+            <div>
+              <label class={labelClass} for="lead-city">{copy.city}</label>
+              <input id="lead-city" name="city" type="text" class={inputClass} />
+            </div>
 
-          <div>
-            <label class={labelClass} for="lead-time">{copy.time}</label>
-            <input id="lead-time" name="time" type="text" class={inputClass} />
-          </div>
+            <div>
+              <label class={labelClass} for="lead-time">{copy.time}</label>
+              <input id="lead-time" name="time" type="text" class={inputClass} />
+            </div>
 
-          <div>
-            <label class={labelClass} for="lead-appliance">{copy.appliance}</label>
-            <input type="hidden" name="applianceSlug" data-lead-appliance-slug value="" />
-            <input
-              id="lead-appliance"
-              name="appliance"
-              type="text"
-              list="lead-appliance-list"
-              data-lead-appliance
-              placeholder={copy.applianceEmpty}
-              class={inputClass}
-            />
-            <datalist id="lead-appliance-list">
-              {applianceOptions.map((opt) => <option value={opt.label}></option>)}
-            </datalist>
-          </div>
+            <div>
+              <label class={labelClass} for="lead-appliance">{copy.appliance}</label>
+              <input type="hidden" name="applianceSlug" data-lead-appliance-slug value="" />
+              <input
+                id="lead-appliance"
+                name="appliance"
+                type="text"
+                list="lead-appliance-list"
+                data-lead-appliance
+                placeholder={copy.applianceEmpty}
+                class={inputClass}
+              />
+              <datalist id="lead-appliance-list">
+                {applianceOptions.map((opt) => <option value={opt.label}></option>)}
+              </datalist>
+            </div>
 
-          <div>
-            <label class={labelClass} for="lead-problem">{copy.problem}</label>
-            <textarea
-              id="lead-problem"
-              name="problem"
-              rows="2"
-              class={`${inputClass} resize-none`}
-            ></textarea>
-          </div>
+            <div>
+              <label class={labelClass} for="lead-problem">{copy.problem}</label>
+              <textarea
+                id="lead-problem"
+                name="problem"
+                rows="2"
+                class={`${inputClass} resize-none`}
+              ></textarea>
+            </div>
 
-          <div>
-            <p class="text-[12px] uppercase tracking-wider text-[#c5cad3] font-medium mb-2">
-              {copy.channels}
-            </p>
-            <div class="flex flex-wrap gap-4">
-              <label class="inline-flex items-center gap-2 text-sm text-[#e2e5ec] cursor-pointer">
-                <input type="checkbox" name="channels" value="whatsapp" class="lux-checkbox" />
-                {copy.whatsapp}
-              </label>
-              <label class="inline-flex items-center gap-2 text-sm text-[#e2e5ec] cursor-pointer">
-                <input type="checkbox" name="channels" value="telegram" class="lux-checkbox" />
-                {copy.telegram}
-              </label>
+            <div>
+              <p class="text-[12px] uppercase tracking-wider text-[#c5cad3] font-medium mb-2">
+                {copy.channels}
+              </p>
+              <div class="flex flex-wrap gap-4">
+                <label class="inline-flex items-center gap-2 text-sm text-[#e2e5ec] cursor-pointer">
+                  <input type="checkbox" name="channels" value="whatsapp" class="lux-checkbox" />
+                  {copy.whatsapp}
+                </label>
+                <label class="inline-flex items-center gap-2 text-sm text-[#e2e5ec] cursor-pointer">
+                  <input type="checkbox" name="channels" value="telegram" class="lux-checkbox" />
+                  {copy.telegram}
+                </label>
+              </div>
             </div>
           </div>
-        </fieldset>
+        </details>
 
         <input
           type="text"

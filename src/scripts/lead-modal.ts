@@ -55,6 +55,7 @@ export function initLeadModal(root: HTMLElement): void {
   const successText = root.querySelector<HTMLElement>('[data-lead-success-text]');
   const applianceInput = root.querySelector<HTMLInputElement>('[data-lead-appliance]');
   const applianceSlugInput = root.querySelector<HTMLInputElement>('[data-lead-appliance-slug]');
+  const optionalBlock = root.querySelector<HTMLDetailsElement>('[data-lead-optional]');
   const errorBox = root.querySelector<HTMLElement>('[data-lead-errors]');
   const submitBtn = root.querySelector<HTMLButtonElement>('[data-lead-submit]');
   const privacyLink = root.querySelector<HTMLAnchorElement>('[data-lead-privacy-link]');
@@ -89,6 +90,7 @@ export function initLeadModal(root: HTMLElement): void {
     formView.classList.remove('hidden');
     successView.classList.add('hidden');
     form.reset();
+    if (optionalBlock) optionalBlock.open = false;
     setErrors([]);
     submitBtn.disabled = false;
     submitBtn.textContent = copy.submit;
@@ -98,6 +100,9 @@ export function initLeadModal(root: HTMLElement): void {
     const data = prefill || window.__leadAppliancePrefill || {};
     if (applianceInput) applianceInput.value = data.label || '';
     if (applianceSlugInput) applianceSlugInput.value = data.slug || '';
+    if (optionalBlock && (data.label || data.slug)) {
+      optionalBlock.open = true;
+    }
   }
 
   function openModal(prefill?: Prefill): void {
