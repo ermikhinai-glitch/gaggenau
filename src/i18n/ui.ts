@@ -18,7 +18,7 @@ export const ui = {
       'Заявка успешно создана. Специалист свяжется после 8:00.',
     'sla.callback': 'перезвоним в течение 15 минут',
     'sla.visit': 'выезд специалиста от 30 минут',
-    'footer.geo': 'Москва и Подмосковье',
+    'footer.geo': 'Москва и МО',
     'footer.note':
       'Специализированный сервис ремонта техники Gaggenau. Выезд к клиенту.',
     'footer.rights': 'Все права защищены.',
@@ -45,7 +45,7 @@ export const ui = {
       'Request received. A specialist will contact you after 8:00.',
     'sla.callback': 'callback within 15 minutes',
     'sla.visit': 'engineer visit from 30 minutes',
-    'footer.geo': 'Moscow and Moscow Region',
+    'footer.geo': 'Moscow and MO',
     'footer.note':
       'Specialized Gaggenau appliance repair. On-site service.',
     'footer.rights': 'All rights reserved.',
