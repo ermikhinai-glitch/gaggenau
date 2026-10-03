@@ -89,7 +89,7 @@ const applianceOptions = appliances.map((a) => ({
             name="consent"
             type="checkbox"
             required
-            class="mt-0.5 h-[18px] w-[18px] accent-[#c5a059] rounded-[2px]"
+            class="lux-checkbox mt-0.5"
           />
           <span>
             {copy.consent}
@@ -162,11 +162,11 @@ const applianceOptions = appliances.map((a) => ({
             <p class="text-[11px] text-text-tertiary mb-2">{copy.channels}</p>
             <div class="flex flex-wrap gap-4">
               <label class="inline-flex items-center gap-2 text-xs text-text-secondary cursor-pointer">
-                <input type="checkbox" name="channels" value="whatsapp" class="accent-[#c5a059]" />
+                <input type="checkbox" name="channels" value="whatsapp" class="lux-checkbox" />
                 {copy.whatsapp}
               </label>
               <label class="inline-flex items-center gap-2 text-xs text-text-secondary cursor-pointer">
-                <input type="checkbox" name="channels" value="telegram" class="accent-[#c5a059]" />
+                <input type="checkbox" name="channels" value="telegram" class="lux-checkbox" />
                 {copy.telegram}
               </label>
             </div>

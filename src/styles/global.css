@@ -233,3 +233,43 @@
   }
 }
 
+/* Custom checkboxes — Atelier dark / champagne (DESIGN.md) */
+@layer components {
+  .lux-checkbox {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    margin: 0;
+    flex-shrink: 0;
+    border-radius: 2px;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    background: rgba(255, 255, 255, 0.03);
+    cursor: pointer;
+    transition:
+      border-color 0.15s ease,
+      background-color 0.15s ease,
+      box-shadow 0.15s ease;
+  }
+
+  .lux-checkbox:hover {
+    border-color: rgba(197, 160, 89, 0.55);
+  }
+
+  .lux-checkbox:focus-visible {
+    outline: none;
+    border-color: #c5a059;
+    box-shadow: 0 0 0 2px rgba(197, 160, 89, 0.25);
+  }
+
+  .lux-checkbox:checked {
+    border-color: #c5a059;
+    background-color: #c5a059;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%230c0e12' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3.5 8.2 6.6 11.2 12.5 4.8'/%3E%3C/svg%3E");
+    background-size: 12px 12px;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+}
+
+
