@@ -1,5 +1,5 @@
 ---
-import { appliances, type Locale } from '../config/site';
+import { appliances, siteConfig, type Locale } from '../config/site';
 import { leadCopy } from '../content/lead';
 import { localizePath } from '../i18n/utils';
 
@@ -10,6 +10,7 @@ interface Props {
 const { locale } = Astro.props;
 const copy = leadCopy[locale];
 const privacyHref = localizePath(locale, 'privacy');
+const leadApiUrl = siteConfig.leadApiUrl;
 const applianceOptions = appliances.map((a) => ({
   slug: a.slug,
   label: a.label[locale],
@@ -31,6 +32,7 @@ const optionalInputClass =
   data-locale={locale}
   data-copy={JSON.stringify(copy)}
   data-privacy-href={privacyHref}
+  data-api-url={leadApiUrl}
   role="presentation"
 >
   <div

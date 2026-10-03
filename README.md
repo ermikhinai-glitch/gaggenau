@@ -31,26 +31,40 @@
 
 ```bash
 npm install
-npm run dev          # локальный UI (Astro)
+npm run dev          # локальный UI (Astro), /api проксируется на :8080
+npm run api          # PHP: php -S 127.0.0.1:8080 -t .
 npm run build        # сборка в dist/
 npm run preview      # просмотр production-сборки
 ```
 
-Проверка PHP API (после появления `api/lead.php`):
+### Локальная проверка формы заявок
+
+1. Скопируйте `api/config.example.php` → `api/config.php` (уже с `dry_run => true`).
+2. В одном терминале: `npm run api` (нужен PHP 8.1+ в PATH).
+3. В другом: `npm run dev` → откройте сайт → «Оставить заявку» → отправьте тест.
+4. Успех: экран «Заявка принята»; строка появится в `api/logs/leads.log`.
+5. Для боя: в `config.php` выставьте `dry_run => false`, заполните Telegram `bot_token` + `chat_id`, при необходимости SMTP (`email.enabled => true`).
+
+Прямой тест API без UI:
 
 ```bash
-php -S localhost:8080 -t .
-# POST http://localhost:8080/api/lead.php
+curl -X POST http://127.0.0.1:8080/api/lead.php ^
+  -H "Content-Type: application/json" ^
+  -d "{\"name\":\"Test\",\"phone\":\"+79991234567\",\"consent\":true,\"locale\":\"ru\"}"
 ```
 
-На Astro-dev для формы понадобится proxy на PHP или отдельный origin — см. задачу 8 в плане.
+## Деплой (кратко)
+
+- В `public_html` (или корень сайта): содержимое `dist/` + папка `api/`.
+- На сервере: `api/config.php` из example с боевыми секретами (`dry_run => false`).
+- `api/config.php` и `api/logs/` не должны быть доступны из браузера (есть `.htaccess` для Apache).
 
 ## Рабочий цикл после каждой задачи
 
-1. Локальный просмотр (`npm run dev` / при необходимости `php -S`)
+1. Локальный просмотр (`npm run dev` / при необходимости `npm run api`)
 2. Чек-лист задачи из [docs/development-plan.md](docs/development-plan.md)
 3. Git commit по задаче
 
 ## Статус
 
-Разработка идёт по задачам 0→12 из плана.
+Задачи 0–8 сделаны; дальше по плану — 9 (служебные страницы).

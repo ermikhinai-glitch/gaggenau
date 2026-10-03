@@ -1,0 +1,4 @@
+# Keep secrets and logs out of the web on Apache shared hosting
+<Files "config.php">
+  Require all denied
+</Files>

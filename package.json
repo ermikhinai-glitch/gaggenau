@@ -9,7 +9,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "api": "php -S 127.0.0.1:8080 -t ."
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.3",

@@ -10,6 +10,7 @@ type LeadCopy = {
   errorPhone: string;
   errorConsent: string;
   errorGeneric: string;
+  errorNetwork: string;
   submitting: string;
   submit: string;
 };
@@ -46,6 +47,7 @@ export function initLeadModal(root: HTMLElement): void {
   const locale = (root.dataset.locale as Locale) || 'ru';
   const copy = JSON.parse(root.dataset.copy || '{}') as LeadCopy;
   const privacyHref = root.dataset.privacyHref || '#';
+  const apiUrl = root.dataset.apiUrl || '/api/lead.php';
 
   const dialog = root.querySelector<HTMLElement>('[data-lead-dialog]');
   const formView = root.querySelector<HTMLElement>('[data-lead-form-view]');
@@ -210,38 +212,64 @@ export function initLeadModal(root: HTMLElement): void {
     submitBtn.disabled = true;
     submitBtn.textContent = copy.submitting;
 
-    // Task 7: UI-only success. Task 8 will POST to PHP API.
-    await new Promise((r) => setTimeout(r, 450));
-
-    const day = isBusinessHoursMoscow();
-    if (successText) successText.textContent = day ? copy.thankyouDay : copy.thankyouNight;
-    formView.classList.add('hidden');
-    successView.classList.remove('hidden');
-    submitBtn.disabled = false;
-    submitBtn.textContent = copy.submit;
-
     const applianceSlug = String(data.get('applianceSlug') || '');
     const applianceLabel =
       applianceSelect?.selectedOptions[0] && applianceSlug
         ? applianceSelect.selectedOptions[0].text
         : '';
 
-    // Keep payload for upcoming API wiring.
-    window.__leadAppliancePrefill = {
-      slug: applianceSlug,
-      label: applianceLabel,
-    };
-    console.info('[lead-modal] validated payload', {
+    const payload = {
       locale,
       name,
       phone: normalizePhone(phone),
-      city: String(data.get('city') || ''),
-      time: String(data.get('time') || ''),
-      appliance: applianceLabel,
+      consent: true,
+      city: String(data.get('city') || '').trim(),
+      time: String(data.get('time') || '').trim(),
       applianceSlug,
-      problem: String(data.get('problem') || ''),
-      channels: data.getAll('channels'),
-    });
+      applianceLabel,
+      problem: String(data.get('problem') || '').trim(),
+      channels: data.getAll('channels').map(String),
+      company: String(data.get('company') || ''),
+      page: typeof window !== 'undefined' ? window.location.pathname : '',
+    };
+
+    try {
+      const response = await fetch(apiUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(payload),
+      });
+
+      let result: { ok?: boolean; error?: string } | null = null;
+      try {
+        result = (await response.json()) as { ok?: boolean; error?: string };
+      } catch {
+        result = null;
+      }
+
+      if (!response.ok || !result?.ok) {
+        setErrors([copy.errorNetwork]);
+        submitBtn.disabled = false;
+        submitBtn.textContent = copy.submit;
+        return;
+      }
+
+      const day = isBusinessHoursMoscow();
+      if (successText) successText.textContent = day ? copy.thankyouDay : copy.thankyouNight;
+      formView.classList.add('hidden');
+      successView.classList.remove('hidden');
+      submitBtn.disabled = false;
+      submitBtn.textContent = copy.submit;
+
+      window.__leadAppliancePrefill = {
+        slug: applianceSlug,
+        label: applianceLabel,
+      };
+    } catch {
+      setErrors([copy.errorNetwork]);
+      submitBtn.disabled = false;
+      submitBtn.textContent = copy.submit;
+    }
   });
 
   window.__openLeadModal = openModal;

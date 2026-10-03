@@ -8,7 +8,7 @@
 - [`дизайн/stitch_ui_ux_design_implementation/`](../дизайн/stitch_ui_ux_design_implementation/) — HTML-прототипы Stitch + [`atelier_dark_luxury_engineering/DESIGN.md`](../дизайн/stitch_ui_ux_design_implementation/atelier_dark_luxury_engineering/DESIGN.md)
 
 **Статус:** в разработке по задачам 0→12. Стек: Astro static + PHP под базовые хостинги РФ.  
-**Прогресс:** задачи 0–7 — done; дальше задача 8 (PHP API заявок).  
+**Прогресс:** задачи 0–8 — done; дальше задача 9 (служебные страницы).  
 **URL языков:** `/ru/...` и `/en/...` (`prefixDefaultLocale: true`).  
 **Режим работы:** одна задача → проверка → коммит → отчёт → ждать указаний.
 
@@ -334,11 +334,11 @@ Motion: 2–3 осознанных эффекта. Без калькулятор
 
 **Проверить:**
 
-- [ ] Локально: `php -S` + успешная тестовая заявка (Telegram sandbox / тестовый chat id)
-- [ ] Email уходит или в логе SMTP ошибка явно видна
-- [ ] Пустой/битый запрос → 4xx, без утечки секретов
-- [ ] `config.php` не в git
-- [ ] Коммит только `api/lead.php` + example config + клиентский submit
+- [x] Локально: `php -S` + успешная тестовая заявка (режим `dry_run` → `api/logs/leads.log`; бой: Telegram token/chat id в `config.php`)
+- [x] Email: в `dry_run`/disabled не шлётся; при `enabled` + SMTP ошибка возвращается явно (без секретов)
+- [x] Пустой/битый запрос → 4xx, без утечки секретов
+- [x] `config.php` не в git
+- [x] Коммит: `api/lead.php` + example config + клиентский submit + proxy
 
 **Коммит:** `feat: php lead endpoint with telegram and email`
 

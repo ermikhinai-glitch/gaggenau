@@ -29,6 +29,7 @@ export const leadCopy = {
     errorPhone: 'Укажите телефон',
     errorConsent: 'Нужно согласие на обработку данных',
     errorGeneric: 'Проверьте поля формы',
+    errorNetwork: 'Не удалось отправить заявку. Позвоните нам или попробуйте ещё раз.',
   },
   en: {
     title: 'Request a visit',
@@ -60,5 +61,6 @@ export const leadCopy = {
     errorPhone: 'Enter your phone',
     errorConsent: 'Consent is required',
     errorGeneric: 'Please check the form fields',
+    errorNetwork: 'Could not send the request. Please call us or try again.',
   },
 } as const;

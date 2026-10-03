@@ -18,5 +18,14 @@ export default defineConfig({
   },
   vite: {
     plugins: [tailwindcss()],
+    server: {
+      // Forward /api/* to local `php -S 127.0.0.1:8080 -t .` during npm run dev
+      proxy: {
+        '/api': {
+          target: 'http://127.0.0.1:8080',
+          changeOrigin: true,
+        },
+      },
+    },
   },
 });

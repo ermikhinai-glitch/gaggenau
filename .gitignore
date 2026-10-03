@@ -19,7 +19,9 @@ pnpm-debug.log*
 
 # PHP secrets (RF hosting API)
 api/config.php
-api/logs/
+api/logs/*
+!api/logs/.gitkeep
+!api/logs/.htaccess
 
 # macOS-specific files
 .DS_Store
