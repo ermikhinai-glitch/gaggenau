@@ -14,7 +14,7 @@ const c = homeContent;
 ---
 
 <!-- Hero -->
-<section class="relative min-h-[88vh] flex items-center overflow-hidden border-b border-hairline">
+<section class="relative min-h-[100svh] flex items-center overflow-hidden border-b border-hairline">
   <div class="absolute inset-0 z-0">
     <img
       src="/images/home/hero-kitchen.png"
@@ -25,46 +25,48 @@ const c = homeContent;
     <div class="absolute inset-0 bg-gradient-to-t from-surface-base via-transparent to-surface-base/70"></div>
   </div>
 
-  <div class="relative z-10 w-full max-w-[1520px] mx-auto px-4 sm:px-6 lg:px-10 py-16 lg:py-24 motion-fade-up">
+  <div
+    class="relative z-10 w-full max-w-[1520px] mx-auto px-4 sm:px-6 lg:px-10 pt-28 pb-20 sm:pt-32 sm:pb-24 lg:pt-36 lg:pb-28 motion-fade-up"
+  >
     <div
-      class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-surface-container/90 border border-primary/30 backdrop-blur-md mb-6"
+      class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-surface-container/90 border border-primary/30 backdrop-blur-md mb-8 lg:mb-10"
     >
       <span class="w-2 h-2 rounded-full bg-status-active shadow-[0_0_8px_#4ade80]"></span>
       <span class="text-label-caps text-status-warning tracking-[0.16em]">{c.hero.badge[locale]}</span>
     </div>
 
-    <h1 class="max-w-4xl text-display-hero text-text-primary uppercase mb-6">
+    <h1 class="max-w-5xl text-display-hero text-text-primary uppercase mb-8 lg:mb-10">
       {c.hero.titleLead[locale]}
       <span class="text-primary"> {c.hero.titleAccent[locale]}</span>
     </h1>
 
-    <p class="max-w-2xl text-base sm:text-lg text-text-secondary leading-relaxed mb-10">
+    <p class="max-w-2xl text-lg sm:text-xl text-text-secondary leading-relaxed mb-12 lg:mb-14">
       {c.hero.subtitle[locale]}
     </p>
 
-    <div class="flex flex-col sm:flex-row gap-4 mb-14 max-w-xl">
+    <div class="flex flex-col sm:flex-row gap-4 mb-16 lg:mb-20 max-w-xl">
       <button
         type="button"
         data-open-lead-modal
-        class="inline-flex h-12 items-center justify-center rounded-DEFAULT bg-primary-container px-8 text-sm font-semibold uppercase tracking-wider text-on-primary-container shadow-[0_0_24px_rgba(197,160,89,0.3)] hover:brightness-110 transition active:scale-[0.98]"
+        class="inline-flex h-14 items-center justify-center rounded-DEFAULT bg-primary-container px-10 text-sm font-semibold uppercase tracking-wider text-on-primary-container shadow-[0_0_24px_rgba(197,160,89,0.3)] hover:brightness-110 transition active:scale-[0.98]"
       >
         {t(locale, 'cta.request')}
       </button>
       <a
         href={siteConfig.phoneHref}
-        class="inline-flex h-12 items-center justify-center rounded-DEFAULT border border-white/20 bg-surface-raised/90 px-8 font-tech text-tech-data uppercase tracking-wider text-text-primary hover:border-primary transition"
+        class="inline-flex h-14 items-center justify-center rounded-DEFAULT border border-white/20 bg-surface-raised/90 px-10 font-tech text-tech-data uppercase tracking-wider text-text-primary hover:border-primary transition"
       >
         {siteConfig.phoneDisplay}
       </a>
     </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 pt-6 border-t border-white/10">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5 pt-8 lg:pt-10 border-t border-white/10">
       {
         c.sla.map((item) => (
-          <div class="p-4 sm:p-5 rounded-DEFAULT border border-hairline bg-surface-raised/80 backdrop-blur-md hover:border-border-metallic transition-colors">
-            <div class="text-label-caps text-primary mb-2">{item.label[locale]}</div>
-            <div class="text-tech-data-lg text-text-primary mb-1">{item.value[locale]}</div>
-            <p class="text-xs text-text-secondary leading-snug">{item.text[locale]}</p>
+          <div class="p-5 sm:p-6 lg:p-7 rounded-DEFAULT border border-hairline bg-surface-raised/80 backdrop-blur-md hover:border-border-metallic transition-colors min-h-[140px] flex flex-col justify-center">
+            <div class="text-label-caps text-primary mb-3">{item.label[locale]}</div>
+            <div class="text-tech-data-lg text-text-primary mb-2">{item.value[locale]}</div>
+            <p class="text-sm text-text-secondary leading-snug">{item.text[locale]}</p>
           </div>
         ))
       }
