@@ -2,7 +2,7 @@ import type { AppliancePageContent } from './types';
 
 export const dishwashersPage: AppliancePageContent = {
   slug: 'dishwashers',
-  heroImage: '/images/home/dishwashers.png',
+  heroImage: '/images/home/dishwashers.webp',
   badge: {
     ru: 'Ремонт Gaggenau · Москва и МО',
     en: 'Gaggenau repair · Moscow and MO',

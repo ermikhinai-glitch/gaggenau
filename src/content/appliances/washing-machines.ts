@@ -2,7 +2,7 @@ import type { AppliancePageContent } from './types';
 
 export const washingMachinesPage: AppliancePageContent = {
   slug: 'washing-machines',
-  heroImage: '/images/home/washing-machines.png',
+  heroImage: '/images/home/washing-machines.webp',
   badge: {
     ru: 'Ремонт Gaggenau · Москва и МО',
     en: 'Gaggenau repair · Moscow and MO',

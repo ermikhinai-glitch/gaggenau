@@ -97,4 +97,4 @@ export function withBrandTitle(pageTitle: string, locale: Locale): string {
   return `${pageTitle} · ${brand} · ${geo}`;
 }
 
-export const defaultOgImagePath = '/images/home/hero-kitchen.png';
+export const defaultOgImagePath = '/images/home/hero-kitchen.webp';

@@ -2,7 +2,7 @@ import type { AppliancePageContent } from './types';
 
 export const ovensPage: AppliancePageContent = {
   slug: 'ovens',
-  heroImage: '/images/home/ovens.png',
+  heroImage: '/images/home/ovens.webp',
   badge: {
     ru: 'Ремонт Gaggenau · Москва и МО',
     en: 'Gaggenau repair · Moscow and MO',

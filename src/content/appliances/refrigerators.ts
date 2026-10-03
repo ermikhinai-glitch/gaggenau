@@ -2,7 +2,7 @@ import type { AppliancePageContent } from './types';
 
 export const refrigeratorsPage: AppliancePageContent = {
   slug: 'refrigerators',
-  heroImage: '/images/home/refrigerators.png',
+  heroImage: '/images/home/refrigerators.webp',
   badge: {
     ru: 'Ремонт Gaggenau · Москва и МО',
     en: 'Gaggenau repair · Moscow and MO',

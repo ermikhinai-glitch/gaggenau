@@ -78,7 +78,15 @@ const terms = homeContent.terms;
     </div>
     <div class="lg:col-span-5">
       <div class="relative aspect-[4/5] overflow-hidden rounded-lg border border-hairline bg-surface-raised">
-        <img src={page.heroImage} alt="" class="h-full w-full object-cover" />
+        <img
+          src={page.heroImage}
+          alt={label}
+          width="900"
+          height="1125"
+          fetchpriority="high"
+          decoding="async"
+          class="h-full w-full object-cover"
+        />
         <div class="absolute inset-0 bg-gradient-to-t from-surface-base via-transparent to-transparent"></div>
       </div>
     </div>

@@ -29,17 +29,18 @@ const otherLocale: Locale = locale === 'ru' ? 'en' : 'ru';
       </span>
     </a>
 
-    <nav class="hidden xl:flex items-center gap-6 text-[13px] font-medium tracking-wide">
+    <nav class="hidden xl:flex items-center gap-6 text-[13px] font-medium tracking-wide" aria-label={locale === 'ru' ? 'Основное меню' : 'Main'}>
       <div class="relative group py-2">
         <button
           type="button"
           class="flex items-center gap-1 text-text-secondary hover:text-text-primary transition-colors"
+          aria-haspopup="true"
         >
           {t(locale, 'nav.services')}
-          <span class="text-primary text-xs">▾</span>
+          <span class="text-primary text-xs" aria-hidden="true">▾</span>
         </button>
         <div
-          class="absolute left-0 top-full z-50 hidden group-hover:flex flex-col w-64 p-2 rounded-DEFAULT border border-hairline bg-surface-raised/95 backdrop-blur-xl shadow-[0_20px_40px_rgba(0,0,0,0.8)]"
+          class="absolute left-0 top-full z-50 hidden group-hover:flex group-focus-within:flex flex-col w-64 p-2 rounded-DEFAULT border border-hairline bg-surface-raised/95 backdrop-blur-xl shadow-[0_20px_40px_rgba(0,0,0,0.8)]"
         >
           {
             appliances.map((item) => (

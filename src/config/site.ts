@@ -4,8 +4,8 @@ export const siteConfig = {
     en: 'Gaggenau Official Service',
   },
   tagline: {
-    ru: 'Ремонт техники Gaggenau · Москва и Подмосковье до 100 км',
-    en: 'Gaggenau appliance repair · Moscow and Moscow Region up to 100 km',
+    ru: 'Ремонт техники Gaggenau · Москва и МО',
+    en: 'Gaggenau appliance repair · Moscow and MO',
   },
   phoneDisplay: '+7 (495) 000-00-00',
   phoneHref: 'tel:+74950000000',

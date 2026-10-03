@@ -69,10 +69,10 @@ export const homeContent = {
     'washing-machines': {
       series: { ru: 'Стиральные модули', en: 'Laundry' },
       description: {
-        ru: 'Диагностика и ремонт стиральных машин Gaggenau на дому.',
-        en: 'Diagnostics and repair of Gaggenau washing machines on-site.',
+        ru: 'Диагностика и ремонт стиральных машин Gaggenau с выездом инженера.',
+        en: 'Diagnostics and repair of Gaggenau washing machines with an engineer visit.',
       },
-      image: '/images/home/washing-machines.png',
+      image: '/images/home/washing-machines.webp',
     },
     dishwashers: {
       series: { ru: 'Посудомойки', en: 'Dishcare' },
@@ -80,7 +80,7 @@ export const homeContent = {
         ru: 'Устранение протечек, ошибок и сбоев сушки у посудомоечных машин Gaggenau.',
         en: 'Leaks, error codes and drying issues on Gaggenau dishwashers.',
       },
-      image: '/images/home/dishwashers.png',
+      image: '/images/home/dishwashers.webp',
     },
     refrigerators: {
       series: { ru: 'Охлаждение', en: 'Cooling' },
@@ -88,7 +88,7 @@ export const homeContent = {
         ru: 'Холодильники Gaggenau: охлаждение, шумы, электроника, герметичность контура.',
         en: 'Gaggenau refrigeration: cooling, noise, electronics, sealed systems.',
       },
-      image: '/images/home/refrigerators.png',
+      image: '/images/home/refrigerators.webp',
     },
     ovens: {
       series: { ru: 'Серии 200 / 400', en: 'Series 200 / 400' },
@@ -96,7 +96,7 @@ export const homeContent = {
         ru: 'Духовые шкафы Gaggenau: нагрев, электроника, калибровка режимов.',
         en: 'Gaggenau ovens: heating, electronics, mode calibration.',
       },
-      image: '/images/home/ovens.png',
+      image: '/images/home/ovens.webp',
     },
     'coffee-machines': {
       series: { ru: 'Кофесистемы', en: 'Coffee systems' },
@@ -104,7 +104,7 @@ export const homeContent = {
         ru: 'Встроенные кофемашины Gaggenau: помол, заварочный блок, ошибки и протечки.',
         en: 'Built-in Gaggenau coffee machines: grind, brew unit, errors and leaks.',
       },
-      image: '/images/home/coffee-machines.png',
+      image: '/images/home/coffee-machines.webp',
     },
   },
   process: {
@@ -185,10 +185,10 @@ export const homeContent = {
         },
       },
       {
-        title: { ru: 'Зона выезда до 100 км', en: 'Service area up to 100 km' },
+        title: { ru: 'Зона выезда — Москва и МО', en: 'Service area — Moscow and MO' },
         text: {
-          ru: 'Москва и ближайшее Подмосковье.',
-          en: 'Moscow and nearby Moscow Region.',
+          ru: 'Точный адрес и возможность выезда уточняем при звонке.',
+          en: 'Exact address and visit feasibility are confirmed on the call.',
         },
       },
     ],
@@ -197,12 +197,12 @@ export const homeContent = {
     eyebrow: { ru: 'Отзывы', en: 'Reviews' },
     title: { ru: 'Отзывы клиентов', en: 'Customer reviews' },
     badge: {
-      ru: 'ТЕСТОВЫЕ ОТЗЫВЫ / PLACEHOLDER',
-      en: 'SAMPLE REVIEWS / PLACEHOLDER',
+      ru: 'Демонстрация',
+      en: 'Demo',
     },
     note: {
-      ru: 'Это демонстрационные тексты для макета. На боевом сайте будут только реальные отзывы или блок будет скрыт.',
-      en: 'Demo copy for layout only. The live site will show real reviews or hide this block.',
+      ru: 'Пока показаны примеры текстов для макета. Перед запуском заменим на реальные отзывы или скроем блок.',
+      en: 'Sample copy for layout only. Before launch we will replace these with real reviews or hide the block.',
     },
     items: [
       {
@@ -294,8 +294,8 @@ export const homeContent = {
       en: 'A premium Gaggenau repair service',
     },
     body: {
-      ru: 'Мы помогаем частным клиентам в Москве и Подмосковье быстро связаться с инженером и восстановить технику без лишних шагов на сайте.',
-      en: 'We help private clients in Moscow and the Region reach an engineer quickly and restore appliances without unnecessary website steps.',
+      ru: 'Мы помогаем частным клиентам в Москве и МО быстро связаться с инженером и восстановить технику без лишних шагов на сайте.',
+      en: 'We help private clients in Moscow and MO reach an engineer quickly and restore appliances without unnecessary website steps.',
     },
     link: { ru: 'Подробнее о сервисе', en: 'More about the service' },
   },

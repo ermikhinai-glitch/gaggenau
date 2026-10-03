@@ -56,6 +56,9 @@ const ogLocale = locale === 'ru' ? 'ru_RU' : 'en_US';
     />
   </head>
   <body class="bg-surface-base text-text-primary antialiased">
+    <a class="skip-link" href="#main-content">
+      {locale === 'ru' ? 'К содержанию' : 'Skip to content'}
+    </a>
     <slot />
   </body>
 </html>

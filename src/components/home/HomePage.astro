@@ -19,8 +19,12 @@ const c = homeContent;
 >
   <div class="absolute inset-0 z-0">
     <img
-      src="/images/home/hero-kitchen.png"
+      src="/images/home/hero-kitchen.webp"
       alt=""
+      width="1920"
+      height="1080"
+      fetchpriority="high"
+      decoding="async"
       class="h-full w-full object-cover object-[center_30%] brightness-[0.72] contrast-[1.05] scale-105 motion-hero-bg"
     />
     <div class="absolute inset-0 bg-gradient-to-r from-[#0c0e12] via-[#0c0e12]/85 to-[#0c0e12]/30"></div>
@@ -98,14 +102,18 @@ const c = homeContent;
           return (
             <a
               href={localizePath(locale, item.path)}
-              class="group flex flex-col justify-between min-h-[420px] rounded-DEFAULT border border-hairline bg-surface-raised/70 p-5 hover:border-border-metallic transition-all duration-300 hover:-translate-y-0.5"
+              class="group flex flex-col justify-between min-h-[420px] rounded-DEFAULT border border-hairline bg-surface-raised/70 p-5 hover:border-border-metallic transition-colors duration-300 motion-safe:hover:-translate-y-0.5 focus-visible:border-border-metallic"
             >
               <div>
                 <div class="relative h-40 mb-4 overflow-hidden rounded-DEFAULT border border-hairline bg-black/40">
                   <img
                     src={card.image}
-                    alt=""
-                    class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    alt={item.label[locale]}
+                    width="900"
+                    height="600"
+                    loading="lazy"
+                    decoding="async"
+                    class="h-full w-full object-cover transition-transform duration-700 motion-safe:group-hover:scale-105"
                   />
                   <div class="absolute inset-0 bg-gradient-to-t from-surface-raised via-transparent to-transparent" />
                 </div>
@@ -167,7 +175,15 @@ const c = homeContent;
 <section class="py-space-2xl md:py-space-3xl border-t border-hairline">
   <div class="max-w-[1520px] mx-auto px-4 sm:px-6 lg:px-10 grid lg:grid-cols-12 gap-space-xl items-center">
     <div class="lg:col-span-5 relative overflow-hidden rounded-DEFAULT border border-hairline min-h-[280px]">
-      <img src="/images/home/trust.png" alt="" class="absolute inset-0 h-full w-full object-cover" />
+      <img
+        src="/images/home/trust.webp"
+        alt=""
+        width="1400"
+        height="900"
+        loading="lazy"
+        decoding="async"
+        class="absolute inset-0 h-full w-full object-cover"
+      />
       <div class="absolute inset-0 bg-gradient-to-t from-surface-base via-transparent to-transparent"></div>
     </div>
     <div class="lg:col-span-7">

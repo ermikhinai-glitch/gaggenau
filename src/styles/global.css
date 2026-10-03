@@ -20,7 +20,7 @@
   --color-on-background: #e2e2e8;
   --color-text-primary: #f4f5f7;
   --color-text-secondary: #a3a8b5;
-  --color-text-tertiary: #686e7d;
+  --color-text-tertiary: #8b919e;
   --color-primary: #e9c176;
   --color-primary-container: #c5a059;
   --color-on-primary: #412d00;
@@ -82,6 +82,42 @@
     line-height: 24px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+  }
+
+  :focus {
+    outline: none;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-primary-container);
+    outline-offset: 3px;
+  }
+
+  .skip-link {
+    position: absolute;
+    left: 1rem;
+    top: -100%;
+    z-index: 300;
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius-DEFAULT);
+    background: var(--color-primary-container);
+    color: var(--color-on-primary-container);
+    font-family: var(--font-tech);
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .skip-link:focus {
+    top: 1rem;
+    outline: none;
+  }
+
+  .skip-link:focus-visible {
+    outline: 2px solid var(--color-text-primary);
+    outline-offset: 2px;
   }
 
   ::selection {
@@ -207,9 +243,17 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
     .motion-fade-up,
     .motion-hero-bg {
-      animation: none;
+      animation: none !important;
+    }
+
+    .motion-hero-bg {
+      transform: none !important;
     }
   }
 }
@@ -304,9 +348,11 @@
     border-color: rgba(197, 160, 89, 0.45);
   }
 
-  .lux-select:focus {
+  .lux-select:focus,
+  .lux-select:focus-visible {
     border-color: #c5a059;
     box-shadow: 0 0 0 2px rgba(197, 160, 89, 0.2);
+    outline: none;
   }
 
   .lux-select option {

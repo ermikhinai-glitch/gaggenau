@@ -2,7 +2,7 @@ import type { AppliancePageContent } from './types';
 
 export const coffeeMachinesPage: AppliancePageContent = {
   slug: 'coffee-machines',
-  heroImage: '/images/home/coffee-machines.png',
+  heroImage: '/images/home/coffee-machines.webp',
   badge: {
     ru: 'Ремонт Gaggenau · Москва и МО',
     en: 'Gaggenau repair · Moscow and MO',
