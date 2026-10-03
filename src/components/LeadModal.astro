@@ -151,19 +151,19 @@ const optionalInputClass =
 
             <div>
               <label class={optionalLabelClass} for="lead-appliance">{copy.appliance}</label>
-              <input type="hidden" name="applianceSlug" data-lead-appliance-slug value="" />
-              <input
+              <select
                 id="lead-appliance"
-                name="appliance"
-                type="text"
-                list="lead-appliance-list"
+                name="applianceSlug"
                 data-lead-appliance
-                placeholder={copy.applianceEmpty}
-                class={optionalInputClass}
-              />
-              <datalist id="lead-appliance-list">
-                {applianceOptions.map((opt) => <option value={opt.label}></option>)}
-              </datalist>
+                class="lux-select lux-select--empty"
+              >
+                <option value="">{copy.applianceEmpty}</option>
+                {
+                  applianceOptions.map((opt) => (
+                    <option value={opt.slug}>{opt.label}</option>
+                  ))
+                }
+              </select>
             </div>
 
             <div>

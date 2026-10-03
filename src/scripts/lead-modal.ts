@@ -53,12 +53,20 @@ export function initLeadModal(root: HTMLElement): void {
   const form = root.querySelector<HTMLFormElement>('[data-lead-form]');
   const noticeEl = root.querySelector<HTMLElement>('[data-lead-notice]');
   const successText = root.querySelector<HTMLElement>('[data-lead-success-text]');
-  const applianceInput = root.querySelector<HTMLInputElement>('[data-lead-appliance]');
-  const applianceSlugInput = root.querySelector<HTMLInputElement>('[data-lead-appliance-slug]');
+  const applianceSelect = root.querySelector<HTMLSelectElement>('[data-lead-appliance]');
   const optionalBlock = root.querySelector<HTMLDetailsElement>('[data-lead-optional]');
   const errorBox = root.querySelector<HTMLElement>('[data-lead-errors]');
   const submitBtn = root.querySelector<HTMLButtonElement>('[data-lead-submit]');
   const privacyLink = root.querySelector<HTMLAnchorElement>('[data-lead-privacy-link]');
+
+  function syncApplianceSelectStyle(): void {
+    if (!applianceSelect) return;
+    if (applianceSelect.value) {
+      applianceSelect.classList.remove('lux-select--empty');
+    } else {
+      applianceSelect.classList.add('lux-select--empty');
+    }
+  }
 
   if (!dialog || !formView || !successView || !form || !submitBtn) return;
 
@@ -91,6 +99,7 @@ export function initLeadModal(root: HTMLElement): void {
     successView.classList.add('hidden');
     form.reset();
     if (optionalBlock) optionalBlock.open = false;
+    syncApplianceSelectStyle();
     setErrors([]);
     submitBtn.disabled = false;
     submitBtn.textContent = copy.submit;
@@ -98,12 +107,20 @@ export function initLeadModal(root: HTMLElement): void {
 
   function applyPrefill(prefill?: Prefill): void {
     const data = prefill || window.__leadAppliancePrefill || {};
-    if (applianceInput) applianceInput.value = data.label || '';
-    if (applianceSlugInput) applianceSlugInput.value = data.slug || '';
+    if (applianceSelect) {
+      const slug = data.slug || '';
+      const hasOption = slug
+        ? Array.from(applianceSelect.options).some((opt) => opt.value === slug)
+        : false;
+      applianceSelect.value = hasOption ? slug : '';
+      syncApplianceSelectStyle();
+    }
     if (optionalBlock && (data.label || data.slug)) {
       optionalBlock.open = true;
     }
   }
+
+  applianceSelect?.addEventListener('change', syncApplianceSelectStyle);
 
   function openModal(prefill?: Prefill): void {
     lastFocus = document.activeElement instanceof HTMLElement ? document.activeElement : null;
@@ -203,10 +220,16 @@ export function initLeadModal(root: HTMLElement): void {
     submitBtn.disabled = false;
     submitBtn.textContent = copy.submit;
 
+    const applianceSlug = String(data.get('applianceSlug') || '');
+    const applianceLabel =
+      applianceSelect?.selectedOptions[0] && applianceSlug
+        ? applianceSelect.selectedOptions[0].text
+        : '';
+
     // Keep payload for upcoming API wiring.
     window.__leadAppliancePrefill = {
-      slug: String(data.get('applianceSlug') || ''),
-      label: String(data.get('appliance') || ''),
+      slug: applianceSlug,
+      label: applianceLabel,
     };
     console.info('[lead-modal] validated payload', {
       locale,
@@ -214,8 +237,8 @@ export function initLeadModal(root: HTMLElement): void {
       phone: normalizePhone(phone),
       city: String(data.get('city') || ''),
       time: String(data.get('time') || ''),
-      appliance: String(data.get('appliance') || ''),
-      applianceSlug: String(data.get('applianceSlug') || ''),
+      appliance: applianceLabel,
+      applianceSlug,
       problem: String(data.get('problem') || ''),
       channels: data.getAll('channels'),
     });
