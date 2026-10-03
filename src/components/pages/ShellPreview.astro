@@ -1,0 +1,26 @@
+---
+import { siteConfig, type Locale } from '../../config/site';
+import { t } from '../../i18n/ui';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+---
+
+<section class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-10 py-space-2xl">
+  <p class="text-label-caps text-primary mb-space-md">{t(locale, 'scaffold.eyebrow')}</p>
+  <h1 class="text-display-hero text-text-primary mb-space-md">
+    {t(locale, 'scaffold.title')}
+  </h1>
+  <p class="font-body text-text-secondary max-w-xl mb-space-xl">
+    {t(locale, 'scaffold.body')}
+  </p>
+  <ul class="space-y-2 text-sm text-text-secondary">
+    <li>· {siteConfig.workingTitle[locale]}</li>
+    <li>· Header: услуги (5 типов), телефон, RU|EN, CTA</li>
+    <li>· PromoBanner: акция A</li>
+    <li>· Footer + MobileStickyBar</li>
+  </ul>
+</section>

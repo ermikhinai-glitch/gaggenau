@@ -1,0 +1,11 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import ShellPreview from '../../components/pages/ShellPreview.astro';
+import { siteConfig } from '../../config/site';
+
+const locale = 'ru' as const;
+---
+
+<SiteLayout locale={locale} title={siteConfig.workingTitle[locale]}>
+  <ShellPreview locale={locale} />
+</SiteLayout>
