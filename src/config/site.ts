@@ -9,7 +9,7 @@ export const siteConfig = {
   },
   phoneDisplay: '+7 (495) 000-00-00',
   phoneHref: 'tel:+74950000000',
-  email: 'service@example.com',
+  email: 'ermikhinai@gmail.com',
   hours: {
     label: {
       ru: 'Ежедневно 8:00–22:00',

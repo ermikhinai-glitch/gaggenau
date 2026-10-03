@@ -8,7 +8,7 @@
 - [`дизайн/stitch_ui_ux_design_implementation/`](../дизайн/stitch_ui_ux_design_implementation/) — HTML-прототипы Stitch + [`atelier_dark_luxury_engineering/DESIGN.md`](../дизайн/stitch_ui_ux_design_implementation/atelier_dark_luxury_engineering/DESIGN.md)
 
 **Статус:** в разработке по задачам 0→12. Стек: Astro static + PHP под базовые хостинги РФ.  
-**Прогресс:** задачи 0–8 — done; дальше задача 9 (служебные страницы).  
+**Прогресс:** задачи 0–9 — done; дальше задача 10 (SEO-оболочка).  
 **URL языков:** `/ru/...` и `/en/...` (`prefixDefaultLocale: true`).  
 **Режим работы:** одна задача → проверка → коммит → отчёт → ждать указаний.
 
@@ -356,10 +356,10 @@ Motion: 2–3 осознанных эффекта. Без калькулятор
 
 **Проверить:**
 
-- [ ] Все 4 URL на RU/EN открываются локально
-- [ ] Ссылка из чекбокса формы ведёт на политику
-- [ ] Нет обещаний оплаты/цен
-- [ ] Build + коммит
+- [x] Все 4 URL на RU/EN открываются локально
+- [x] Ссылка из чекбокса формы ведёт на политику
+- [x] Нет обещаний оплаты/цен
+- [x] Build + коммит
 
 **Коммит:** `feat: about contacts privacy terms pages`
 

@@ -1,0 +1,12 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import UtilityPage from '../../components/utility/UtilityPage.astro';
+import { getUtilityPage } from '../../content/utility';
+
+const locale = 'en' as const;
+const page = getUtilityPage('terms');
+---
+
+<SiteLayout locale={locale} title={page.title[locale]} description={page.description[locale]} showPromo={false}>
+  <UtilityPage locale={locale} page={page} />
+</SiteLayout>
