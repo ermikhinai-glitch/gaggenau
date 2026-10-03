@@ -20,8 +20,8 @@ export const siteConfig = {
     timeZone: 'Europe/Moscow',
   },
   geo: {
-    ru: 'Москва и Подмосковье до 100 км',
-    en: 'Moscow and Moscow Region within 100 km',
+    ru: 'Москва и Подмосковье',
+    en: 'Moscow and Moscow Region',
   },
   leadApiUrl: '/api/lead.php',
 } as const;
