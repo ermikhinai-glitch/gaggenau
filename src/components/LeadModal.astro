@@ -19,6 +19,10 @@ const labelClass =
   'block text-[12px] uppercase tracking-wider text-[#c5cad3] mb-1.5 font-medium';
 const inputClass =
   'w-full rounded-DEFAULT bg-[#0e1117] border border-white/20 px-4 py-3 text-sm text-[#f4f5f7] placeholder:text-[#8b919e] outline-none focus:border-primary-container';
+const optionalLabelClass =
+  'block text-[10px] uppercase tracking-wider text-[#b8bec8] mb-1 font-medium';
+const optionalInputClass =
+  'w-full rounded-DEFAULT bg-[#0e1117] border border-white/20 px-3 py-2 text-[13px] text-[#f4f5f7] placeholder:text-[#8b919e] outline-none focus:border-primary-container';
 ---
 
 <div
@@ -134,19 +138,19 @@ const inputClass =
             </span>
           </summary>
 
-          <div class="px-4 pb-4 pt-1 space-y-space-sm border-t border-white/10">
+          <div class="px-4 pb-4 pt-1 space-y-2.5 border-t border-white/10">
             <div>
-              <label class={labelClass} for="lead-city">{copy.city}</label>
-              <input id="lead-city" name="city" type="text" class={inputClass} />
+              <label class={optionalLabelClass} for="lead-city">{copy.city}</label>
+              <input id="lead-city" name="city" type="text" class={optionalInputClass} />
             </div>
 
             <div>
-              <label class={labelClass} for="lead-time">{copy.time}</label>
-              <input id="lead-time" name="time" type="text" class={inputClass} />
+              <label class={optionalLabelClass} for="lead-time">{copy.time}</label>
+              <input id="lead-time" name="time" type="text" class={optionalInputClass} />
             </div>
 
             <div>
-              <label class={labelClass} for="lead-appliance">{copy.appliance}</label>
+              <label class={optionalLabelClass} for="lead-appliance">{copy.appliance}</label>
               <input type="hidden" name="applianceSlug" data-lead-appliance-slug value="" />
               <input
                 id="lead-appliance"
@@ -155,7 +159,7 @@ const inputClass =
                 list="lead-appliance-list"
                 data-lead-appliance
                 placeholder={copy.applianceEmpty}
-                class={inputClass}
+                class={optionalInputClass}
               />
               <datalist id="lead-appliance-list">
                 {applianceOptions.map((opt) => <option value={opt.label}></option>)}
@@ -163,26 +167,26 @@ const inputClass =
             </div>
 
             <div>
-              <label class={labelClass} for="lead-problem">{copy.problem}</label>
+              <label class={optionalLabelClass} for="lead-problem">{copy.problem}</label>
               <textarea
                 id="lead-problem"
                 name="problem"
                 rows="2"
-                class={`${inputClass} resize-none`}
+                class={`${optionalInputClass} resize-none`}
               ></textarea>
             </div>
 
             <div>
-              <p class="text-[12px] uppercase tracking-wider text-[#c5cad3] font-medium mb-2">
+              <p class="text-[10px] uppercase tracking-wider text-[#b8bec8] font-medium mb-1.5">
                 {copy.channels}
               </p>
-              <div class="flex flex-wrap gap-4">
-                <label class="inline-flex items-center gap-2 text-sm text-[#e2e5ec] cursor-pointer">
-                  <input type="checkbox" name="channels" value="whatsapp" class="lux-checkbox" />
+              <div class="flex flex-wrap gap-3">
+                <label class="inline-flex items-center gap-2 text-[12px] text-[#d1d5de] cursor-pointer">
+                  <input type="checkbox" name="channels" value="whatsapp" class="lux-checkbox scale-90" />
                   {copy.whatsapp}
                 </label>
-                <label class="inline-flex items-center gap-2 text-sm text-[#e2e5ec] cursor-pointer">
-                  <input type="checkbox" name="channels" value="telegram" class="lux-checkbox" />
+                <label class="inline-flex items-center gap-2 text-[12px] text-[#d1d5de] cursor-pointer">
+                  <input type="checkbox" name="channels" value="telegram" class="lux-checkbox scale-90" />
                   {copy.telegram}
                 </label>
               </div>
