@@ -1,6 +1,7 @@
 ---
 import { appliances, siteConfig, type Locale } from '../../config/site';
 import { homeContent } from '../../content/home';
+import PromoBanner from '../PromoBanner.astro';
 import { t } from '../../i18n/ui';
 import { localizePath } from '../../i18n/utils';
 
@@ -151,6 +152,8 @@ const c = homeContent;
     </p>
   </div>
 </section>
+
+<PromoBanner locale={locale} />
 
 <!-- Trust -->
 <section class="py-space-2xl md:py-space-3xl border-t border-hairline">

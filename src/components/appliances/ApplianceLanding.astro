@@ -2,6 +2,7 @@
 import { appliances, siteConfig, type Locale } from '../../config/site';
 import type { AppliancePageContent } from '../../content/appliances/types';
 import { homeContent } from '../../content/home';
+import PromoBanner from '../PromoBanner.astro';
 import { t } from '../../i18n/ui';
 import { localizePath } from '../../i18n/utils';
 
@@ -130,6 +131,8 @@ const terms = homeContent.terms;
     </p>
   </div>
 </section>
+
+<PromoBanner locale={locale} applianceSlug={page.slug} applianceLabel={label} />
 
 <!-- Warranty -->
 <section class="py-space-2xl border-t border-hairline">
