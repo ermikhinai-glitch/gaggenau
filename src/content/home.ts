@@ -60,8 +60,8 @@ export const homeContent = {
       en: 'Gaggenau appliances we service',
     },
     lead: {
-      ru: 'Пять приоритетных направлений для заявки и рекламы. Только бренд Gaggenau.',
-      en: 'Five priority categories for requests and ads. Gaggenau only.',
+      ru: 'Выберите тип техники Gaggenau — откроется страница с типовыми неисправностями и заявкой.',
+      en: 'Choose your Gaggenau appliance type — open the page with common faults and a request form.',
     },
     more: { ru: 'Подробнее', en: 'Learn more' },
   },
