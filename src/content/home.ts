@@ -3,8 +3,8 @@ import { appliances } from '../config/site';
 export const homeContent = {
   hero: {
     badge: {
-      ru: 'Специализированный сервис · Москва и МО до 100 км',
-      en: 'Specialized service · Moscow & Region within 100 km',
+      ru: 'Специализированный сервис · Москва и МО',
+      en: 'Specialized service · Moscow and Moscow Region',
     },
     titleLead: {
       ru: 'Ремонт техники',
