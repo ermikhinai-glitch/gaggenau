@@ -8,7 +8,7 @@
 - [`дизайн/stitch_ui_ux_design_implementation/`](../дизайн/stitch_ui_ux_design_implementation/) — HTML-прототипы Stitch + [`atelier_dark_luxury_engineering/DESIGN.md`](../дизайн/stitch_ui_ux_design_implementation/atelier_dark_luxury_engineering/DESIGN.md)
 
 **Статус:** в разработке по задачам 0→12. Стек: Astro static + PHP под базовые хостинги РФ.  
-**Прогресс:** задачи 0–6 — done; дальше задача 7 (модалка заявки).  
+**Прогресс:** задачи 0–7 — done; дальше задача 8 (PHP API заявок).  
 **URL языков:** `/ru/...` и `/en/...` (`prefixDefaultLocale: true`).  
 **Режим работы:** одна задача → проверка → коммит → отчёт → ждать указаний.
 

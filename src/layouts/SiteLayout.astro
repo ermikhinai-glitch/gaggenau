@@ -4,6 +4,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import PromoBanner from '../components/PromoBanner.astro';
 import MobileStickyBar from '../components/MobileStickyBar.astro';
+import LeadModal from '../components/LeadModal.astro';
 import type { Locale } from '../config/site';
 
 interface Props {
@@ -33,7 +34,15 @@ const {
   />
   <main class="min-h-screen pt-20 pb-[5.5rem] md:pb-0">
     <slot />
-    {showPromo && <PromoBanner locale={locale} applianceSlug={applianceSlug} applianceLabel={applianceLabel} />}
+    {
+      showPromo && (
+        <PromoBanner
+          locale={locale}
+          applianceSlug={applianceSlug}
+          applianceLabel={applianceLabel}
+        />
+      )
+    }
   </main>
   <Footer locale={locale} />
   <MobileStickyBar
@@ -41,17 +50,5 @@ const {
     applianceSlug={applianceSlug}
     applianceLabel={applianceLabel}
   />
-  <script is:inline>
-    document.addEventListener('click', (event) => {
-      const target = event.target;
-      if (!(target instanceof Element)) return;
-      const btn = target.closest('[data-open-lead-modal]');
-      if (!btn) return;
-      const slug = btn.getAttribute('data-appliance-prefill') || '';
-      const label = btn.getAttribute('data-appliance-label') || '';
-      // Lead modal arrives in task 7 — keep prefill payload ready.
-      console.info('[lead-modal] open requested', { appliance: slug, label });
-      window.__leadAppliancePrefill = { slug, label };
-    });
-  </script>
+  <LeadModal locale={locale} />
 </BaseLayout>

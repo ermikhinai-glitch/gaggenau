@@ -1,0 +1,215 @@
+---
+import { appliances, type Locale } from '../config/site';
+import { leadCopy } from '../content/lead';
+import { localizePath } from '../i18n/utils';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const copy = leadCopy[locale];
+const privacyHref = localizePath(locale, 'privacy');
+const applianceOptions = appliances.map((a) => ({
+  slug: a.slug,
+  label: a.label[locale],
+}));
+---
+
+<div
+  id="lead-modal"
+  class="fixed inset-0 z-[200] hidden items-center justify-center p-4 bg-[rgba(12,14,18,0.88)] backdrop-blur-xl"
+  data-locale={locale}
+  data-copy={JSON.stringify(copy)}
+  data-privacy-href={privacyHref}
+  role="presentation"
+>
+  <div
+    data-lead-dialog
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="lead-modal-title"
+    class="relative w-full max-w-lg max-h-[90vh] overflow-y-auto rounded-lg border border-border-metallic/50 bg-surface-overlay p-space-lg md:p-space-xl shadow-[0_24px_64px_-16px_rgba(0,0,0,0.8)]"
+  >
+    <button
+      type="button"
+      data-lead-close
+      class="absolute top-4 right-4 text-text-tertiary hover:text-text-primary transition"
+      aria-label={copy.close}
+    >
+      ✕
+    </button>
+
+    <div data-lead-form-view>
+      <h2 id="lead-modal-title" class="font-display text-xl text-text-primary mb-2 pr-8">
+        {copy.title}
+      </h2>
+      <p data-lead-notice class="text-xs text-text-secondary mb-space-md leading-relaxed"></p>
+
+      <div
+        data-lead-errors
+        class="hidden mb-space-md rounded-DEFAULT border border-error/40 bg-error/10 px-3 py-2 text-xs text-error"
+        role="alert"
+      >
+      </div>
+
+      <form data-lead-form class="space-y-space-md" novalidate>
+        <div>
+          <label class="block text-[11px] uppercase tracking-wider text-text-tertiary mb-1.5" for="lead-name">
+            {copy.name}*
+          </label>
+          <input
+            id="lead-name"
+            name="name"
+            type="text"
+            autocomplete="name"
+            required
+            class="w-full rounded-DEFAULT bg-surface-base border border-white/15 px-4 py-3 text-sm text-text-primary outline-none focus:border-primary-container"
+          />
+        </div>
+
+        <div>
+          <label class="block text-[11px] uppercase tracking-wider text-text-tertiary mb-1.5" for="lead-phone">
+            {copy.phone}*
+          </label>
+          <input
+            id="lead-phone"
+            name="phone"
+            type="tel"
+            autocomplete="tel"
+            inputmode="tel"
+            placeholder="+7 (___) ___-__-__"
+            required
+            class="w-full rounded-DEFAULT bg-surface-base border border-white/15 px-4 py-3 text-sm text-text-primary outline-none focus:border-primary-container font-tech"
+          />
+        </div>
+
+        <label class="flex items-start gap-3 text-xs text-text-tertiary leading-relaxed cursor-pointer">
+          <input
+            name="consent"
+            type="checkbox"
+            required
+            class="mt-0.5 h-[18px] w-[18px] accent-[#c5a059] rounded-[2px]"
+          />
+          <span>
+            {copy.consent}
+            {' '}
+            <a
+              data-lead-privacy-link
+              href={privacyHref}
+              class="text-primary hover:underline"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              ({copy.privacy})
+            </a>
+          </span>
+        </label>
+
+        <fieldset class="border border-hairline rounded-DEFAULT p-space-md space-y-space-sm">
+          <legend class="px-1 text-[11px] uppercase tracking-wider text-text-tertiary">
+            {copy.optional}
+          </legend>
+
+          <div>
+            <label class="block text-[11px] text-text-tertiary mb-1" for="lead-city">{copy.city}</label>
+            <input
+              id="lead-city"
+              name="city"
+              type="text"
+              class="w-full rounded-DEFAULT bg-surface-base border border-white/15 px-3 py-2.5 text-sm text-text-primary outline-none focus:border-primary-container"
+            />
+          </div>
+
+          <div>
+            <label class="block text-[11px] text-text-tertiary mb-1" for="lead-time">{copy.time}</label>
+            <input
+              id="lead-time"
+              name="time"
+              type="text"
+              class="w-full rounded-DEFAULT bg-surface-base border border-white/15 px-3 py-2.5 text-sm text-text-primary outline-none focus:border-primary-container"
+            />
+          </div>
+
+          <div>
+            <label class="block text-[11px] text-text-tertiary mb-1" for="lead-appliance">{copy.appliance}</label>
+            <input type="hidden" name="applianceSlug" data-lead-appliance-slug value="" />
+            <input
+              id="lead-appliance"
+              name="appliance"
+              type="text"
+              list="lead-appliance-list"
+              data-lead-appliance
+              placeholder={copy.applianceEmpty}
+              class="w-full rounded-DEFAULT bg-surface-base border border-white/15 px-3 py-2.5 text-sm text-text-primary outline-none focus:border-primary-container"
+            />
+            <datalist id="lead-appliance-list">
+              {applianceOptions.map((opt) => <option value={opt.label}></option>)}
+            </datalist>
+          </div>
+
+          <div>
+            <label class="block text-[11px] text-text-tertiary mb-1" for="lead-problem">{copy.problem}</label>
+            <textarea
+              id="lead-problem"
+              name="problem"
+              rows="2"
+              class="w-full resize-none rounded-DEFAULT bg-surface-base border border-white/15 px-3 py-2.5 text-sm text-text-primary outline-none focus:border-primary-container"
+            ></textarea>
+          </div>
+
+          <div>
+            <p class="text-[11px] text-text-tertiary mb-2">{copy.channels}</p>
+            <div class="flex flex-wrap gap-4">
+              <label class="inline-flex items-center gap-2 text-xs text-text-secondary cursor-pointer">
+                <input type="checkbox" name="channels" value="whatsapp" class="accent-[#c5a059]" />
+                {copy.whatsapp}
+              </label>
+              <label class="inline-flex items-center gap-2 text-xs text-text-secondary cursor-pointer">
+                <input type="checkbox" name="channels" value="telegram" class="accent-[#c5a059]" />
+                {copy.telegram}
+              </label>
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- honeypot for task 8 -->
+        <input
+          type="text"
+          name="company"
+          tabindex="-1"
+          autocomplete="off"
+          class="hidden"
+          aria-hidden="true"
+        />
+
+        <button
+          type="submit"
+          data-lead-submit
+          class="w-full h-12 rounded-DEFAULT bg-primary-container text-on-primary-container text-sm font-semibold uppercase tracking-wider shadow-[0_0_24px_rgba(197,160,89,0.3)] hover:brightness-110 transition active:scale-[0.99]"
+        >
+          {copy.submit}
+        </button>
+      </form>
+    </div>
+
+    <div data-lead-success-view class="hidden text-center py-8">
+      <p class="text-label-caps text-primary mb-3">{copy.successTitle}</p>
+      <p data-lead-success-text class="text-base text-text-primary leading-relaxed mb-space-xl"></p>
+      <button
+        type="button"
+        data-lead-close
+        class="inline-flex h-11 items-center justify-center rounded-DEFAULT border border-white/15 px-8 font-tech text-tech-data uppercase tracking-wider text-text-primary hover:border-primary transition"
+      >
+        {copy.close}
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  import { initLeadModal } from '../scripts/lead-modal';
+
+  const root = document.getElementById('lead-modal');
+  if (root) initLeadModal(root);
+</script>
