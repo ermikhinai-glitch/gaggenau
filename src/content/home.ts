@@ -152,8 +152,8 @@ export const homeContent = {
       en: 'Visit and diagnostics',
     },
     body: {
-      ru: 'Выезд и диагностика бесплатны при выполнении ремонта. Если после диагностики вы отказываетесь от ремонта, выезд и диагностика оплачиваются отдельно. Итоговая стоимость работ — после осмотра.',
-      en: 'Visit and diagnostics are free when repair is completed. If you decline repair after diagnostics, the visit and diagnostics are billed separately. Final repair cost is confirmed after inspection.',
+      ru: 'Стоимость ремонта определяется после осмотра на месте. Выезд и диагностика входят в условия сервиса при выполнении ремонта; при отказе от ремонта оплачиваются отдельно.',
+      en: 'Repair cost is confirmed after on-site inspection. Visit and diagnostics are included under service terms when repair is completed; if you decline repair, they are billed separately.',
     },
   },
   trust: {
