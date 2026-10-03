@@ -1,0 +1,50 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Design tokens — Gaggenau Service">
+  <main class="mx-auto max-w-3xl px-gutter-desktop py-space-2xl">
+    <p class="text-label-caps text-primary mb-space-md">Scaffold · Task 1</p>
+    <h1 class="text-display-hero text-text-primary mb-space-lg">
+      Atelier Dark Luxury
+    </h1>
+    <p class="font-body text-text-secondary mb-space-2xl max-w-xl">
+      Каркас Astro + Tailwind. Фон surface-base, акцент champagne, шрифты из DESIGN.md.
+    </p>
+
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-space-md mb-space-2xl">
+      <div class="rounded-lg bg-surface-base border border-hairline p-space-md">
+        <div class="text-tech-data text-text-tertiary mb-2">surface-base</div>
+        <div class="h-10 rounded-DEFAULT bg-surface-base border border-hairline"></div>
+      </div>
+      <div class="rounded-lg bg-surface-raised border border-hairline p-space-md">
+        <div class="text-tech-data text-text-tertiary mb-2">raised</div>
+        <div class="h-10 rounded-DEFAULT bg-surface-raised border border-hairline"></div>
+      </div>
+      <div class="rounded-lg bg-surface-overlay border border-hairline p-space-md">
+        <div class="text-tech-data text-text-tertiary mb-2">overlay</div>
+        <div class="h-10 rounded-DEFAULT bg-surface-overlay"></div>
+      </div>
+      <div class="rounded-lg bg-surface-raised border border-metallic p-space-md">
+        <div class="text-tech-data text-text-tertiary mb-2">primary</div>
+        <div class="h-10 rounded-DEFAULT bg-primary-container"></div>
+      </div>
+    </div>
+
+    <div class="flex flex-wrap gap-space-md items-center">
+      <span class="text-tech-data-lg text-primary">15 мин</span>
+      <button
+        type="button"
+        class="inline-flex h-12 items-center justify-center rounded-DEFAULT bg-primary-container px-space-lg font-display text-sm font-semibold text-on-primary-container shadow-[0_0_20px_rgba(197,160,89,0.35)] transition active:scale-[0.98]"
+      >
+        Оставить заявку
+      </button>
+      <a
+        href="tel:+74950000000"
+        class="inline-flex h-12 items-center justify-center rounded-DEFAULT border border-white/15 px-space-lg font-tech text-tech-data text-text-primary uppercase tracking-wider hover:border-border-metallic hover:bg-white/5 transition"
+      >
+        Позвонить
+      </a>
+    </div>
+  </main>
+</BaseLayout>
