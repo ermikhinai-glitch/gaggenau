@@ -6,6 +6,16 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
   output: 'static',
   site: 'https://example.com',
+  i18n: {
+    defaultLocale: 'ru',
+    locales: ['ru', 'en'],
+    routing: {
+      prefixDefaultLocale: true,
+    },
+  },
+  redirects: {
+    '/': '/ru/',
+  },
   vite: {
     plugins: [tailwindcss()],
   },

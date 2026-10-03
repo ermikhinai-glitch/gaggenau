@@ -1,19 +1,20 @@
 ---
 import '../styles/global.css';
+import { siteConfig, type Locale } from '../config/site';
 
 interface Props {
+  locale?: Locale;
   title?: string;
   description?: string;
 }
 
-const {
-  title = 'Официальный сервис Gaggenau',
-  description = 'Ремонт техники Gaggenau · Москва и Подмосковье до 100 км',
-} = Astro.props;
+const locale = Astro.props.locale ?? 'ru';
+const title = Astro.props.title ?? siteConfig.workingTitle[locale];
+const description = Astro.props.description ?? siteConfig.tagline[locale];
 ---
 
 <!doctype html>
-<html lang="ru" class="dark">
+<html lang={locale} class="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />

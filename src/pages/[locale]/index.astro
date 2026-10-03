@@ -1,0 +1,82 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { locales, siteConfig, type Locale } from '../../config/site';
+import { t } from '../../i18n/ui';
+import { getLocaleFromParam, localizePath } from '../../i18n/utils';
+import { isBusinessHours } from '../../lib/business-hours';
+
+export function getStaticPaths() {
+  return locales.map((locale) => ({ params: { locale } }));
+}
+
+const locale = getLocaleFromParam(Astro.params.locale);
+const otherLocale: Locale = locale === 'ru' ? 'en' : 'ru';
+const thankYouKey = isBusinessHours() ? 'thankyou.day' : 'thankyou.night';
+---
+
+<BaseLayout locale={locale} title={`${siteConfig.workingTitle[locale]} · i18n`}>
+  <main class="mx-auto max-w-3xl px-gutter-desktop py-space-2xl">
+    <p class="text-label-caps text-primary mb-space-md">{t(locale, 'scaffold.eyebrow')}</p>
+    <h1 class="text-display-hero text-text-primary mb-space-md">
+      {t(locale, 'scaffold.title')}
+    </h1>
+    <p class="font-body text-text-secondary mb-space-xl max-w-xl">
+      {t(locale, 'scaffold.body')}
+    </p>
+
+    <div class="rounded-lg border border-hairline bg-surface-raised p-space-lg mb-space-xl space-y-space-sm">
+      <p class="text-tech-data text-text-tertiary">{t(locale, 'scaffold.switchHint')}</p>
+      <p class="font-display text-headline-lg text-text-primary">{siteConfig.workingTitle[locale]}</p>
+      <p class="text-tech-data text-primary">
+        <a class="hover:underline" href={siteConfig.phoneHref}>{siteConfig.phoneDisplay}</a>
+        · {siteConfig.hours.label[locale]}
+      </p>
+      <p class="text-sm text-text-secondary">{siteConfig.geo[locale]}</p>
+      <p class="text-sm text-text-tertiary">{t(locale, thankYouKey)}</p>
+    </div>
+
+    <div class="flex flex-wrap items-center gap-space-md mb-space-xl">
+      <div class="inline-flex items-center rounded-full border border-hairline bg-surface-container p-0.5 font-tech text-[11px] font-semibold">
+        <a
+          href={localizePath('ru')}
+          class:list={[
+            'px-2.5 py-1 rounded-full transition',
+            locale === 'ru' ? 'bg-primary-container text-on-primary-container' : 'text-text-tertiary hover:text-text-primary',
+          ]}
+        >
+          {t(locale, 'lang.ru')}
+        </a>
+        <a
+          href={localizePath('en')}
+          class:list={[
+            'px-2.5 py-1 rounded-full transition',
+            locale === 'en' ? 'bg-primary-container text-on-primary-container' : 'text-text-tertiary hover:text-text-primary',
+          ]}
+        >
+          {t(locale, 'lang.en')}
+        </a>
+      </div>
+      <a
+        href={localizePath(otherLocale)}
+        class="text-sm text-text-secondary hover:text-primary transition"
+      >
+        → {otherLocale.toUpperCase()}
+      </a>
+    </div>
+
+    <div class="flex flex-wrap gap-space-md">
+      <button
+        type="button"
+        class="inline-flex h-12 items-center justify-center rounded-DEFAULT bg-primary-container px-space-lg font-display text-sm font-semibold text-on-primary-container shadow-[0_0_20px_rgba(197,160,89,0.35)]"
+      >
+        {t(locale, 'cta.request')}
+      </button>
+      <a
+        href={siteConfig.phoneHref}
+        class="inline-flex h-12 items-center justify-center rounded-DEFAULT border border-white/15 px-space-lg font-tech text-tech-data text-text-primary uppercase tracking-wider hover:border-border-metallic hover:bg-white/5 transition"
+      >
+        {t(locale, 'cta.call')}
+      </a>
+    </div>
+  </main>
+</BaseLayout>
