@@ -72,13 +72,22 @@ const c = homeContent;
 
     <div class="grid grid-cols-1 gap-3 border-t border-white/10 pt-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-4">
       {
-        c.sla.map((item) => (
-          <div class="flex min-h-[128px] flex-col justify-center rounded-DEFAULT border border-hairline bg-[#14171d]/85 p-5 backdrop-blur-md transition-colors hover:border-border-metallic sm:min-h-[140px] sm:p-6">
-            <div class="mb-2 text-label-caps text-primary">{item.label[locale]}</div>
-            <div class="mb-2 text-tech-data-lg text-text-primary">{item.value[locale]}</div>
-            <p class="text-sm leading-snug text-[#c5cad3]">{item.text[locale]}</p>
-          </div>
-        ))
+        c.sla.map((item) => {
+          const className =
+            'flex min-h-[128px] flex-col justify-center rounded-DEFAULT border border-hairline bg-[#14171d]/85 p-5 backdrop-blur-md transition-colors hover:border-border-metallic sm:min-h-[140px] sm:p-6';
+          const href = 'href' in item ? item.href : undefined;
+          const Tag = href ? 'a' : 'div';
+          return (
+            <Tag
+              href={href ? localizePath(locale, href) : undefined}
+              class={className}
+            >
+              <div class="mb-2 text-label-caps text-primary">{item.label[locale]}</div>
+              <div class="mb-2 text-tech-data-lg text-text-primary">{item.value[locale]}</div>
+              <p class="text-sm leading-snug text-[#c5cad3]">{item.text[locale]}</p>
+            </Tag>
+          );
+        })
       }
     </div>
   </div>

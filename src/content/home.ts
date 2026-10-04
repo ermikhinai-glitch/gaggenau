@@ -51,6 +51,7 @@ export const homeContent = {
         ru: 'На работы; на запчасти — гарантия производителя',
         en: 'On labour; parts covered by manufacturer warranty',
       },
+      href: 'warranty',
     },
   ],
   appliancesSection: {

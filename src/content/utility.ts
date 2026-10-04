@@ -37,7 +37,7 @@ export const utilityPages: Record<UtilitySlug, UtilityPageContent> = {
     },
     sections: [
       {
-        title: { ru: 'Фокус', en: 'Focus' },
+        title: { ru: 'Специализация', en: 'Specialization' },
         paragraphs: [
           {
             ru: 'Работаем только с техникой Gaggenau: стиральные и посудомоечные машины, холодильники, духовые шкафы и кофемашины.',
