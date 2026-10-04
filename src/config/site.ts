@@ -4,12 +4,16 @@ export const siteConfig = {
     en: 'Gaggenau Official Service',
   },
   tagline: {
-    ru: 'Ремонт техники Gaggenau · Москва и МО',
-    en: 'Gaggenau appliance repair · Moscow and MO',
+    ru: 'Ремонт техники Gaggenau · Москва и Подмосковье до 100 км',
+    en: 'Gaggenau appliance repair · Moscow and suburbs within 100 km',
   },
   phoneDisplay: '+7 (495) 000-00-00',
   phoneHref: 'tel:+74950000000',
-  email: 'ermikhinai@gmail.com',
+  email: 'service@example.com',
+  addressPlaceholder: {
+    ru: 'Москва (адрес уточняется)',
+    en: 'Moscow (address TBD)',
+  },
   hours: {
     label: {
       ru: 'Ежедневно 8:00–22:00',
@@ -20,10 +24,10 @@ export const siteConfig = {
     timeZone: 'Europe/Moscow',
   },
   geo: {
-    ru: 'Москва и МО',
-    en: 'Moscow and MO',
+    ru: 'Москва и Подмосковье до 100 км',
+    en: 'Moscow and suburbs within 100 km',
   },
-  leadApiUrl: '/api/lead.php',
+  leadApiUrl: '/api/lead',
 } as const;
 
 export const locales = ['ru', 'en'] as const;

@@ -4,8 +4,8 @@ export const washingMachinesPage: AppliancePageContent = {
   slug: 'washing-machines',
   heroImage: '/images/home/washing-machines.webp',
   badge: {
-    ru: 'Ремонт Gaggenau · Москва и МО',
-    en: 'Gaggenau repair · Moscow and MO',
+    ru: 'Ремонт Gaggenau · Москва и Подмосковье до 100 км',
+    en: 'Gaggenau repair · Moscow and suburbs within 100 km',
   },
   title: { ru: 'Ремонт', en: 'Repair of' },
   titleAccent: {

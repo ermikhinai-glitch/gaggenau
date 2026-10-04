@@ -1,4 +1,4 @@
-import type { ApplianceSlug } from '../../config/site';
+import type { ApplianceSlug } from '@/config/site';
 import { coffeeMachinesPage } from './coffee-machines';
 import { dishwashersPage } from './dishwashers';
 import { ovensPage } from './ovens';

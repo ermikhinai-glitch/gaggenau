@@ -1,4 +1,4 @@
-import { siteConfig } from '../config/site';
+import { siteConfig } from '@/config/site';
 
 /** Business hours check in Europe/Moscow (R8–R9). */
 export function isBusinessHours(date = new Date()): boolean {
