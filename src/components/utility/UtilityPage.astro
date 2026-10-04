@@ -11,6 +11,7 @@ interface Props {
 
 const { locale, page } = Astro.props;
 const isContacts = page.slug === 'contacts';
+const isWarranty = page.slug === 'warranty';
 ---
 
 <div class="max-w-[1520px] mx-auto px-4 sm:px-6 lg:px-10 pt-space-md pb-space-xs">
@@ -23,7 +24,12 @@ const isContacts = page.slug === 'contacts';
   </nav>
 </div>
 
-<section class="max-w-[900px] mx-auto px-4 sm:px-6 lg:px-10 pt-space-lg pb-space-3xl motion-fade-up">
+<section
+  class:list={[
+    'mx-auto px-4 sm:px-6 lg:px-10 pt-space-lg pb-space-3xl motion-fade-up',
+    isWarranty ? 'max-w-[1100px]' : 'max-w-[900px]',
+  ]}
+>
   <p class="text-label-caps text-primary mb-3">{page.eyebrow[locale]}</p>
   <h1 class="text-headline-lg text-text-primary uppercase mb-space-md">{page.title[locale]}</h1>
   <p class="text-base sm:text-lg text-text-secondary leading-relaxed mb-space-xl">
@@ -64,7 +70,7 @@ const isContacts = page.slug === 'contacts';
           <button
             type="button"
             data-open-lead-modal
-            class="inline-flex h-12 items-center justify-center rounded-DEFAULT bg-primary-container px-8 text-sm font-semibold uppercase tracking-wider text-on-primary-container shadow-[0_0_24px_rgba(197,160,89,0.3)] hover:brightness-110 transition"
+            class="btn-lead-glow inline-flex h-12 items-center justify-center rounded-DEFAULT bg-primary-container px-8 text-sm font-semibold uppercase tracking-wider text-on-primary-container"
           >
             {t(locale, 'cta.request')}
           </button>
@@ -79,23 +85,41 @@ const isContacts = page.slug === 'contacts';
     )
   }
 
-  <div class="space-y-space-xl">
-    {
-      page.sections.map((section) => (
-        <section class="border-t border-hairline pt-space-lg">
-          <h2 class="font-display text-xl text-text-primary mb-space-md">{section.title[locale]}</h2>
-          <div class="space-y-3">
-            {section.paragraphs.map((paragraph) => (
-              <p class="text-sm sm:text-base text-text-secondary leading-relaxed">{paragraph[locale]}</p>
-            ))}
-          </div>
-        </section>
-      ))
-    }
-  </div>
+  {
+    isWarranty ? (
+      <div class="grid gap-4 sm:grid-cols-2">
+        {page.sections.map((section, index) => (
+          <section class="card-lux-glow rounded-DEFAULT border bg-surface-raised/70 p-space-lg">
+            <p class="font-tech text-[11px] tracking-wider text-primary mb-2">
+              {String(index + 1).padStart(2, '0')}
+            </p>
+            <h2 class="font-display text-xl text-text-primary mb-space-sm">{section.title[locale]}</h2>
+            <div class="space-y-2">
+              {section.paragraphs.map((paragraph) => (
+                <p class="text-sm text-text-secondary leading-relaxed">{paragraph[locale]}</p>
+              ))}
+            </div>
+          </section>
+        ))}
+      </div>
+    ) : (
+      <div class="space-y-space-xl">
+        {page.sections.map((section) => (
+          <section class="border-t border-hairline pt-space-lg">
+            <h2 class="font-display text-xl text-text-primary mb-space-md">{section.title[locale]}</h2>
+            <div class="space-y-3">
+              {section.paragraphs.map((paragraph) => (
+                <p class="text-sm sm:text-base text-text-secondary leading-relaxed">{paragraph[locale]}</p>
+              ))}
+            </div>
+          </section>
+        ))}
+      </div>
+    )
+  }
 
   {
-    (page.slug === 'about' || page.slug === 'privacy' || page.slug === 'terms') && (
+    (page.slug === 'about' || page.slug === 'privacy' || page.slug === 'terms' || isWarranty) && (
       <div class="mt-space-2xl pt-space-xl border-t border-hairline flex flex-col sm:flex-row gap-3">
         <a
           href={localizePath(locale, 'contacts')}
@@ -106,7 +130,7 @@ const isContacts = page.slug === 'contacts';
         <button
           type="button"
           data-open-lead-modal
-          class="inline-flex h-12 items-center justify-center rounded-DEFAULT bg-primary-container px-8 text-sm font-semibold uppercase tracking-wider text-on-primary-container shadow-[0_0_24px_rgba(197,160,89,0.3)] hover:brightness-110 transition"
+          class="btn-lead-glow inline-flex h-12 items-center justify-center rounded-DEFAULT bg-primary-container px-8 text-sm font-semibold uppercase tracking-wider text-on-primary-container"
         >
           {t(locale, 'cta.request')}
         </button>

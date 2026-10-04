@@ -2,7 +2,7 @@ import type { Locale } from '../config/site';
 
 type Localized = Record<Locale, string>;
 
-export type UtilitySlug = 'about' | 'contacts' | 'privacy' | 'terms';
+export type UtilitySlug = 'about' | 'contacts' | 'privacy' | 'terms' | 'warranty';
 
 export type UtilitySection = {
   title: Localized;
@@ -164,6 +164,83 @@ export const utilityPages: Record<UtilitySlug, UtilityPageContent> = {
           {
             ru: 'Отправляя форму, вы подтверждаете согласие на обработку указанных данных. Чтобы уточнить или отозвать согласие, свяжитесь с нами по контактам на сайте.',
             en: 'By submitting the form you consent to processing the data provided. To clarify or withdraw consent, contact us using the details on the site.',
+          },
+        ],
+      },
+    ],
+  },
+
+  warranty: {
+    slug: 'warranty',
+    title: {
+      ru: 'Гарантии',
+      en: 'Warranty',
+    },
+    description: {
+      ru: 'Гарантия на ремонт техники Gaggenau: 12 месяцев на работы, оригинальные запчасти, поддержка после выезда.',
+      en: 'Gaggenau repair warranty: 12 months on labour, original parts, support after the visit.',
+    },
+    eyebrow: { ru: 'Надёжность сервиса', en: 'Service reliability' },
+    lead: {
+      ru: 'Гарантии на ремонт техники Gaggenau — прозрачные условия по работам, запчастям и сопровождению после выезда.',
+      en: 'Warranty on Gaggenau repairs — clear terms for labour, parts and follow-up after the visit.',
+    },
+    sections: [
+      {
+        title: { ru: 'Специализация на Gaggenau', en: 'Gaggenau specialization' },
+        paragraphs: [
+          {
+            ru: 'Работаем только с техникой бренда Gaggenau: стиральные и посудомоечные машины, холодильники, духовые шкафы и кофемашины. Знаем типовые неисправности и узлы серии.',
+            en: 'We service Gaggenau appliances only: washing machines, dishwashers, refrigerators, ovens and coffee machines. We know common faults and series-specific assemblies.',
+          },
+        ],
+      },
+      {
+        title: { ru: 'Гарантия на работы — 12 месяцев', en: '12-month labour warranty' },
+        paragraphs: [
+          {
+            ru: 'На выполненные работы даём фиксированную гарантию 12 месяцев. Если в гарантийный срок проявится дефект, связанный с выполненным ремонтом, устраняем его по условиям сервиса.',
+            en: 'Completed labour is covered by a fixed 12-month warranty. If a defect related to the repair appears within that term, we resolve it under service terms.',
+          },
+        ],
+      },
+      {
+        title: { ru: 'Оригинальные запчасти', en: 'Original parts' },
+        paragraphs: [
+          {
+            ru: 'Устанавливаем только оригинальные комплектующие. На запчасти действует гарантия производителя — отдельно от гарантии на работы.',
+            en: 'We install original parts only. Parts are covered by the manufacturer warranty — separate from the labour warranty.',
+          },
+          {
+            ru: 'Качественный ремонт с правильными деталями — основа долгой и стабильной работы техники.',
+            en: 'A proper repair with the right parts is the basis for long, stable appliance performance.',
+          },
+        ],
+      },
+      {
+        title: { ru: 'Выезд в Москве и МО', en: 'On-site service in Moscow and MO' },
+        paragraphs: [
+          {
+            ru: 'Инженер выезжает к клиенту в Москве и Московской области. Диагностика на месте, согласование объёма работ до ремонта. Точный адрес и возможность выезда уточняем при звонке.',
+            en: 'An engineer visits the client in Moscow and the Moscow Region. On-site diagnostics, scope agreed before repair. Exact address and visit feasibility are confirmed on the call.',
+          },
+        ],
+      },
+      {
+        title: { ru: 'На связи после ремонта', en: 'Support after repair' },
+        paragraphs: [
+          {
+            ru: 'После ремонта остаёмся на связи: вопросы по эксплуатации, гарантийные случаи, повторная диагностика при необходимости. Звонок или заявка на сайте — оба канала равноправны.',
+            en: 'After repair we stay available: usage questions, warranty cases, and a follow-up visit if needed. Call or website request — both channels are equal.',
+          },
+        ],
+      },
+      {
+        title: { ru: 'Прозрачные условия', en: 'Clear terms' },
+        paragraphs: [
+          {
+            ru: 'Стоимость ремонта определяется после осмотра. Выезд и диагностика входят в условия при выполнении ремонта; при отказе от ремонта оплачиваются отдельно. Подробности — в договоре оферты.',
+            en: 'Repair cost is set after inspection. Visit and diagnostics are included when repair proceeds; if repair is declined they are charged separately. Details are in the terms of service.',
           },
         ],
       },

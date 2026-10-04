@@ -61,6 +61,12 @@ const otherLocale: Locale = locale === 'ru' ? 'en' : 'ru';
         {t(locale, 'nav.about')}
       </a>
       <a
+        href={localizePath(locale, 'warranty')}
+        class="text-text-secondary hover:text-text-primary transition-colors"
+      >
+        {t(locale, 'nav.warranty')}
+      </a>
+      <a
         href={localizePath(locale, 'contacts')}
         class="text-text-secondary hover:text-text-primary transition-colors"
       >
@@ -122,7 +128,7 @@ const otherLocale: Locale = locale === 'ru' ? 'en' : 'ru';
         data-open-lead-modal
         data-appliance-prefill={applianceSlug}
         data-appliance-label={applianceLabel}
-        class="inline-flex h-11 items-center justify-center rounded-DEFAULT bg-primary-container px-4 sm:px-5 text-[13px] font-semibold text-on-primary-container shadow-[0_0_20px_rgba(197,160,89,0.25)] hover:shadow-[0_0_28px_rgba(197,160,89,0.45)] transition active:scale-[0.98]"
+        class="btn-lead-glow inline-flex h-11 items-center justify-center rounded-DEFAULT bg-primary-container px-4 sm:px-5 text-[13px] font-semibold text-on-primary-container active:scale-[0.98]"
       >
         {t(locale, 'cta.request')}
       </button>
