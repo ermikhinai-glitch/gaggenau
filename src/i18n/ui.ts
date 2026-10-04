@@ -4,6 +4,7 @@ export const ui = {
   ru: {
     'nav.services': 'Услуги',
     'nav.about': 'О сервисе',
+    'nav.warranty': 'Гарантии',
     'nav.contacts': 'Контакты',
     'nav.privacy': 'Политика конфиденциальности',
     'nav.terms': 'Договор оферты',
@@ -31,6 +32,7 @@ export const ui = {
   en: {
     'nav.services': 'Services',
     'nav.about': 'About',
+    'nav.warranty': 'Warranty',
     'nav.contacts': 'Contacts',
     'nav.privacy': 'Privacy policy',
     'nav.terms': 'Terms of service',
