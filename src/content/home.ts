@@ -1,9 +1,9 @@
-import { appliances } from '../config/site';
+import { appliances } from '@/config/site';
 
 export const homeContent = {
   hero: {
     badge: {
-      ru: 'Специализированный сервис · Москва и МО',
+      ru: 'Специализированный сервис · Москва и Подмосковье до 100 км',
       en: 'Specialized service · Moscow and Moscow Region',
     },
     titleLead: {
@@ -185,7 +185,7 @@ export const homeContent = {
         },
       },
       {
-        title: { ru: 'Зона выезда — Москва и МО', en: 'Service area — Moscow and MO' },
+        title: { ru: 'Зона выезда — Москва и Подмосковье до 100 км', en: 'Service area — Moscow and suburbs within 100 km' },
         text: {
           ru: 'Точный адрес и возможность выезда уточняем при звонке.',
           en: 'Exact address and visit feasibility are confirmed on the call.',
@@ -294,8 +294,8 @@ export const homeContent = {
       en: 'A premium Gaggenau repair service',
     },
     body: {
-      ru: 'Мы помогаем частным клиентам в Москве и МО быстро связаться с инженером и восстановить технику без лишних шагов на сайте.',
-      en: 'We help private clients in Moscow and MO reach an engineer quickly and restore appliances without unnecessary website steps.',
+      ru: 'Мы помогаем частным клиентам в Москве и Подмосковье до 100 км быстро связаться с инженером и восстановить технику без лишних шагов на сайте.',
+      en: 'We help private clients in Moscow and suburbs within 100 km reach an engineer quickly and restore appliances without unnecessary website steps.',
     },
     link: { ru: 'Подробнее о сервисе', en: 'More about the service' },
   },

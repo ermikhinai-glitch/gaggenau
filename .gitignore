@@ -1,10 +1,12 @@
-# build output
-dist/
-# generated types
-.astro/
-
 # dependencies
 node_modules/
+
+# next.js
+.next/
+out/
+
+# build output
+dist/
 
 # logs
 npm-debug.log*
@@ -12,19 +14,18 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
-
 # environment variables
 .env
-.env.production
+.env.*
+!.env.example
 
-# PHP secrets (RF hosting API)
+# PHP secrets (legacy RF hosting API, unused by Next.js route)
 api/config.php
 api/logs/*
 !api/logs/.gitkeep
 !api/logs/.htaccess
 
-# macOS-specific files
+# macOS / IDE
 .DS_Store
-
-# jetbrains setting folder
 .idea/
+.vscode/

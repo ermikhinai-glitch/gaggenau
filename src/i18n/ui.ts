@@ -1,10 +1,9 @@
-import type { Locale } from '../config/site';
+import type { Locale } from '@/config/site';
 
 export const ui = {
   ru: {
     'nav.services': 'Услуги',
     'nav.about': 'О сервисе',
-    'nav.warranty': 'Гарантии',
     'nav.contacts': 'Контакты',
     'nav.privacy': 'Политика конфиденциальности',
     'nav.terms': 'Договор оферты',
@@ -19,20 +18,16 @@ export const ui = {
       'Заявка успешно создана. Специалист свяжется после 8:00.',
     'sla.callback': 'перезвоним в течение 15 минут',
     'sla.visit': 'выезд специалиста от 30 минут',
-    'footer.geo': 'Москва и МО',
+    'footer.geo': 'Москва и Подмосковье до 100 км',
     'footer.note':
       'Специализированный сервис ремонта техники Gaggenau. Выезд к клиенту.',
     'footer.rights': 'Все права защищены.',
     'open.now': 'Сейчас открыто',
-    'scaffold.eyebrow': 'Каркас · Задача 3',
-    'scaffold.title': 'Глобальная оболочка',
-    'scaffold.body':
-      'Шапка, футер, промо-баннер и sticky «Позвонить» на мобиле. Модалка заявки — в задаче 7.',
+    'skip': 'К содержанию',
   },
   en: {
     'nav.services': 'Services',
     'nav.about': 'About',
-    'nav.warranty': 'Warranty',
     'nav.contacts': 'Contacts',
     'nav.privacy': 'Privacy policy',
     'nav.terms': 'Terms of service',
@@ -47,15 +42,12 @@ export const ui = {
       'Request received. A specialist will contact you after 8:00.',
     'sla.callback': 'callback within 15 minutes',
     'sla.visit': 'engineer visit from 30 minutes',
-    'footer.geo': 'Moscow and MO',
+    'footer.geo': 'Moscow and suburbs within 100 km',
     'footer.note':
       'Specialized Gaggenau appliance repair. On-site service.',
     'footer.rights': 'All rights reserved.',
     'open.now': 'Open now',
-    'scaffold.eyebrow': 'Scaffold · Task 3',
-    'scaffold.title': 'Global chrome',
-    'scaffold.body':
-      'Header, footer, promo banner and mobile sticky call bar. Lead modal comes in task 7.',
+    'skip': 'Skip to content',
   },
 } as const;
 

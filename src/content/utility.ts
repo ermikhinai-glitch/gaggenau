@@ -1,4 +1,4 @@
-import type { Locale } from '../config/site';
+import type { Locale } from '@/config/site';
 
 type Localized = Record<Locale, string>;
 
@@ -27,8 +27,8 @@ export const utilityPages: Record<UtilitySlug, UtilityPageContent> = {
       en: 'About the service',
     },
     description: {
-      ru: 'Специализированный сервис ремонта техники Gaggenau в Москве и МО.',
-      en: 'Specialized Gaggenau appliance repair service in Moscow and MO.',
+      ru: 'Специализированный сервис ремонта техники Gaggenau в Москве и Подмосковье до 100 км.',
+      en: 'Specialized Gaggenau appliance repair service in Moscow and suburbs within 100 km.',
     },
     eyebrow: { ru: 'О компании', en: 'Company' },
     lead: {
@@ -77,8 +77,8 @@ export const utilityPages: Record<UtilitySlug, UtilityPageContent> = {
       en: 'Contacts',
     },
     description: {
-      ru: 'Телефон, email и режим работы сервиса Gaggenau в Москве и МО.',
-      en: 'Phone, email and business hours for Gaggenau service in Moscow and MO.',
+      ru: 'Телефон, email и режим работы сервиса Gaggenau в Москве и Подмосковье до 100 км.',
+      en: 'Phone, email and business hours for Gaggenau service in Moscow and suburbs within 100 km.',
     },
     eyebrow: { ru: 'Связь', en: 'Get in touch' },
     lead: {
@@ -90,8 +90,8 @@ export const utilityPages: Record<UtilitySlug, UtilityPageContent> = {
         title: { ru: 'Зона выезда', en: 'Service area' },
         paragraphs: [
           {
-            ru: 'Москва и Московская область (МО). Точный адрес и возможность выезда уточняем при звонке.',
-            en: 'Moscow and Moscow Region (MO). Exact address and visit feasibility are confirmed on the call.',
+            ru: 'Москва и Подмосковье до 100 км. Точный адрес и возможность выезда уточняем при звонке.',
+            en: 'Moscow and suburbs within 100 km. Exact address and visit feasibility are confirmed on the call.',
           },
         ],
       },
@@ -218,10 +218,10 @@ export const utilityPages: Record<UtilitySlug, UtilityPageContent> = {
         ],
       },
       {
-        title: { ru: 'Выезд в Москве и МО', en: 'On-site service in Moscow and MO' },
+        title: { ru: 'Выезд в Москве и Подмосковье до 100 км', en: 'On-site service in Moscow and suburbs within 100 km' },
         paragraphs: [
           {
-            ru: 'Инженер выезжает к клиенту в Москве и Московской области. Диагностика на месте, согласование объёма работ до ремонта. Точный адрес и возможность выезда уточняем при звонке.',
+            ru: 'Инженер выезжает к клиенту в Москве и Подмосковье до 100 км. Диагностика на месте, согласование объёма работ до ремонта. Точный адрес и возможность выезда уточняем при звонке.',
             en: 'An engineer visits the client in Moscow and the Moscow Region. On-site diagnostics, scope agreed before repair. Exact address and visit feasibility are confirmed on the call.',
           },
         ],
@@ -271,8 +271,8 @@ export const utilityPages: Record<UtilitySlug, UtilityPageContent> = {
         title: { ru: 'Предмет', en: 'Subject' },
         paragraphs: [
           {
-            ru: 'Сервис принимает заявки на диагностику и ремонт бытовой техники бренда Gaggenau с выездом к клиенту в Москве и МО.',
-            en: 'The service accepts requests for diagnostics and repair of Gaggenau household appliances with a visit to the client in Moscow and MO.',
+            ru: 'Сервис принимает заявки на диагностику и ремонт бытовой техники бренда Gaggenau с выездом к клиенту в Москве и Подмосковье до 100 км.',
+            en: 'The service accepts requests for diagnostics and repair of Gaggenau household appliances with a visit to the client in Moscow and suburbs within 100 km.',
           },
         ],
       },

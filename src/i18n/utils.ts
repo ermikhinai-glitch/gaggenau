@@ -1,4 +1,4 @@
-import { defaultLocale, locales, type Locale } from '../config/site';
+import { defaultLocale, locales, type Locale } from '@/config/site';
 
 export function isLocale(value: string): value is Locale {
   return (locales as readonly string[]).includes(value);
@@ -6,7 +6,7 @@ export function isLocale(value: string): value is Locale {
 
 export function localizePath(locale: Locale, path = ''): string {
   const clean = path.replace(/^\/+/, '').replace(/\/+$/, '');
-  return clean ? `/${locale}/${clean}/` : `/${locale}/`;
+  return clean ? `/${locale}/${clean}` : `/${locale}`;
 }
 
 export function switchLocalePath(currentPath: string, nextLocale: Locale): string {
@@ -19,7 +19,7 @@ export function switchLocalePath(currentPath: string, nextLocale: Locale): strin
   } else {
     segments.unshift(nextLocale);
   }
-  return `/${segments.join('/')}/`.replace(/\/+/g, '/');
+  return `/${segments.join('/')}`;
 }
 
 export function getLocaleFromParam(value: string | undefined): Locale {

@@ -1,4 +1,4 @@
-import type { ApplianceSlug } from '../../config/site';
+import type { ApplianceSlug } from '@/config/site';
 
 export type LocalizedString = { ru: string; en: string };
 
