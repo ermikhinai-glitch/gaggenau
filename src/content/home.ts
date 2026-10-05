@@ -83,6 +83,14 @@ export const homeContent = {
       },
       image: '/images/home/dishwashers.webp',
     },
+    dryers: {
+      series: { ru: 'Сушка', en: 'Drying' },
+      description: {
+        ru: 'Сушильные машины Gaggenau: нагрев, барабан, ошибки панели и шум.',
+        en: 'Gaggenau dryers: heating, drum, panel errors and noise.',
+      },
+      image: '/images/home/dryers.webp',
+    },
     refrigerators: {
       series: { ru: 'Охлаждение', en: 'Cooling' },
       description: {

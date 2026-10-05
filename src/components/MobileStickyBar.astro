@@ -17,7 +17,7 @@ const { locale, applianceSlug, applianceLabel } = Astro.props;
   <div class="grid grid-cols-2 gap-2">
     <a
       href={siteConfig.phoneHref}
-      class="flex items-center justify-center gap-1.5 py-3 rounded-DEFAULT border border-white/15 text-xs font-semibold uppercase tracking-wider text-text-primary hover:border-primary/50 transition"
+      class="btn-outline-glow flex items-center justify-center gap-1.5 py-3 rounded-DEFAULT border text-xs font-semibold uppercase tracking-wider text-text-primary"
     >
       {t(locale, 'cta.call')}
     </a>

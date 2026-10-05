@@ -20,7 +20,7 @@ const otherLocale: Locale = locale === 'ru' ? 'en' : 'ru';
   <div
     class="mx-auto flex h-20 max-w-[1520px] items-center justify-between gap-space-md px-4 sm:px-6 lg:px-10"
   >
-    <a href={localizePath(locale)} class="flex min-w-0 flex-col">
+    <a href={localizePath(locale)} class="brand-lux-glow flex min-w-0 flex-col">
       <span class="font-tech text-[13px] sm:text-[14px] font-semibold uppercase tracking-[0.12em] text-text-primary truncate">
         {siteConfig.workingTitle[locale]}
       </span>
@@ -84,14 +84,14 @@ const otherLocale: Locale = locale === 'ru' ? 'en' : 'ru';
         </span>
         <a
           href={siteConfig.phoneHref}
-          class="font-tech text-[17px] font-semibold tracking-wide text-text-primary hover:text-primary transition-colors"
+          class="brand-lux-glow font-tech text-[17px] font-semibold tracking-wide text-text-primary hover:text-primary transition-colors"
         >
           {siteConfig.phoneDisplay}
         </a>
       </div>
 
       <div
-        class="hidden sm:flex items-center rounded-full border border-white/15 bg-surface-container p-0.5 font-tech text-[11px] font-bold"
+        class="surface-lux-glow hidden sm:flex items-center rounded-full border bg-surface-container p-0.5 font-tech text-[11px] font-bold"
       >
         <a
           href={switchLocalePath(pathname, 'ru')}
@@ -119,7 +119,7 @@ const otherLocale: Locale = locale === 'ru' ? 'en' : 'ru';
 
       <a
         href={siteConfig.phoneHref}
-        class="hidden lg:inline-flex h-11 items-center justify-center rounded-DEFAULT border border-white/20 bg-white/[0.04] px-4 text-[14px] font-medium text-text-primary hover:border-primary/60 hover:bg-white/[0.08] transition"
+        class="btn-outline-glow hidden lg:inline-flex h-11 items-center justify-center rounded-DEFAULT border bg-white/[0.04] px-4 text-[14px] font-medium text-text-primary hover:bg-white/[0.08]"
       >
         {t(locale, 'cta.call')}
       </a>

@@ -42,6 +42,11 @@ export const appliances = [
     label: { ru: 'Посудомоечные машины', en: 'Dishwashers' },
   },
   {
+    slug: 'dryers',
+    path: 'repair/dryers',
+    label: { ru: 'Сушильные машины', en: 'Dryers' },
+  },
+  {
     slug: 'refrigerators',
     path: 'repair/refrigerators',
     label: { ru: 'Холодильники', en: 'Refrigerators' },
