@@ -37,11 +37,11 @@ export const utilityPages: Record<UtilitySlug, UtilityPageContent> = {
     },
     sections: [
       {
-        title: { ru: 'Фокус', en: 'Focus' },
+        title: { ru: 'Специализация', en: 'Specialization' },
         paragraphs: [
           {
-            ru: 'Работаем только с техникой Gaggenau: стиральные и посудомоечные машины, холодильники, духовые шкафы и кофемашины.',
-            en: 'We service Gaggenau appliances only: washing machines, dishwashers, refrigerators, ovens and coffee machines.',
+            ru: 'Работаем только с техникой Gaggenau: стиральные и посудомоечные машины, сушильные машины, холодильники, духовые шкафы и кофемашины.',
+            en: 'We service Gaggenau appliances only: washing machines, dishwashers, dryers, refrigerators, ovens and coffee machines.',
           },
         ],
       },
@@ -190,8 +190,8 @@ export const utilityPages: Record<UtilitySlug, UtilityPageContent> = {
         title: { ru: 'Специализация на Gaggenau', en: 'Gaggenau specialization' },
         paragraphs: [
           {
-            ru: 'Работаем только с техникой бренда Gaggenau: стиральные и посудомоечные машины, холодильники, духовые шкафы и кофемашины. Знаем типовые неисправности и узлы серии.',
-            en: 'We service Gaggenau appliances only: washing machines, dishwashers, refrigerators, ovens and coffee machines. We know common faults and series-specific assemblies.',
+            ru: 'Работаем только с техникой бренда Gaggenau: стиральные и посудомоечные машины, сушильные машины, холодильники, духовые шкафы и кофемашины. Знаем типовые неисправности и узлы серии.',
+            en: 'We service Gaggenau appliances only: washing machines, dishwashers, dryers, refrigerators, ovens and coffee machines. We know common faults and series-specific assemblies.',
           },
         ],
       },

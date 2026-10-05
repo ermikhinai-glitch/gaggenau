@@ -36,7 +36,7 @@ const terms = homeContent.terms;
   <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-center">
     <div class="lg:col-span-7 motion-fade-up">
       <div
-        class="inline-flex items-center gap-2.5 px-3 py-1.5 rounded-full bg-surface-raised border border-hairline mb-space-md"
+        class="surface-lux-glow inline-flex items-center gap-2.5 px-3 py-1.5 rounded-full bg-surface-raised border mb-space-md"
       >
         <span class="w-2 h-2 rounded-full bg-status-active"></span>
         <span class="text-label-caps text-text-secondary tracking-[0.12em]">{page.badge[locale]}</span>
@@ -60,24 +60,24 @@ const terms = homeContent.terms;
         </button>
         <a
           href={siteConfig.phoneHref}
-          class="inline-flex h-12 items-center justify-center rounded-DEFAULT border border-white/15 px-6 font-tech text-tech-data uppercase tracking-wider text-text-primary hover:border-primary transition"
+          class="btn-outline-glow inline-flex h-12 items-center justify-center rounded-DEFAULT border px-6 font-tech text-tech-data uppercase tracking-wider text-text-primary"
         >
           {t(locale, 'cta.call')} · {siteConfig.phoneDisplay}
         </a>
       </div>
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-xl">
-        <div class="rounded-DEFAULT border border-hairline bg-surface-raised p-4">
+        <div class="surface-lux-glow rounded-DEFAULT border bg-surface-raised p-4">
           <div class="text-tech-data-lg text-primary">15 мин</div>
           <p class="text-xs text-text-secondary mt-1">{t(locale, 'sla.callback')}</p>
         </div>
-        <div class="rounded-DEFAULT border border-hairline bg-surface-raised p-4">
+        <div class="surface-lux-glow rounded-DEFAULT border bg-surface-raised p-4">
           <div class="text-tech-data-lg text-primary">от 30 мин</div>
           <p class="text-xs text-text-secondary mt-1">{t(locale, 'sla.visit')}</p>
         </div>
       </div>
     </div>
     <div class="lg:col-span-5">
-      <div class="relative aspect-[4/5] overflow-hidden rounded-lg border border-hairline bg-surface-raised">
+      <div class="card-lux-glow relative aspect-[4/5] overflow-hidden rounded-lg border bg-surface-raised">
         <img
           src={page.heroImage}
           alt={label}
@@ -100,7 +100,7 @@ const terms = homeContent.terms;
     <div class="grid md:grid-cols-2 gap-4">
       {
         page.faults.map((fault) => (
-          <div class="rounded-DEFAULT border border-hairline bg-surface-raised p-space-lg">
+          <div class="surface-lux-glow rounded-DEFAULT border bg-surface-raised p-space-lg">
             <h3 class="font-display text-lg text-text-primary mb-2">{fault.title[locale]}</h3>
             <p class="text-sm text-text-secondary leading-relaxed">{fault.text[locale]}</p>
           </div>
@@ -118,7 +118,7 @@ const terms = homeContent.terms;
     <div class="grid md:grid-cols-2 xl:grid-cols-4 gap-4">
       {
         process.steps.map((step) => (
-          <div class="rounded-DEFAULT border border-hairline bg-surface-raised p-space-lg">
+          <div class="surface-lux-glow rounded-DEFAULT border bg-surface-raised p-space-lg">
             <div class="text-tech-data-lg text-primary mb-2">{step.n}</div>
             <h3 class="font-display text-base text-text-primary mb-2">{step.title[locale]}</h3>
             <p class="text-sm text-text-secondary">{step.text[locale]}</p>
@@ -134,7 +134,7 @@ const terms = homeContent.terms;
   <div class="max-w-[1520px] mx-auto px-4 sm:px-6 lg:px-10">
     <p class="text-label-caps text-primary mb-2">{terms.eyebrow[locale]}</p>
     <h2 class="text-headline-lg text-text-primary uppercase mb-space-md">{terms.title[locale]}</h2>
-    <p class="max-w-3xl text-text-secondary leading-relaxed border border-border-metallic/40 rounded-DEFAULT p-space-lg bg-surface-raised/60">
+    <p class="surface-lux-glow max-w-3xl text-text-secondary leading-relaxed border rounded-DEFAULT p-space-lg bg-surface-raised/60">
       {terms.body[locale]}
     </p>
   </div>
@@ -150,7 +150,7 @@ const terms = homeContent.terms;
       {locale === 'ru' ? 'Гарантия на работы и запчасти' : 'Labour and parts warranty'}
     </h2>
     <div class="grid sm:grid-cols-3 gap-4">
-      <div class="rounded-DEFAULT border border-hairline bg-surface-raised p-space-lg">
+      <div class="surface-lux-glow rounded-DEFAULT border bg-surface-raised p-space-lg">
         <h3 class="font-display text-base text-text-primary mb-1">
           {locale === 'ru' ? 'Работы — 12 месяцев' : 'Labour — 12 months'}
         </h3>
@@ -158,7 +158,7 @@ const terms = homeContent.terms;
           {locale === 'ru' ? 'Фиксированный срок на выполненные работы.' : 'Fixed term on completed labour.'}
         </p>
       </div>
-      <div class="rounded-DEFAULT border border-hairline bg-surface-raised p-space-lg">
+      <div class="surface-lux-glow rounded-DEFAULT border bg-surface-raised p-space-lg">
         <h3 class="font-display text-base text-text-primary mb-1">
           {locale === 'ru' ? 'Запчасти — производитель' : 'Parts — manufacturer'}
         </h3>
@@ -166,7 +166,7 @@ const terms = homeContent.terms;
           {locale === 'ru' ? 'Гарантия производителя запчасти.' : 'Manufacturer warranty on parts.'}
         </p>
       </div>
-      <div class="rounded-DEFAULT border border-hairline bg-surface-raised p-space-lg">
+      <div class="surface-lux-glow rounded-DEFAULT border bg-surface-raised p-space-lg">
         <h3 class="font-display text-base text-text-primary mb-1">
           {locale === 'ru' ? 'Только оригинал' : 'Original only'}
         </h3>
@@ -185,7 +185,7 @@ const terms = homeContent.terms;
     <div class="space-y-3">
       {
         page.faq.map((item) => (
-          <details class="group rounded-DEFAULT border border-hairline bg-surface-raised open:border-border-metallic">
+          <details class="surface-lux-glow group rounded-DEFAULT border bg-surface-raised">
             <summary class="cursor-pointer list-none px-5 py-4 flex items-center justify-between gap-4 font-display text-base text-text-primary">
               <span>{item.q[locale]}</span>
               <span class="text-primary transition group-open:rotate-180">▾</span>
@@ -223,7 +223,7 @@ const terms = homeContent.terms;
       </button>
       <a
         href={siteConfig.phoneHref}
-        class="inline-flex h-12 items-center justify-center rounded-DEFAULT border border-white/20 px-8 font-tech text-tech-data uppercase tracking-wider"
+        class="btn-outline-glow inline-flex h-12 items-center justify-center rounded-DEFAULT border px-8 font-tech text-tech-data uppercase tracking-wider"
       >
         {t(locale, 'cta.call')}
       </a>
@@ -242,7 +242,7 @@ const terms = homeContent.terms;
         others.map((item) => (
           <a
             href={localizePath(locale, item.path)}
-            class="inline-flex items-center rounded-DEFAULT border border-hairline bg-surface-raised px-4 py-3 text-sm text-text-secondary hover:text-primary hover:border-border-metallic transition"
+            class="surface-lux-glow inline-flex items-center rounded-DEFAULT border bg-surface-raised px-4 py-3 text-sm text-text-secondary hover:text-primary"
           >
             {item.label[locale]}
           </a>

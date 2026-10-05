@@ -51,6 +51,7 @@ export const homeContent = {
         ru: 'На работы; на запчасти — гарантия производителя',
         en: 'On labour; parts covered by manufacturer warranty',
       },
+      href: 'warranty',
     },
   ],
   appliancesSection: {
@@ -81,6 +82,14 @@ export const homeContent = {
         en: 'Leaks, error codes and drying issues on Gaggenau dishwashers.',
       },
       image: '/images/home/dishwashers.webp',
+    },
+    dryers: {
+      series: { ru: 'Сушка', en: 'Drying' },
+      description: {
+        ru: 'Сушильные машины Gaggenau: нагрев, барабан, ошибки панели и шум.',
+        en: 'Gaggenau dryers: heating, drum, panel errors and noise.',
+      },
+      image: '/images/home/dryers.webp',
     },
     refrigerators: {
       series: { ru: 'Охлаждение', en: 'Cooling' },

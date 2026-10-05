@@ -9,7 +9,7 @@ export const siteConfig = {
   },
   phoneDisplay: '+7 (495) 000-00-00',
   phoneHref: 'tel:+74950000000',
-  email: 'ermikhinai@gmail.com',
+  email: 'service-gaggenau@gmail.com',
   hours: {
     label: {
       ru: 'Ежедневно 8:00–22:00',
@@ -40,6 +40,11 @@ export const appliances = [
     slug: 'dishwashers',
     path: 'repair/dishwashers',
     label: { ru: 'Посудомоечные машины', en: 'Dishwashers' },
+  },
+  {
+    slug: 'dryers',
+    path: 'repair/dryers',
+    label: { ru: 'Сушильные машины', en: 'Dryers' },
   },
   {
     slug: 'refrigerators',

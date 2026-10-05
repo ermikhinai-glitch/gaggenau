@@ -49,19 +49,19 @@ const isWarranty = page.slug === 'warranty';
       <div class="mb-space-2xl grid gap-4 sm:grid-cols-2">
         <a
           href={siteConfig.phoneHref}
-          class="rounded-DEFAULT border border-hairline bg-surface-raised p-space-lg hover:border-border-metallic transition-colors"
+          class="surface-lux-glow rounded-DEFAULT border bg-surface-raised p-space-lg"
         >
           <p class="text-label-caps text-primary mb-2">{locale === 'ru' ? 'Телефон' : 'Phone'}</p>
           <p class="font-tech text-tech-data-lg text-text-primary">{siteConfig.phoneDisplay}</p>
         </a>
         <a
           href={`mailto:${siteConfig.email}`}
-          class="rounded-DEFAULT border border-hairline bg-surface-raised p-space-lg hover:border-border-metallic transition-colors"
+          class="surface-lux-glow rounded-DEFAULT border bg-surface-raised p-space-lg"
         >
           <p class="text-label-caps text-primary mb-2">Email</p>
           <p class="text-base text-text-primary break-all">{siteConfig.email}</p>
         </a>
-        <div class="rounded-DEFAULT border border-hairline bg-surface-raised p-space-lg sm:col-span-2">
+        <div class="surface-lux-glow rounded-DEFAULT border bg-surface-raised p-space-lg sm:col-span-2">
           <p class="text-label-caps text-primary mb-2">{locale === 'ru' ? 'Режим' : 'Hours'}</p>
           <p class="text-base text-text-primary">{siteConfig.hours.label[locale]}</p>
           <p class="mt-2 text-sm text-text-tertiary">{siteConfig.geo[locale]}</p>
@@ -76,7 +76,7 @@ const isWarranty = page.slug === 'warranty';
           </button>
           <a
             href={siteConfig.phoneHref}
-            class="inline-flex h-12 items-center justify-center rounded-DEFAULT border border-white/20 px-8 font-tech text-tech-data uppercase tracking-wider text-text-primary hover:border-primary transition"
+            class="btn-outline-glow inline-flex h-12 items-center justify-center rounded-DEFAULT border px-8 font-tech text-tech-data uppercase tracking-wider text-text-primary"
           >
             {t(locale, 'cta.call')} · {siteConfig.phoneDisplay}
           </a>
@@ -105,7 +105,7 @@ const isWarranty = page.slug === 'warranty';
     ) : (
       <div class="space-y-space-xl">
         {page.sections.map((section) => (
-          <section class="border-t border-hairline pt-space-lg">
+          <section class="surface-lux-glow rounded-DEFAULT border bg-surface-raised/50 p-space-lg">
             <h2 class="font-display text-xl text-text-primary mb-space-md">{section.title[locale]}</h2>
             <div class="space-y-3">
               {section.paragraphs.map((paragraph) => (
@@ -123,7 +123,7 @@ const isWarranty = page.slug === 'warranty';
       <div class="mt-space-2xl pt-space-xl border-t border-hairline flex flex-col sm:flex-row gap-3">
         <a
           href={localizePath(locale, 'contacts')}
-          class="inline-flex h-12 items-center justify-center rounded-DEFAULT border border-border-metallic px-6 font-tech text-tech-data uppercase tracking-wider text-primary hover:bg-white/5 transition"
+          class="btn-outline-glow inline-flex h-12 items-center justify-center rounded-DEFAULT border px-6 font-tech text-tech-data uppercase tracking-wider text-primary hover:bg-white/5"
         >
           {locale === 'ru' ? 'Контакты' : 'Contacts'} →
         </a>

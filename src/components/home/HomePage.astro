@@ -36,15 +36,17 @@ const c = homeContent;
   >
     <div class="max-w-3xl">
       <div
-        class="mb-6 inline-flex w-fit items-center gap-2.5 rounded-full border border-primary/30 bg-surface-container/90 px-3.5 py-1.5 backdrop-blur-md lg:mb-8"
+        class="surface-lux-glow mb-6 inline-flex w-fit items-center gap-2.5 rounded-full border bg-surface-container/90 px-3.5 py-1.5 backdrop-blur-md lg:mb-8"
       >
         <span class="h-2 w-2 rounded-full bg-status-active shadow-[0_0_8px_#4ade80]"></span>
         <span class="text-label-caps tracking-[0.16em] text-status-warning">{c.hero.badge[locale]}</span>
       </div>
 
       <h1 class="mb-6 text-display-hero uppercase text-text-primary lg:mb-8">
-        <span class="block">{c.hero.titleLead[locale]}</span>
-        <span class="mt-1 block text-primary lg:mt-1.5">{c.hero.titleAccent[locale]}</span>
+        <span class="block tracking-[0.01em]">{c.hero.titleLead[locale]}</span>
+        <span class="text-brand-mark mt-3 block text-primary lg:mt-4">
+          {c.hero.titleAccent[locale]}
+        </span>
       </h1>
 
       <p
@@ -63,7 +65,7 @@ const c = homeContent;
         </button>
         <a
           href={siteConfig.phoneHref}
-          class="inline-flex h-14 items-center justify-center rounded-DEFAULT border border-white/20 bg-surface-raised/90 px-10 font-tech text-tech-data uppercase tracking-wider text-text-primary transition hover:border-primary"
+          class="btn-outline-glow inline-flex h-14 items-center justify-center rounded-DEFAULT border bg-surface-raised/90 px-10 font-tech text-tech-data uppercase tracking-wider text-text-primary"
         >
           {siteConfig.phoneDisplay}
         </a>
@@ -72,13 +74,22 @@ const c = homeContent;
 
     <div class="grid grid-cols-1 gap-3 border-t border-white/10 pt-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-4">
       {
-        c.sla.map((item) => (
-          <div class="flex min-h-[128px] flex-col justify-center rounded-DEFAULT border border-hairline bg-[#14171d]/85 p-5 backdrop-blur-md transition-colors hover:border-border-metallic sm:min-h-[140px] sm:p-6">
-            <div class="mb-2 text-label-caps text-primary">{item.label[locale]}</div>
-            <div class="mb-2 text-tech-data-lg text-text-primary">{item.value[locale]}</div>
-            <p class="text-sm leading-snug text-[#c5cad3]">{item.text[locale]}</p>
-          </div>
-        ))
+        c.sla.map((item) => {
+          const className =
+            'surface-lux-glow flex min-h-[128px] flex-col justify-center rounded-DEFAULT border bg-[#14171d]/85 p-5 backdrop-blur-md sm:min-h-[140px] sm:p-6'
+          const href = 'href' in item ? item.href : undefined;
+          const Tag = href ? 'a' : 'div';
+          return (
+            <Tag
+              href={href ? localizePath(locale, href) : undefined}
+              class={className}
+            >
+              <div class="mb-2 text-label-caps text-primary">{item.label[locale]}</div>
+              <div class="mb-2 text-tech-data-lg text-text-primary">{item.value[locale]}</div>
+              <p class="text-sm leading-snug text-[#c5cad3]">{item.text[locale]}</p>
+            </Tag>
+          );
+        })
       }
     </div>
   </div>
@@ -95,10 +106,11 @@ const c = homeContent;
       <p class="max-w-md text-sm text-text-secondary">{c.appliancesSection.lead[locale]}</p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 gap-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
       {
         appliances.map((item, index) => {
           const card = c.applianceCards[item.slug];
+          const total = String(appliances.length).padStart(2, '0');
           return (
             <a
               href={localizePath(locale, item.path)}
@@ -128,7 +140,7 @@ const c = homeContent;
                   {c.appliancesSection.more[locale]} →
                 </span>
                 <span class="font-tech text-[11px] text-text-tertiary">
-                  {String(index + 1).padStart(2, '0')} / 05
+                  {String(index + 1).padStart(2, '0')} / {total}
                 </span>
               </div>
             </a>
@@ -147,7 +159,7 @@ const c = homeContent;
     <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
       {
         c.process.steps.map((step) => (
-          <div class="rounded-DEFAULT border border-hairline bg-surface-raised p-space-lg">
+          <div class="surface-lux-glow rounded-DEFAULT border bg-surface-raised p-space-lg">
             <div class="text-tech-data-lg text-primary mb-3">{step.n}</div>
             <h3 class="font-display text-lg text-text-primary mb-2">{step.title[locale]}</h3>
             <p class="text-sm text-text-secondary leading-relaxed">{step.text[locale]}</p>
@@ -163,7 +175,7 @@ const c = homeContent;
   <div class="max-w-[1520px] mx-auto px-4 sm:px-6 lg:px-10">
     <p class="text-label-caps text-primary mb-2">{c.terms.eyebrow[locale]}</p>
     <h2 class="text-headline-lg text-text-primary uppercase mb-space-md">{c.terms.title[locale]}</h2>
-    <p class="max-w-3xl text-text-secondary leading-relaxed border border-border-metallic/40 rounded-DEFAULT p-space-lg bg-surface-raised/60">
+    <p class="surface-lux-glow max-w-3xl text-text-secondary leading-relaxed border rounded-DEFAULT p-space-lg bg-surface-raised/60">
       {c.terms.body[locale]}
     </p>
   </div>
@@ -174,7 +186,7 @@ const c = homeContent;
 <!-- Trust -->
 <section class="py-space-2xl md:py-space-3xl border-t border-hairline">
   <div class="max-w-[1520px] mx-auto px-4 sm:px-6 lg:px-10 grid lg:grid-cols-12 gap-space-xl items-center">
-    <div class="lg:col-span-5 relative overflow-hidden rounded-DEFAULT border border-hairline min-h-[280px]">
+    <div class="card-lux-glow lg:col-span-5 relative overflow-hidden rounded-DEFAULT border min-h-[280px]">
       <img
         src="/images/home/trust.webp"
         alt=""
@@ -192,7 +204,7 @@ const c = homeContent;
       <div class="grid sm:grid-cols-2 gap-4">
         {
           c.trust.points.map((point) => (
-            <div class="rounded-DEFAULT border border-hairline bg-surface-raised p-space-md">
+            <div class="surface-lux-glow rounded-DEFAULT border bg-surface-raised p-space-md">
               <h3 class="font-display text-base text-text-primary mb-1">{point.title[locale]}</h3>
               <p class="text-sm text-text-secondary">{point.text[locale]}</p>
             </div>
@@ -237,7 +249,7 @@ const c = homeContent;
     <div class="space-y-3" data-faq>
       {
         c.faq.items.map((item) => (
-          <details class="group rounded-DEFAULT border border-hairline bg-surface-raised open:border-border-metallic transition-colors">
+          <details class="surface-lux-glow group rounded-DEFAULT border bg-surface-raised">
             <summary class="cursor-pointer list-none px-5 py-4 flex items-center justify-between gap-4 font-display text-base text-text-primary">
               <span>{item.q[locale]}</span>
               <span class="text-primary transition group-open:rotate-180">▾</span>
@@ -260,7 +272,7 @@ const c = homeContent;
     </div>
     <a
       href={localizePath(locale, 'about')}
-      class="inline-flex h-12 items-center justify-center rounded-DEFAULT border border-border-metallic px-6 font-tech text-tech-data uppercase tracking-wider text-primary hover:bg-white/5 transition"
+      class="btn-outline-glow inline-flex h-12 items-center justify-center rounded-DEFAULT border px-6 font-tech text-tech-data uppercase tracking-wider text-primary hover:bg-white/5"
     >
       {c.about.link[locale]} →
     </a>
@@ -285,7 +297,7 @@ const c = homeContent;
       </button>
       <a
         href={siteConfig.phoneHref}
-        class="inline-flex h-12 items-center justify-center rounded-DEFAULT border border-white/20 px-8 font-tech text-tech-data uppercase tracking-wider text-text-primary hover:border-primary transition"
+        class="btn-outline-glow inline-flex h-12 items-center justify-center rounded-DEFAULT border px-8 font-tech text-tech-data uppercase tracking-wider text-text-primary"
       >
         {t(locale, 'cta.call')} · {siteConfig.phoneDisplay}
       </a>

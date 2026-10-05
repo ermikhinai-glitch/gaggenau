@@ -37,6 +37,16 @@ const applianceSeo: Record<
       en: 'Gaggenau dishwasher repair: leaks, errors, drying issues. Engineer visits across Moscow and MO.',
     },
   },
+  dryers: {
+    title: {
+      ru: 'Ремонт сушильных машин Gaggenau в Москве и МО',
+      en: 'Gaggenau dryer repair in Moscow and MO',
+    },
+    description: {
+      ru: 'Ремонт сушильных машин Gaggenau: нагрев, барабан, ошибки панели. Выезд инженера по Москве и МО.',
+      en: 'Gaggenau dryer repair: heating, drum, panel errors. Engineer visits across Moscow and MO.',
+    },
+  },
   refrigerators: {
     title: {
       ru: 'Ремонт холодильников Gaggenau в Москве и МО',
