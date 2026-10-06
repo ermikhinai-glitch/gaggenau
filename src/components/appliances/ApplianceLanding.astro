@@ -62,16 +62,16 @@ const terms = homeContent.terms;
           href={siteConfig.phoneHref}
           class="btn-outline-glow inline-flex h-12 items-center justify-center rounded-DEFAULT border px-6 font-tech text-tech-data uppercase tracking-wider text-text-primary"
         >
-          {t(locale, 'cta.call')} · {siteConfig.phoneDisplay}
+          {t(locale, 'cta.call')} {siteConfig.phoneDisplay}
         </a>
       </div>
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-xl">
         <div class="surface-lux-glow rounded-DEFAULT border bg-surface-raised p-4">
-          <div class="text-tech-data-lg text-primary">15 мин</div>
+          <div class="text-tech-data-lg text-primary">{homeContent.sla[0].value[locale]}</div>
           <p class="text-xs text-text-secondary mt-1">{t(locale, 'sla.callback')}</p>
         </div>
         <div class="surface-lux-glow rounded-DEFAULT border bg-surface-raised p-4">
-          <div class="text-tech-data-lg text-primary">от 30 мин</div>
+          <div class="text-tech-data-lg text-primary">{homeContent.sla[1].value[locale]}</div>
           <p class="text-xs text-text-secondary mt-1">{t(locale, 'sla.visit')}</p>
         </div>
       </div>

@@ -10,7 +10,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "api": "php -S 127.0.0.1:8080 -t ."
+    "api": "node scripts/php-api.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.4",

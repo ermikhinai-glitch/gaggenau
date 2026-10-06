@@ -1,0 +1,12 @@
+---
+description: Change only what the user explicitly asked for; no drive-by edits
+alwaysApply: true
+---
+
+# Only asked changes
+
+- Change **only** what the user asked for in the latest request.
+- Do not “improve”, refactor, restyle, rename, or expand neighboring code unless that was requested.
+- Do not touch unrelated files, configs, or docs as side effects.
+- If a fix needs a tiny adjacent edit to work, keep it minimal and in scope; otherwise ask first.
+- Prefer the smallest possible diff that satisfies the request.

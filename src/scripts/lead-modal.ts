@@ -34,13 +34,40 @@ function isBusinessHoursMoscow(date = new Date()): boolean {
   return hour >= 8 && hour < 22;
 }
 
+/** Digits only, RU mobile normalized to 11 digits starting with 7 */
+function extractRuPhoneDigits(value: string): string {
+  let digits = value.replace(/\D/g, '');
+  if (!digits) return '';
+  if (digits.startsWith('8')) digits = `7${digits.slice(1)}`;
+  if (digits.length === 10 && digits.startsWith('9')) digits = `7${digits}`;
+  if (!digits.startsWith('7')) digits = `7${digits}`;
+  return digits.slice(0, 11);
+}
+
+/** Live mask: +7 (XXX) XXX-XX-XX */
+function formatRuPhone(value: string): string {
+  const digits = extractRuPhoneDigits(value);
+  if (!digits) return '';
+  const rest = digits.slice(1);
+  let out = '+7';
+  if (!rest.length) return out;
+  out += ` (${rest.slice(0, 3)}`;
+  if (rest.length < 3) return out;
+  out += ')';
+  if (rest.length > 3) out += ` ${rest.slice(3, 6)}`;
+  if (rest.length > 6) out += `-${rest.slice(6, 8)}`;
+  if (rest.length > 8) out += `-${rest.slice(8, 10)}`;
+  return out;
+}
+
 function normalizePhone(value: string): string {
-  return value.replace(/[^\d+]/g, '');
+  const digits = extractRuPhoneDigits(value);
+  return digits ? `+${digits}` : '';
 }
 
 function isPhoneValid(value: string): boolean {
-  const digits = value.replace(/\D/g, '');
-  return digits.length >= 10;
+  const digits = extractRuPhoneDigits(value);
+  return digits.length === 11 && digits.startsWith('7');
 }
 
 export function initLeadModal(root: HTMLElement): void {
@@ -56,18 +83,29 @@ export function initLeadModal(root: HTMLElement): void {
   const noticeEl = root.querySelector<HTMLElement>('[data-lead-notice]');
   const successText = root.querySelector<HTMLElement>('[data-lead-success-text]');
   const applianceSelect = root.querySelector<HTMLSelectElement>('[data-lead-appliance]');
+  const citySelect = root.querySelector<HTMLSelectElement>('[data-lead-city]');
+  const timeSelect = root.querySelector<HTMLSelectElement>('[data-lead-time]');
   const optionalBlock = root.querySelector<HTMLDetailsElement>('[data-lead-optional]');
   const errorBox = root.querySelector<HTMLElement>('[data-lead-errors]');
   const submitBtn = root.querySelector<HTMLButtonElement>('[data-lead-submit]');
   const privacyLink = root.querySelector<HTMLAnchorElement>('[data-lead-privacy-link]');
+  const phoneInput = root.querySelector<HTMLInputElement>('[data-lead-phone]');
+  const nameInput = root.querySelector<HTMLInputElement>('[data-lead-name]');
+  const consentInput = root.querySelector<HTMLInputElement>('[data-lead-consent]');
 
-  function syncApplianceSelectStyle(): void {
-    if (!applianceSelect) return;
-    if (applianceSelect.value) {
-      applianceSelect.classList.remove('lux-select--empty');
+  function syncSelectStyle(select: HTMLSelectElement | null): void {
+    if (!select) return;
+    if (select.value) {
+      select.classList.remove('lux-select--empty');
     } else {
-      applianceSelect.classList.add('lux-select--empty');
+      select.classList.add('lux-select--empty');
     }
+  }
+
+  function syncOptionalSelectStyles(): void {
+    syncSelectStyle(applianceSelect);
+    syncSelectStyle(citySelect);
+    syncSelectStyle(timeSelect);
   }
 
   if (!dialog || !formView || !successView || !form || !submitBtn) return;
@@ -85,6 +123,18 @@ export function initLeadModal(root: HTMLElement): void {
     if (noticeEl) noticeEl.textContent = day ? copy.noticeDay : copy.noticeNight;
   }
 
+  function setFieldInvalid(el: HTMLElement | null, invalid: boolean): void {
+    if (!el) return;
+    el.classList.toggle('is-invalid', invalid);
+    el.setAttribute('aria-invalid', invalid ? 'true' : 'false');
+  }
+
+  function clearFieldErrors(): void {
+    setFieldInvalid(nameInput, false);
+    setFieldInvalid(phoneInput, false);
+    setFieldInvalid(consentInput, false);
+  }
+
   function setErrors(messages: string[]): void {
     if (!errorBox) return;
     if (!messages.length) {
@@ -96,16 +146,146 @@ export function initLeadModal(root: HTMLElement): void {
     errorBox.textContent = messages.join(' · ');
   }
 
+  function restorePhonePlaceholder(): void {
+    if (!phoneInput) return;
+    const ph =
+      phoneInput.dataset.placeholder ||
+      phoneInput.getAttribute('placeholder') ||
+      '+7 (___) ___-__-__';
+    phoneInput.dataset.placeholder = ph;
+    if (!phoneInput.value.trim()) {
+      phoneInput.setAttribute('placeholder', ph);
+    }
+  }
+
+  function clearIdentityFields(): void {
+    if (nameInput) nameInput.value = '';
+    if (phoneInput) {
+      phoneInput.value = '';
+      phoneInput.setAttribute('readonly', 'readonly');
+      restorePhonePlaceholder();
+    }
+  }
+
   function showForm(): void {
     formView.classList.remove('hidden');
     successView.classList.add('hidden');
     form.reset();
+    clearIdentityFields();
+    // Browser may refill after reset — clear again on next ticks
+    requestAnimationFrame(clearIdentityFields);
+    window.setTimeout(clearIdentityFields, 50);
+    window.setTimeout(clearIdentityFields, 200);
     if (optionalBlock) optionalBlock.open = false;
-    syncApplianceSelectStyle();
+    syncOptionalSelectStyles();
+    clearFieldErrors();
     setErrors([]);
     submitBtn.disabled = false;
     submitBtn.textContent = copy.submit;
   }
+
+  function capitalizeName(value: string): string {
+    return value
+      .split(/(\s+|-)/)
+      .map((part) => {
+        if (!part || /^\s+$/.test(part) || part === '-') return part;
+        return part.charAt(0).toLocaleUpperCase(locale === 'ru' ? 'ru-RU' : 'en-US') + part.slice(1);
+      })
+      .join('');
+  }
+
+  function bindPlaceholderHide(input: HTMLInputElement | null): void {
+    if (!input) return;
+    const placeholder = input.getAttribute('placeholder') || '';
+    if (!placeholder) return;
+    input.dataset.placeholder = placeholder;
+    input.addEventListener('focus', () => {
+      input.setAttribute('placeholder', '');
+    });
+    // Defer: phone mask may clear "+7 (" on the same blur tick
+    input.addEventListener('blur', () => {
+      requestAnimationFrame(() => {
+        if (!input.value.trim()) {
+          input.setAttribute('placeholder', input.dataset.placeholder || placeholder);
+        }
+      });
+    });
+  }
+
+  function bindNameCapitalize(): void {
+    if (!nameInput) return;
+    nameInput.addEventListener('input', () => {
+      const start = nameInput.selectionStart;
+      const end = nameInput.selectionEnd;
+      const next = capitalizeName(nameInput.value);
+      if (next === nameInput.value) return;
+      nameInput.value = next;
+      if (start != null && end != null) {
+        nameInput.setSelectionRange(start, end);
+      }
+    });
+    nameInput.addEventListener('blur', () => {
+      nameInput.value = capitalizeName(nameInput.value.trim());
+    });
+  }
+
+  bindNameCapitalize();
+  bindPlaceholderHide(nameInput);
+  // Phone: keep placeholder attribute always (mask value hides it on focus)
+
+  nameInput?.addEventListener('input', () => setFieldInvalid(nameInput, false));
+  phoneInput?.addEventListener('input', () => setFieldInvalid(phoneInput, false));
+  consentInput?.addEventListener('change', () => {
+    if (consentInput.checked) setFieldInvalid(consentInput, false);
+  });
+
+  function bindPhoneMask(): void {
+    if (!phoneInput) return;
+
+    const initialPh = phoneInput.getAttribute('placeholder') || '+7 (___) ___-__-__';
+    phoneInput.dataset.placeholder = initialPh;
+
+    const unlock = () => {
+      phoneInput.removeAttribute('readonly');
+    };
+
+    phoneInput.addEventListener('focus', () => {
+      unlock();
+      if (!phoneInput.value.trim()) {
+        phoneInput.value = '+7 (';
+        const pos = phoneInput.value.length;
+        requestAnimationFrame(() => phoneInput.setSelectionRange(pos, pos));
+      }
+    });
+
+    phoneInput.addEventListener('pointerdown', unlock);
+    phoneInput.addEventListener('keydown', unlock);
+
+    phoneInput.addEventListener('input', () => {
+      const formatted = formatRuPhone(phoneInput.value);
+      phoneInput.value = formatted;
+    });
+
+    phoneInput.addEventListener('blur', () => {
+      if (phoneInput.value === '+7' || phoneInput.value === '+7 (' || phoneInput.value === '+7 ()') {
+        phoneInput.value = '';
+      }
+      phoneInput.setAttribute('readonly', 'readonly');
+      restorePhonePlaceholder();
+    });
+
+    phoneInput.addEventListener('paste', (event) => {
+      event.preventDefault();
+      unlock();
+      const text = event.clipboardData?.getData('text') || '';
+      phoneInput.value = formatRuPhone(text);
+    });
+  }
+
+  bindPhoneMask();
+  optionalBlock?.addEventListener('toggle', () => {
+    restorePhonePlaceholder();
+  });
 
   function applyPrefill(prefill?: Prefill): void {
     const data = prefill || window.__leadAppliancePrefill || {};
@@ -115,14 +295,16 @@ export function initLeadModal(root: HTMLElement): void {
         ? Array.from(applianceSelect.options).some((opt) => opt.value === slug)
         : false;
       applianceSelect.value = hasOption ? slug : '';
-      syncApplianceSelectStyle();
+      syncOptionalSelectStyles();
     }
     if (optionalBlock && (data.label || data.slug)) {
       optionalBlock.open = true;
     }
   }
 
-  applianceSelect?.addEventListener('change', syncApplianceSelectStyle);
+  applianceSelect?.addEventListener('change', () => syncSelectStyle(applianceSelect));
+  citySelect?.addEventListener('change', () => syncSelectStyle(citySelect));
+  timeSelect?.addEventListener('change', () => syncSelectStyle(timeSelect));
 
   function openModal(prefill?: Prefill): void {
     lastFocus = document.activeElement instanceof HTMLElement ? document.activeElement : null;
@@ -133,8 +315,7 @@ export function initLeadModal(root: HTMLElement): void {
     root.classList.add('flex');
     document.body.classList.add('overflow-hidden');
     open = true;
-    const first = form.querySelector<HTMLElement>('input[name="name"]');
-    first?.focus();
+    nameInput?.focus();
   }
 
   function closeModal(): void {
@@ -195,19 +376,29 @@ export function initLeadModal(root: HTMLElement): void {
   form.addEventListener('submit', async (event) => {
     event.preventDefault();
     const data = new FormData(form);
-    const name = String(data.get('name') || '').trim();
-    const phone = String(data.get('phone') || '').trim();
-    const consent = data.get('consent') === 'on';
+    const name = String(data.get('lead_client_name') || nameInput?.value || '').trim();
+    const phone = String(data.get('lead_client_phone') || phoneInput?.value || '').trim();
+    const consent = Boolean(consentInput?.checked) || data.get('consent') === 'on';
     const messages: string[] = [];
+    const nameOk = Boolean(name);
+    const phoneOk = isPhoneValid(phone);
+    const consentOk = consent;
 
-    if (!name) messages.push(copy.errorName);
-    if (!isPhoneValid(phone)) messages.push(copy.errorPhone);
-    if (!consent) messages.push(copy.errorConsent);
+    setFieldInvalid(nameInput, !nameOk);
+    setFieldInvalid(phoneInput, !phoneOk);
+    setFieldInvalid(consentInput, !consentOk);
+
+    if (!nameOk) messages.push(copy.errorName);
+    if (!phoneOk) messages.push(copy.errorPhone);
+    if (!consentOk) messages.push(copy.errorConsent);
     if (messages.length) {
       setErrors(messages);
+      const firstInvalid = !nameOk ? nameInput : !phoneOk ? phoneInput : consentInput;
+      firstInvalid?.focus();
       return;
     }
 
+    clearFieldErrors();
     setErrors([]);
     submitBtn.disabled = true;
     submitBtn.textContent = copy.submitting;
