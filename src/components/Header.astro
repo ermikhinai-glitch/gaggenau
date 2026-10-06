@@ -11,7 +11,8 @@ interface Props {
 
 const { locale, applianceSlug, applianceLabel } = Astro.props;
 const pathname = Astro.url.pathname;
-const otherLocale: Locale = locale === 'ru' ? 'en' : 'ru';
+const ruHref = switchLocalePath(pathname, 'ru');
+const enHref = switchLocalePath(pathname, 'en');
 ---
 
 <header
@@ -94,7 +95,8 @@ const otherLocale: Locale = locale === 'ru' ? 'en' : 'ru';
         class="surface-lux-glow hidden sm:flex items-center rounded-full border bg-surface-container p-0.5 font-tech text-[11px] font-bold"
       >
         <a
-          href={switchLocalePath(pathname, 'ru')}
+          href={ruHref}
+          hreflang="ru"
           class:list={[
             'px-2.5 py-0.5 rounded-full uppercase transition',
             locale === 'ru'
@@ -105,7 +107,8 @@ const otherLocale: Locale = locale === 'ru' ? 'en' : 'ru';
           {t(locale, 'lang.ru')}
         </a>
         <a
-          href={switchLocalePath(pathname, 'en')}
+          href={enHref}
+          hreflang="en"
           class:list={[
             'px-2.5 py-0.5 rounded-full uppercase transition',
             locale === 'en'

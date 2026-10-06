@@ -114,34 +114,34 @@ const c = homeContent;
           return (
             <a
               href={localizePath(locale, item.path)}
-              class="card-lux-glow group flex flex-col justify-between min-h-[420px] rounded-DEFAULT border bg-surface-raised/70 p-5 motion-safe:hover:-translate-y-0.5"
+              class="card-lux-glow group flex min-h-[420px] rounded-DEFAULT border bg-surface-raised/70 p-4 motion-safe:hover:-translate-y-0.5"
             >
-              <div>
-                <div class="relative h-40 mb-4 overflow-hidden rounded-DEFAULT border border-hairline bg-black/40">
-                  <img
-                    src={card.image}
-                    alt={item.label[locale]}
-                    width="900"
-                    height="600"
-                    loading="lazy"
-                    decoding="async"
-                    class="h-full w-full object-cover transition-transform duration-700 motion-safe:group-hover:scale-105"
-                  />
-                  <div class="absolute inset-0 bg-gradient-to-t from-surface-raised via-transparent to-transparent" />
+              <div class="relative flex min-h-[388px] w-full flex-1 overflow-hidden rounded-DEFAULT border border-hairline">
+                <img
+                  src={card.image}
+                  alt={item.label[locale]}
+                  width="900"
+                  height="600"
+                  loading="lazy"
+                  decoding="async"
+                  class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 motion-safe:group-hover:scale-105"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-[#0c0e12] via-[#0c0e12]/75 to-[#0c0e12]/15" />
+                <div class="relative z-10 mt-auto flex w-full flex-col justify-end p-5 pt-24">
+                  <p class="text-label-caps text-primary mb-1">{card.series[locale]}</p>
+                  <h3 class="font-display text-lg text-text-primary mb-2 group-hover:text-primary transition-colors">
+                    {item.label[locale]}
+                  </h3>
+                  <p class="text-xs text-[#c5cad3] leading-relaxed mb-5">{card.description[locale]}</p>
+                  <div class="pt-4 border-t border-white/15 flex items-center justify-between">
+                    <span class="font-tech text-xs uppercase tracking-wider text-primary">
+                      {c.appliancesSection.more[locale]} →
+                    </span>
+                    <span class="font-tech text-[11px] text-[#a3a8b5]">
+                      {String(index + 1).padStart(2, '0')} / {total}
+                    </span>
+                  </div>
                 </div>
-                <p class="text-label-caps text-primary mb-1">{card.series[locale]}</p>
-                <h3 class="font-display text-lg text-text-primary mb-2 group-hover:text-primary transition-colors">
-                  {item.label[locale]}
-                </h3>
-                <p class="text-xs text-text-secondary leading-relaxed">{card.description[locale]}</p>
-              </div>
-              <div class="mt-6 pt-4 border-t border-hairline flex items-center justify-between">
-                <span class="font-tech text-xs uppercase tracking-wider text-primary">
-                  {c.appliancesSection.more[locale]} →
-                </span>
-                <span class="font-tech text-[11px] text-text-tertiary">
-                  {String(index + 1).padStart(2, '0')} / {total}
-                </span>
               </div>
             </a>
           );
@@ -299,7 +299,7 @@ const c = homeContent;
         href={siteConfig.phoneHref}
         class="btn-outline-glow inline-flex h-12 items-center justify-center rounded-DEFAULT border px-8 font-tech text-tech-data uppercase tracking-wider text-text-primary"
       >
-        {t(locale, 'cta.call')} · {siteConfig.phoneDisplay}
+        {t(locale, 'cta.call')} {siteConfig.phoneDisplay}
       </a>
     </div>
   </div>

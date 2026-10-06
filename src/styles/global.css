@@ -335,6 +335,16 @@
     background-repeat: no-repeat;
   }
 
+  .lux-checkbox.is-invalid {
+    border-color: #ffb4ab;
+    box-shadow: 0 0 0 2px rgba(255, 180, 171, 0.28);
+  }
+
+  .lux-field.is-invalid {
+    border-color: #ffb4ab !important;
+    box-shadow: 0 0 0 2px rgba(255, 180, 171, 0.28);
+  }
+
   .lux-select {
     appearance: none;
     -webkit-appearance: none;
@@ -465,6 +475,30 @@
     .btn-outline-glow {
       transition: border-color 0.2s ease, box-shadow 0.2s ease;
     }
+  }
+
+  /* Keep lead inputs dark even when browser autofill paints white */
+  #lead-modal .lux-field {
+    background-color: #0e1117 !important;
+    color: #c5cad3 !important;
+    -webkit-text-fill-color: #c5cad3;
+    caret-color: #c5a059;
+  }
+
+  #lead-modal .lux-field::placeholder {
+    color: #6f7684 !important;
+    -webkit-text-fill-color: #6f7684 !important;
+    opacity: 1;
+  }
+
+  #lead-modal .lux-field:-webkit-autofill,
+  #lead-modal .lux-field:-webkit-autofill:hover,
+  #lead-modal .lux-field:-webkit-autofill:focus,
+  #lead-modal .lux-field:-webkit-autofill:active {
+    -webkit-text-fill-color: #c5cad3 !important;
+    caret-color: #c5a059;
+    box-shadow: 0 0 0 1000px #0e1117 inset !important;
+    transition: background-color 99999s ease-out;
   }
 
   /* Champagne glow for lead CTAs — same look as before, toned down */

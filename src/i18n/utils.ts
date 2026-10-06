@@ -9,17 +9,20 @@ export function localizePath(locale: Locale, path = ''): string {
   return clean ? `/${locale}/${clean}/` : `/${locale}/`;
 }
 
-export function switchLocalePath(currentPath: string, nextLocale: Locale): string {
+export function stripLocaleFromPath(currentPath: string): string {
   const segments = currentPath.split('/').filter(Boolean);
-  if (segments.length === 0) {
-    return localizePath(nextLocale);
+  if (segments[0] === 'index.html') return '';
+  if (segments.length && isLocale(segments[0])) {
+    segments.shift();
   }
-  if (isLocale(segments[0])) {
-    segments[0] = nextLocale;
-  } else {
-    segments.unshift(nextLocale);
+  if (segments[segments.length - 1] === 'index.html') {
+    segments.pop();
   }
-  return `/${segments.join('/')}/`.replace(/\/+/g, '/');
+  return segments.join('/');
+}
+
+export function switchLocalePath(currentPath: string, nextLocale: Locale): string {
+  return localizePath(nextLocale, stripLocaleFromPath(currentPath));
 }
 
 export function getLocaleFromParam(value: string | undefined): Locale {
