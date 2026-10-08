@@ -67,6 +67,26 @@ const applianceSeo: Record<
       en: 'Gaggenau oven repair: heating, modes, electronics. Specialized service in Moscow and MO.',
     },
   },
+  cooktops: {
+    title: {
+      ru: 'Ремонт варочных панелей Gaggenau в Москве и МО',
+      en: 'Gaggenau cooktop repair in Moscow and MO',
+    },
+    description: {
+      ru: 'Ремонт варочных панелей Gaggenau: конфорки, сенсор, электроника. Выезд инженера по Москве и МО.',
+      en: 'Gaggenau cooktop repair: zones, touch controls, electronics. Engineer visits across Moscow and MO.',
+    },
+  },
+  hoods: {
+    title: {
+      ru: 'Ремонт вытяжек Gaggenau в Москве и МО',
+      en: 'Gaggenau hood repair in Moscow and MO',
+    },
+    description: {
+      ru: 'Ремонт вытяжек Gaggenau: тяга, двигатель, освещение. Выезд инженера по Москве и МО.',
+      en: 'Gaggenau hood repair: extraction, motor, lighting. Engineer visits across Moscow and MO.',
+    },
+  },
   'coffee-machines': {
     title: {
       ru: 'Ремонт кофемашин Gaggenau в Москве и МО',
@@ -75,6 +95,16 @@ const applianceSeo: Record<
     description: {
       ru: 'Ремонт встроенных кофемашин Gaggenau: помол, заварочный блок, ошибки и протечки. Выезд по Москве и МО.',
       en: 'Built-in Gaggenau coffee machine repair: grind, brew unit, errors and leaks. Visits across Moscow and MO.',
+    },
+  },
+  connection: {
+    title: {
+      ru: 'Подключение техники Gaggenau в Москве и МО',
+      en: 'Gaggenau appliance connection in Moscow and MO',
+    },
+    description: {
+      ru: 'Подключение техники Gaggenau: вода, электричество, встройка и первый запуск. Выезд инженера по Москве и МО.',
+      en: 'Gaggenau appliance connection: water, power, installation and first start. Engineer visits across Moscow and MO.',
     },
   },
 };

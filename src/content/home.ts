@@ -107,6 +107,22 @@ export const homeContent = {
       },
       image: '/images/home/ovens.webp',
     },
+    cooktops: {
+      series: { ru: 'Варочные панели', en: 'Cooktops' },
+      description: {
+        ru: 'Варочные панели Gaggenau: конфорки, сенсор, электроника и нагрев.',
+        en: 'Gaggenau cooktops: zones, touch controls, electronics and heating.',
+      },
+      image: '/images/home/cooktops.webp',
+    },
+    hoods: {
+      series: { ru: 'Вытяжки', en: 'Hoods' },
+      description: {
+        ru: 'Вытяжки Gaggenau: тяга, двигатель, освещение и панель управления.',
+        en: 'Gaggenau hoods: extraction, motor, lighting and control panel.',
+      },
+      image: '/images/home/hoods.webp',
+    },
     'coffee-machines': {
       series: { ru: 'Кофесистемы', en: 'Coffee systems' },
       description: {
@@ -114,6 +130,14 @@ export const homeContent = {
         en: 'Built-in Gaggenau coffee machines: grind, brew unit, errors and leaks.',
       },
       image: '/images/home/coffee-machines.webp',
+    },
+    connection: {
+      series: { ru: 'Подключение', en: 'Connection' },
+      description: {
+        ru: 'Подключение и ввод в эксплуатацию техники Gaggenau: вода, электричество, встройка.',
+        en: 'Connection and commissioning of Gaggenau appliances: water, power, installation.',
+      },
+      image: '/images/home/connection.webp',
     },
   },
   process: {

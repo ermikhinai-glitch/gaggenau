@@ -57,9 +57,24 @@ export const appliances = [
     label: { ru: 'Духовые шкафы', en: 'Ovens' },
   },
   {
+    slug: 'cooktops',
+    path: 'repair/cooktops',
+    label: { ru: 'Варочные панели', en: 'Cooktops' },
+  },
+  {
+    slug: 'hoods',
+    path: 'repair/hoods',
+    label: { ru: 'Вытяжки', en: 'Hoods' },
+  },
+  {
     slug: 'coffee-machines',
     path: 'repair/coffee-machines',
     label: { ru: 'Кофемашины', en: 'Coffee machines' },
+  },
+  {
+    slug: 'connection',
+    path: 'repair/connection',
+    label: { ru: 'Подключение техники', en: 'Appliance connection' },
   },
 ] as const;
 
