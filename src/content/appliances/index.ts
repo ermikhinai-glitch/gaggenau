@@ -1,7 +1,10 @@
 import type { ApplianceSlug } from '../../config/site';
 import { coffeeMachinesPage } from './coffee-machines';
+import { connectionPage } from './connection';
+import { cooktopsPage } from './cooktops';
 import { dishwashersPage } from './dishwashers';
 import { dryersPage } from './dryers';
+import { hoodsPage } from './hoods';
 import { ovensPage } from './ovens';
 import { refrigeratorsPage } from './refrigerators';
 import { washingMachinesPage } from './washing-machines';
@@ -13,7 +16,10 @@ const pages: Record<ApplianceSlug, AppliancePageContent> = {
   dryers: dryersPage,
   refrigerators: refrigeratorsPage,
   ovens: ovensPage,
+  cooktops: cooktopsPage,
+  hoods: hoodsPage,
   'coffee-machines': coffeeMachinesPage,
+  connection: connectionPage,
 };
 
 export function getAppliancePage(slug: string): AppliancePageContent | undefined {

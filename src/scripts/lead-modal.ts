@@ -297,9 +297,6 @@ export function initLeadModal(root: HTMLElement): void {
       applianceSelect.value = hasOption ? slug : '';
       syncOptionalSelectStyles();
     }
-    if (optionalBlock && (data.label || data.slug)) {
-      optionalBlock.open = true;
-    }
   }
 
   applianceSelect?.addEventListener('change', () => syncSelectStyle(applianceSelect));
