@@ -1,6 +1,7 @@
 ---
-import { appliances, siteConfig, type Locale } from '../../config/site';
+import { appliances, type Locale } from '../../config/site';
 import { homeContent } from '../../content/home';
+import CallPhonePicker from '../CallPhonePicker.astro';
 import PromoBanner from '../PromoBanner.astro';
 import { t } from '../../i18n/ui';
 import { localizePath } from '../../i18n/utils';
@@ -15,9 +16,9 @@ const c = homeContent;
 
 <!-- Hero: height = viewport minus fixed header (main pt-20); inner min-h forces justify-between -->
 <section
-  class="relative -mt-20 min-h-[100svh] flex flex-col overflow-hidden border-b border-hairline"
+  class="relative -mt-20 min-h-[100svh] flex flex-col border-b border-hairline"
 >
-  <div class="absolute inset-0 z-0">
+  <div class="absolute inset-0 z-0 overflow-hidden">
     <img
       src="/images/home/hero-kitchen.webp"
       alt=""
@@ -63,12 +64,10 @@ const c = homeContent;
         >
           {t(locale, 'cta.request')}
         </button>
-        <a
-          href={siteConfig.phoneHref}
-          class="btn-outline-glow inline-flex h-14 items-center justify-center rounded-DEFAULT border bg-surface-raised/90 px-10 font-tech text-tech-data uppercase tracking-wider text-text-primary"
-        >
-          {siteConfig.phoneDisplay}
-        </a>
+        <CallPhonePicker
+          locale={locale}
+          buttonClass="btn-outline-glow inline-flex h-14 w-full items-center justify-center rounded-DEFAULT border bg-surface-raised/90 px-10 font-tech text-tech-data uppercase tracking-wider text-text-primary sm:w-auto"
+        />
       </div>
     </div>
 
@@ -295,12 +294,7 @@ const c = homeContent;
       >
         {t(locale, 'cta.request')}
       </button>
-      <a
-        href={siteConfig.phoneHref}
-        class="btn-outline-glow inline-flex h-12 items-center justify-center rounded-DEFAULT border px-8 font-tech text-tech-data uppercase tracking-wider text-text-primary"
-      >
-        {t(locale, 'cta.call')} {siteConfig.phoneDisplay}
-      </a>
+      <CallPhonePicker locale={locale} placement="top" />
     </div>
   </div>
 </section>

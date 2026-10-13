@@ -1,5 +1,6 @@
 ---
-import { siteConfig, type Locale } from '../config/site';
+import CallPhonePicker from './CallPhonePicker.astro';
+import type { Locale } from '../config/site';
 import { t } from '../i18n/ui';
 
 interface Props {
@@ -15,12 +16,12 @@ const { locale, applianceSlug, applianceLabel } = Astro.props;
   class="fixed inset-x-0 bottom-0 z-[100] md:hidden border-t border-hairline bg-[rgba(12,14,18,0.94)] backdrop-blur-xl px-4 py-3"
 >
   <div class="grid grid-cols-2 gap-2">
-    <a
-      href={siteConfig.phoneHref}
-      class="btn-outline-glow flex items-center justify-center gap-1.5 py-3 rounded-DEFAULT border text-xs font-semibold uppercase tracking-wider text-text-primary"
-    >
-      {t(locale, 'cta.call')}
-    </a>
+    <CallPhonePicker
+      locale={locale}
+      placement="top"
+      wrapClass="relative w-full"
+      buttonClass="btn-outline-glow flex w-full items-center justify-center gap-1.5 py-3 rounded-DEFAULT border text-xs font-semibold uppercase tracking-wider text-text-primary"
+    />
     <button
       type="button"
       data-open-lead-modal
