@@ -47,13 +47,21 @@ const isWarranty = page.slug === 'warranty';
   {
     isContacts && (
       <div class="mb-space-2xl grid gap-4 sm:grid-cols-2">
-        <a
-          href={siteConfig.phoneHref}
-          class="surface-lux-glow rounded-DEFAULT border bg-surface-raised p-space-lg"
-        >
+        <div class="surface-lux-glow rounded-DEFAULT border bg-surface-raised p-space-lg">
           <p class="text-label-caps text-primary mb-2">{locale === 'ru' ? 'Телефон' : 'Phone'}</p>
-          <p class="font-tech text-tech-data-lg text-text-primary">{siteConfig.phoneDisplay}</p>
-        </a>
+          <div class="flex flex-col gap-2">
+            {
+              siteConfig.phones.map((phone) => (
+                <a
+                  href={phone.href}
+                  class="font-tech text-tech-data-lg text-text-primary hover:text-primary transition-colors"
+                >
+                  {phone.display}
+                </a>
+              ))
+            }
+          </div>
+        </div>
         <a
           href={`mailto:${siteConfig.email}`}
           class="surface-lux-glow rounded-DEFAULT border bg-surface-raised p-space-lg"
