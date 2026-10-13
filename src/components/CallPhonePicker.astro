@@ -37,11 +37,7 @@ const {
     role="dialog"
     aria-label={t(locale, 'cta.callChoose')}
     hidden
-    class:list={[
-      'absolute z-[120] hidden min-w-[15rem] border border-hairline bg-[#14171d]/98 p-3 shadow-[0_20px_40px_rgba(0,0,0,0.75)] backdrop-blur-xl',
-      placement === 'top' ? 'bottom-full mb-2' : 'top-full mt-2',
-      'left-1/2 -translate-x-1/2 sm:left-0 sm:translate-x-0',
-    ]}
+    class="fixed z-[150] hidden min-w-[15rem] border border-hairline bg-[#14171d]/98 p-3 shadow-[0_20px_40px_rgba(0,0,0,0.75)] backdrop-blur-xl"
   >
     <p class="text-label-caps text-primary mb-2 px-1">{t(locale, 'cta.callChoose')}</p>
     <div class="inline-grid grid-cols-[auto_auto] gap-x-1.5 gap-y-1 font-tech text-tech-data tabular-nums">
