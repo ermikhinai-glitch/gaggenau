@@ -39,12 +39,12 @@ const year = new Date().getFullYear();
 
     <div class="md:col-span-4 space-y-space-sm">
       <p class="text-label-caps text-primary mb-space-sm">{t(locale, 'nav.contacts')}</p>
-      <div class="brand-lux-glow inline-grid grid-cols-[auto_auto] gap-x-1.5 gap-y-1 font-tech text-tech-data tabular-nums">
+      <div class="brand-lux-glow flex flex-col gap-1 font-tech text-tech-data tabular-nums">
         {
           siteConfig.phones.map((phone) => (
             <a
               href={phone.href}
-              class="col-span-2 grid grid-cols-subgrid text-text-primary hover:text-primary transition-colors"
+              class="grid grid-cols-[2rem_auto] gap-x-1.5 text-text-primary hover:text-primary transition-colors"
               aria-label={phone.display}
             >
               <span class="text-right">{phone.prefix}</span>

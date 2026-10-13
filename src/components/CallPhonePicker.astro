@@ -40,12 +40,12 @@ const {
     class="fixed z-[150] hidden min-w-[15rem] border border-hairline bg-[#14171d]/98 p-3 shadow-[0_20px_40px_rgba(0,0,0,0.75)] backdrop-blur-xl"
   >
     <p class="text-label-caps text-primary mb-2 px-1">{t(locale, 'cta.callChoose')}</p>
-    <div class="inline-grid grid-cols-[auto_auto] gap-x-1.5 gap-y-1 font-tech text-tech-data tabular-nums">
+    <div class="flex flex-col gap-0.5 font-tech text-tech-data tabular-nums">
       {
         siteConfig.phones.map((phone) => (
           <a
             href={phone.href}
-            class="col-span-2 grid grid-cols-subgrid px-1 py-1.5 text-text-primary hover:text-primary transition-colors"
+            class="grid grid-cols-[2rem_auto] gap-x-1.5 px-1 py-1.5 text-text-primary hover:text-primary transition-colors"
             aria-label={phone.display}
           >
             <span class="text-right">{phone.prefix}</span>
