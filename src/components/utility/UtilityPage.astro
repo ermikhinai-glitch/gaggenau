@@ -1,4 +1,5 @@
 ---
+import CallPhonePicker from '../CallPhonePicker.astro';
 import { siteConfig, type Locale } from '../../config/site';
 import type { UtilityPageContent } from '../../content/utility';
 import { t } from '../../i18n/ui';
@@ -84,12 +85,7 @@ const isWarranty = page.slug === 'warranty';
           >
             {t(locale, 'cta.request')}
           </button>
-          <a
-            href={siteConfig.phoneHref}
-            class="btn-outline-glow inline-flex h-12 items-center justify-center rounded-DEFAULT border px-8 font-tech text-tech-data uppercase tracking-wider text-text-primary"
-          >
-            {t(locale, 'cta.call')} {siteConfig.phoneDisplay}
-          </a>
+          <CallPhonePicker locale={locale} />
         </div>
       </div>
     )

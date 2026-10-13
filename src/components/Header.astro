@@ -1,4 +1,5 @@
 ---
+import CallPhonePicker from './CallPhonePicker.astro';
 import { appliances, siteConfig, type Locale } from '../config/site';
 import { t } from '../i18n/ui';
 import { localizePath, switchLocalePath } from '../i18n/utils';
@@ -13,6 +14,7 @@ const { locale, applianceSlug, applianceLabel } = Astro.props;
 const pathname = Astro.url.pathname;
 const ruHref = switchLocalePath(pathname, 'ru');
 const enHref = switchLocalePath(pathname, 'en');
+const headerPhone = siteConfig.phones[1];
 ---
 
 <header
@@ -84,10 +86,10 @@ const enHref = switchLocalePath(pathname, 'en');
           </span>
         </span>
         <a
-          href={siteConfig.phoneHref}
-          class="brand-lux-glow font-tech text-[17px] font-semibold tracking-wide text-text-primary hover:text-primary transition-colors"
+          href={headerPhone.href}
+          class="brand-lux-glow font-tech text-[17px] font-semibold tracking-wide text-text-primary hover:text-primary transition-colors tabular-nums"
         >
-          {siteConfig.phoneDisplay}
+          {headerPhone.display}
         </a>
       </div>
 
@@ -120,12 +122,12 @@ const enHref = switchLocalePath(pathname, 'en');
         </a>
       </div>
 
-      <a
-        href={siteConfig.phoneHref}
-        class="btn-outline-glow hidden lg:inline-flex h-11 items-center justify-center rounded-DEFAULT border bg-white/[0.04] px-4 text-[14px] font-medium text-text-primary hover:bg-white/[0.08]"
-      >
-        {t(locale, 'cta.call')}
-      </a>
+      <CallPhonePicker
+        locale={locale}
+        placement="bottom"
+        wrapClass="relative hidden lg:inline-flex"
+        buttonClass="btn-outline-glow inline-flex h-11 items-center justify-center rounded-DEFAULT border bg-white/[0.04] px-4 text-[14px] font-medium text-text-primary hover:bg-white/[0.08]"
+      />
       <button
         type="button"
         data-open-lead-modal

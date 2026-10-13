@@ -1,7 +1,8 @@
 ---
-import { appliances, siteConfig, type Locale } from '../../config/site';
+import { appliances, type Locale } from '../../config/site';
 import type { AppliancePageContent } from '../../content/appliances/types';
 import { homeContent } from '../../content/home';
+import CallPhonePicker from '../CallPhonePicker.astro';
 import PromoBanner from '../PromoBanner.astro';
 import { t } from '../../i18n/ui';
 import { localizePath } from '../../i18n/utils';
@@ -58,12 +59,10 @@ const terms = homeContent.terms;
         >
           {t(locale, 'cta.request')}
         </button>
-        <a
-          href={siteConfig.phoneHref}
-          class="btn-outline-glow inline-flex h-12 items-center justify-center rounded-DEFAULT border px-6 font-tech text-tech-data uppercase tracking-wider text-text-primary"
-        >
-          {t(locale, 'cta.call')} {siteConfig.phoneDisplay}
-        </a>
+        <CallPhonePicker
+          locale={locale}
+          buttonClass="btn-outline-glow inline-flex h-12 w-full items-center justify-center rounded-DEFAULT border px-6 font-tech text-tech-data uppercase tracking-wider text-text-primary sm:w-auto"
+        />
       </div>
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-xl">
         <div class="surface-lux-glow rounded-DEFAULT border bg-surface-raised p-4">
@@ -221,12 +220,7 @@ const terms = homeContent.terms;
       >
         {t(locale, 'cta.request')}
       </button>
-      <a
-        href={siteConfig.phoneHref}
-        class="btn-outline-glow inline-flex h-12 items-center justify-center rounded-DEFAULT border px-8 font-tech text-tech-data uppercase tracking-wider"
-      >
-        {t(locale, 'cta.call')}
-      </a>
+      <CallPhonePicker locale={locale} placement="top" />
     </div>
   </div>
 </section>

@@ -1,0 +1,67 @@
+---
+import { siteConfig, type Locale } from '../config/site';
+import { t } from '../i18n/ui';
+
+interface Props {
+  locale: Locale;
+  buttonClass?: string;
+  wrapClass?: string;
+  placement?: 'top' | 'bottom';
+}
+
+const {
+  locale,
+  buttonClass =
+    'btn-outline-glow inline-flex h-12 w-full items-center justify-center rounded-DEFAULT border px-8 font-tech text-tech-data uppercase tracking-wider text-text-primary sm:w-auto',
+  wrapClass = 'relative inline-flex w-full sm:w-auto',
+  placement = 'bottom',
+} = Astro.props;
+---
+
+<div
+  class={wrapClass}
+  data-call-phone-picker
+  data-placement={placement}
+>
+  <button
+    type="button"
+    data-call-phone-trigger
+    class={buttonClass}
+    aria-haspopup="dialog"
+    aria-expanded="false"
+  >
+    {t(locale, 'cta.call')}
+  </button>
+  <div
+    data-call-phone-panel
+    role="dialog"
+    aria-label={t(locale, 'cta.callChoose')}
+    hidden
+    class:list={[
+      'absolute z-[120] hidden min-w-[15rem] border border-hairline bg-[#14171d]/98 p-3 shadow-[0_20px_40px_rgba(0,0,0,0.75)] backdrop-blur-xl',
+      placement === 'top' ? 'bottom-full mb-2' : 'top-full mt-2',
+      'left-1/2 -translate-x-1/2 sm:left-0 sm:translate-x-0',
+    ]}
+  >
+    <p class="text-label-caps text-primary mb-2 px-1">{t(locale, 'cta.callChoose')}</p>
+    <div class="inline-grid grid-cols-[auto_auto] gap-x-1.5 gap-y-1 font-tech text-tech-data tabular-nums">
+      {
+        siteConfig.phones.map((phone) => (
+          <a
+            href={phone.href}
+            class="col-span-2 grid grid-cols-subgrid px-1 py-1.5 text-text-primary hover:text-primary transition-colors"
+            aria-label={phone.display}
+          >
+            <span class="text-right">{phone.prefix}</span>
+            <span>{phone.rest}</span>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</div>
+
+<script>
+  import { initCallPhonePickers } from '../scripts/call-phone-picker';
+  initCallPhonePickers();
+</script>
