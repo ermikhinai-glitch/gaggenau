@@ -74,7 +74,7 @@ export const appliances = [
   {
     slug: 'connection',
     path: 'repair/connection',
-    label: { ru: 'Подключение техники', en: 'Appliance connection' },
+    label: { ru: 'Подключение', en: 'Connection' },
   },
 ] as const;
 
