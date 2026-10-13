@@ -39,12 +39,20 @@ const year = new Date().getFullYear();
 
     <div class="md:col-span-4 space-y-space-sm">
       <p class="text-label-caps text-primary mb-space-sm">{t(locale, 'nav.contacts')}</p>
-      <a
-        href={siteConfig.phoneHref}
-        class="brand-lux-glow block font-tech text-tech-data text-text-primary hover:text-primary transition-colors"
-      >
-        {siteConfig.phoneDisplay}
-      </a>
+      <div class="brand-lux-glow inline-grid grid-cols-[auto_auto] gap-x-1.5 gap-y-1 font-tech text-tech-data tabular-nums">
+        {
+          siteConfig.phones.map((phone) => (
+            <a
+              href={phone.href}
+              class="col-span-2 grid grid-cols-subgrid text-text-primary hover:text-primary transition-colors"
+              aria-label={phone.display}
+            >
+              <span class="text-right">{phone.prefix}</span>
+              <span>{phone.rest}</span>
+            </a>
+          ))
+        }
+      </div>
       <a
         href={`mailto:${siteConfig.email}`}
         class="block text-sm text-[#c5cad3] hover:text-primary transition-colors break-all"
