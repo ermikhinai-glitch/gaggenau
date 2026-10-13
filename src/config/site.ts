@@ -9,6 +9,10 @@ export const siteConfig = {
   },
   phoneDisplay: '+7 (495) 000-00-00',
   phoneHref: 'tel:+74950000000',
+  phones: [
+    { display: '+7 (495) 000-00-00', href: 'tel:+74950000000' },
+    { display: '8 (800) 000-00-00', href: 'tel:+78000000000' },
+  ],
   email: 'service-gaggenau@gmail.com',
   hours: {
     label: {
