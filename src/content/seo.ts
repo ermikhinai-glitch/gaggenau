@@ -57,6 +57,16 @@ const applianceSeo: Record<
       en: 'Gaggenau refrigerator repair: cooling, noise, electronics. Original parts and clear terms.',
     },
   },
+  'wine-cabinets': {
+    title: {
+      ru: 'Ремонт винных шкафов Gaggenau в Москве и МО',
+      en: 'Gaggenau wine cabinet repair in Moscow and MO',
+    },
+    description: {
+      ru: 'Ремонт винных шкафов Gaggenau: температура, влажность, вибрация и подсветка. Оригинальные запчасти, выезд по Москве и МО.',
+      en: 'Gaggenau wine cabinet repair: temperature, humidity, vibration and lighting. Original parts, visits across Moscow and MO.',
+    },
+  },
   ovens: {
     title: {
       ru: 'Ремонт духовых шкафов Gaggenau в Москве и МО',

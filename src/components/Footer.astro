@@ -37,30 +37,31 @@ const year = new Date().getFullYear();
       }
     </div>
 
-    <div class="md:col-span-4 space-y-space-sm">
-      <p class="text-label-caps text-primary mb-space-sm">{t(locale, 'nav.contacts')}</p>
-      <div class="brand-lux-glow flex flex-col gap-1 font-tech text-tech-data tabular-nums">
-        {
-          siteConfig.phones.map((phone) => (
-            <a
-              href={phone.href}
-              class="grid grid-cols-[2rem_auto] gap-x-1.5 text-text-primary hover:text-primary transition-colors"
-              aria-label={phone.display}
-            >
-              <span class="text-right">{phone.prefix}</span>
-              <span>{phone.rest}</span>
-            </a>
-          ))
-        }
+    <div class="md:col-span-4 flex flex-col gap-8">
+      <div class="flex flex-col gap-2">
+        <p class="text-label-caps text-primary mb-1">{t(locale, 'nav.contacts')}</p>
+        <div class="brand-lux-glow grid w-max grid-cols-[max-content_max-content] gap-x-1.5 font-tech text-tech-data tabular-nums">
+          {
+            siteConfig.phones.map((phone) => (
+              <a
+                href={phone.href}
+                class="col-span-2 grid grid-cols-subgrid whitespace-nowrap text-text-primary hover:text-primary transition-colors"
+              >
+                <span class="text-right">{phone.prefix}</span>
+                <span>{phone.rest}</span>
+              </a>
+            ))
+          }
+        </div>
+        <a
+          href={`mailto:${siteConfig.email}`}
+          class="block text-sm text-[#c5cad3] hover:text-primary transition-colors break-all"
+        >
+          {siteConfig.email}
+        </a>
+        <p class="text-sm text-text-tertiary">{siteConfig.hours.label[locale]}</p>
       </div>
-      <a
-        href={`mailto:${siteConfig.email}`}
-        class="block text-sm text-[#c5cad3] hover:text-primary transition-colors break-all"
-      >
-        {siteConfig.email}
-      </a>
-      <p class="text-sm text-text-tertiary">{siteConfig.hours.label[locale]}</p>
-      <div class="pt-space-md flex flex-col gap-2">
+      <div class="flex flex-col gap-2">
         <a href={localizePath(locale, 'about')} class="text-sm text-text-secondary hover:text-primary">
           {t(locale, 'nav.about')}
         </a>

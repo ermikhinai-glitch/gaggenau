@@ -40,8 +40,8 @@ export const utilityPages: Record<UtilitySlug, UtilityPageContent> = {
         title: { ru: 'Специализация', en: 'Specialization' },
         paragraphs: [
           {
-            ru: 'Работаем только с техникой Gaggenau: стиральные и посудомоечные машины, сушильные машины, холодильники, духовые шкафы, варочные панели, вытяжки, кофемашины и подключение техники.',
-            en: 'We service Gaggenau appliances only: washing machines, dishwashers, dryers, refrigerators, ovens, cooktops, hoods, coffee machines and appliance connection.',
+            ru: 'Работаем только с техникой Gaggenau: стиральные и посудомоечные машины, сушильные машины, холодильники, винные шкафы, духовые шкафы, варочные панели, вытяжки, кофемашины и подключение техники.',
+            en: 'We service Gaggenau appliances only: washing machines, dishwashers, dryers, refrigerators, wine cabinets, ovens, cooktops, hoods, coffee machines and appliance connection.',
           },
         ],
       },
@@ -190,8 +190,8 @@ export const utilityPages: Record<UtilitySlug, UtilityPageContent> = {
         title: { ru: 'Специализация на Gaggenau', en: 'Gaggenau specialization' },
         paragraphs: [
           {
-            ru: 'Работаем только с техникой бренда Gaggenau: стиральные и посудомоечные машины, сушильные машины, холодильники, духовые шкафы, варочные панели, вытяжки, кофемашины и подключение техники. Знаем типовые неисправности и узлы серии.',
-            en: 'We service Gaggenau appliances only: washing machines, dishwashers, dryers, refrigerators, ovens, cooktops, hoods, coffee machines and appliance connection. We know common faults and series-specific assemblies.',
+            ru: 'Работаем только с техникой бренда Gaggenau: стиральные и посудомоечные машины, сушильные машины, холодильники, винные шкафы, духовые шкафы, варочные панели, вытяжки, кофемашины и подключение техники. Знаем типовые неисправности и узлы серии.',
+            en: 'We service Gaggenau appliances only: washing machines, dishwashers, dryers, refrigerators, wine cabinets, ovens, cooktops, hoods, coffee machines and appliance connection. We know common faults and series-specific assemblies.',
           },
         ],
       },
