@@ -9,10 +9,12 @@ interface Props {
   placement?: 'top' | 'bottom';
 }
 
+const callButtonType =
+  'btn-outline-glow inline-flex items-center justify-center rounded-DEFAULT border bg-transparent font-tech text-tech-data uppercase tracking-wider text-text-primary';
+
 const {
   locale,
-  buttonClass =
-    'btn-outline-glow inline-flex h-12 w-full items-center justify-center rounded-DEFAULT border px-8 font-tech text-tech-data uppercase tracking-wider text-text-primary sm:w-auto',
+  buttonClass = 'h-12 w-full px-8 sm:w-auto',
   wrapClass = 'relative inline-flex w-full sm:w-auto',
   placement = 'bottom',
 } = Astro.props;
@@ -27,7 +29,7 @@ const {
     <button
       type="button"
       data-call-phone-trigger
-      class:list={[buttonClass, 'col-start-1 row-start-1 !w-full !max-w-none']}
+      class:list={[callButtonType, buttonClass, 'col-start-1 row-start-1 !w-full !max-w-none']}
       aria-haspopup="dialog"
       aria-expanded="false"
     >
@@ -39,7 +41,6 @@ const {
       class="pointer-events-none invisible col-start-1 row-start-1 h-0 min-h-0 w-max justify-self-start self-start overflow-hidden"
     >
       <div class="w-max border p-3">
-        <p class="mb-2 px-1 text-label-caps">{t(locale, 'cta.call')}</p>
         <div class="grid w-max grid-cols-[max-content_max-content] gap-x-1.5 px-1 font-tech text-tech-data tabular-nums">
           {
             siteConfig.phones.map((phone) => (
@@ -60,7 +61,6 @@ const {
     hidden
     class="btn-outline-glow fixed z-[150] hidden border bg-[#14171d] p-3"
   >
-    <p class="text-label-caps text-primary mb-2 px-1">{t(locale, 'cta.call')}</p>
     <div class="grid w-max grid-cols-[max-content_max-content] gap-x-1.5 px-1 font-tech text-tech-data tabular-nums">
       {
         siteConfig.phones.map((phone) => (
