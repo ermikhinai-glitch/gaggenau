@@ -50,13 +50,12 @@ const isWarranty = page.slug === 'warranty';
       <div class="mb-space-2xl grid gap-4 sm:grid-cols-2">
         <div class="surface-lux-glow rounded-DEFAULT border bg-surface-raised p-space-lg">
           <p class="text-label-caps text-primary mb-2">{locale === 'ru' ? 'Телефон' : 'Phone'}</p>
-          <div class="flex flex-col gap-2 font-tech text-tech-data-lg tabular-nums">
+          <div class="grid w-max grid-cols-[max-content_max-content] gap-x-1.5 gap-y-2 font-tech text-tech-data-lg tabular-nums">
             {
               siteConfig.phones.map((phone) => (
                 <a
                   href={phone.href}
-                  class="grid grid-cols-[2rem_auto] gap-x-1.5 text-text-primary hover:text-primary transition-colors"
-                  aria-label={phone.display}
+                  class="col-span-2 grid grid-cols-subgrid whitespace-nowrap text-text-primary hover:text-primary transition-colors"
                 >
                   <span class="text-right">{phone.prefix}</span>
                   <span>{phone.rest}</span>

@@ -27,6 +27,7 @@ export const homeContent = {
         ru: 'Перезвоним в рабочие часы 8:00–22:00',
         en: 'We call back during 8:00–22:00',
       },
+      href: 'contacts',
     },
     {
       label: { ru: 'Выезд', en: 'Visit' },
@@ -35,6 +36,7 @@ export const homeContent = {
         ru: 'Минимально возможный срок при наличии мастера',
         en: 'Fastest possible when an engineer is available',
       },
+      href: 'about',
     },
     {
       label: { ru: 'Запчасти', en: 'Parts' },
@@ -43,6 +45,7 @@ export const homeContent = {
         ru: 'Устанавливаем только оригинальные комплектующие',
         en: 'We install original parts only',
       },
+      href: 'warranty',
     },
     {
       label: { ru: 'Гарантия', en: 'Warranty' },
@@ -98,6 +101,14 @@ export const homeContent = {
         en: 'Gaggenau refrigeration: cooling, noise, electronics, sealed systems.',
       },
       image: '/images/home/refrigerators.webp',
+    },
+    'wine-cabinets': {
+      series: { ru: 'Охлаждение', en: 'Cooling' },
+      description: {
+        ru: 'Винные шкафы Gaggenau: температура зон, влажность, вибрация и подсветка.',
+        en: 'Gaggenau wine cabinets: zone temperature, humidity, vibration and lighting.',
+      },
+      image: '/images/home/wine-cabinets.webp',
     },
     ovens: {
       series: { ru: 'Серии 200 / 400', en: 'Series 200 / 400' },

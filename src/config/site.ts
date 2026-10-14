@@ -66,6 +66,11 @@ export const appliances = [
     label: { ru: 'Холодильники', en: 'Refrigerators' },
   },
   {
+    slug: 'wine-cabinets',
+    path: 'repair/wine-cabinets',
+    label: { ru: 'Винные шкафы', en: 'Wine cabinets' },
+  },
+  {
     slug: 'ovens',
     path: 'repair/ovens',
     label: { ru: 'Духовые шкафы', en: 'Ovens' },

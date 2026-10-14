@@ -7,6 +7,7 @@ import { dryersPage } from './dryers';
 import { hoodsPage } from './hoods';
 import { ovensPage } from './ovens';
 import { refrigeratorsPage } from './refrigerators';
+import { wineCabinetsPage } from './wine-cabinets';
 import { washingMachinesPage } from './washing-machines';
 import type { AppliancePageContent } from './types';
 
@@ -15,6 +16,7 @@ const pages: Record<ApplianceSlug, AppliancePageContent> = {
   dishwashers: dishwashersPage,
   dryers: dryersPage,
   refrigerators: refrigeratorsPage,
+  'wine-cabinets': wineCabinetsPage,
   ovens: ovensPage,
   cooktops: cooktopsPage,
   hoods: hoodsPage,
