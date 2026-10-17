@@ -1,0 +1,606 @@
+---
+import CallPhonePicker from '../CallPhonePicker.astro';
+import { appliances, siteConfig, type Locale } from '../../config/site';
+import { homeContent } from '../../content/home';
+import { leadCopy } from '../../content/lead';
+import { promoA } from '../../content/promo';
+import { utilityPages } from '../../content/utility';
+import { t } from '../../i18n/ui';
+import { localizePath } from '../../i18n/utils';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const c = homeContent;
+const lead = leadCopy[locale];
+const promo = promoA;
+const about = utilityPages.about;
+const contacts = utilityPages.contacts;
+const wine = appliances.find((entry) => entry.slug === 'wine-cabinets')!;
+const cards = appliances.filter((item) => item.slug !== 'wine-cabinets');
+const total = String(cards.length).padStart(2, '0');
+
+const formCopy = {
+  ru: {
+    title: 'Быстрая онлайн-заявка',
+    lead: 'Инженер свяжется с вами в течение 15 минут',
+    name: 'Ваше имя',
+    namePh: 'Константин',
+    phone: 'Телефон для связи',
+    appliance: 'Техника Gaggenau',
+    problem: 'Кратко опишите проблему',
+    problemPh: 'Например: выдаёт ошибку, не греет…',
+    privacyBefore: 'Нажимая кнопку, вы подтверждаете согласие с условиями',
+    privacyLink: 'политики конфиденциальности',
+    caption: 'Премиальный сервис Gaggenau',
+    contactsMenu: 'Контакты',
+  },
+  en: {
+    title: 'Quick online request',
+    lead: 'An engineer will contact you within 15 minutes',
+    name: 'Your name',
+    namePh: 'Alex',
+    phone: 'Phone',
+    appliance: 'Gaggenau appliance',
+    problem: 'Briefly describe the issue',
+    problemPh: 'For example: error code, not heating…',
+    privacyBefore: 'By submitting you agree to the',
+    privacyLink: 'privacy policy',
+    caption: 'Premium Gaggenau service',
+    contactsMenu: 'Contacts',
+  },
+}[locale];
+
+const goldBtn =
+  'btn-lead-glow inline-flex h-11 w-full items-center justify-center rounded bg-primary-container px-2 text-center text-[12px] font-bold uppercase leading-none tracking-wide text-black';
+const ghostBtn =
+  'inline-flex h-11 w-full items-center justify-center rounded border border-white/20 bg-[#121418] px-2 text-center text-[12px] font-medium uppercase leading-none tracking-wide text-white';
+const fieldClass =
+  'scheme-dark w-full rounded border border-white/10 bg-[#181b22] px-3 py-2 text-xs text-white outline-none placeholder:text-white/20 focus:border-primary';
+---
+
+<div class="md:hidden">
+  <section class="border-b border-white/5 pb-5">
+    <div class="relative min-h-[460px] overflow-hidden">
+      <img
+        src="/images/home/hero-kitchen.webp"
+        alt=""
+        width="900"
+        height="640"
+        fetchpriority="high"
+        decoding="async"
+        class="absolute inset-0 h-full w-full object-cover object-[center_30%]"
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-[#090a0d] via-[#090a0d]/50 to-[#090a0d]/15"></div>
+      <div class="relative z-10 flex min-h-[460px] flex-col justify-between px-4 pb-5 pt-4">
+        <div class="inline-flex max-w-full items-center gap-2 self-start rounded-full border border-primary/40 bg-black/40 px-3 py-1.5 text-[11px] font-medium uppercase leading-tight tracking-normal text-primary backdrop-blur">
+          <span class="h-1.5 w-1.5 shrink-0 rounded-full bg-primary"></span>
+          <span class="min-w-0">
+            {
+              c.hero.badge[locale].split(' · ').map((part) => (
+                <span class="block whitespace-nowrap">{part}</span>
+              ))
+            }
+          </span>
+        </div>
+        <div>
+        <h1 class="mb-2 text-[28px] font-bold uppercase leading-[1.12] tracking-tight text-white">
+          {c.hero.titleLead[locale]}<br />
+          <span class="text-brand-mark text-primary">{c.hero.titleAccent[locale]}</span>
+        </h1>
+        <p class="mb-4 max-w-[34ch] text-[13px] font-light leading-relaxed text-[#f3f4f6]">{c.hero.subtitle[locale]}</p>
+        <div class="grid grid-cols-2 gap-2">
+          <a href="#m-form" class={goldBtn}>{t(locale, 'cta.request')}</a>
+          <CallPhonePicker
+            locale={locale}
+            placement="bottom"
+            fitParent
+            wrapClass="relative w-full min-w-0"
+            buttonClass="!h-11 w-full !max-w-full !bg-[#121418]/75 px-2 text-[12px] leading-none backdrop-blur"
+          />
+        </div>
+        </div>
+      </div>
+    </div>
+    <div class="grid grid-cols-2 gap-2 px-4 pt-4">
+      {
+        c.sla.map((item) => (
+          <div class="flex min-h-[104px] flex-col rounded-lg border border-white/[0.08] bg-[#111317] p-3">
+            <span class="text-[10px] font-bold uppercase tracking-[0.14em] text-[#8e939d]">
+              {item.label[locale]}
+            </span>
+            <div class="mt-1 text-[17px] font-bold leading-tight text-white">{item.value[locale]}</div>
+            <p class="mt-1 text-[12px] leading-snug text-[#a3a8b5]">{item.text[locale]}</p>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="border-b border-white/5 bg-[#0b0d10] px-4 py-8" id="m-appliances">
+    <div class="mb-5">
+      <span class="mb-1 block text-[10px] font-bold uppercase tracking-widest text-primary">
+        {c.appliancesSection.eyebrow[locale]}
+      </span>
+      <h2 class="mb-2 text-xl font-bold uppercase tracking-tight text-white">
+        {c.appliancesSection.title[locale]}
+      </h2>
+      <p class="text-xs leading-relaxed text-[#8e939d]">{c.appliancesSection.lead[locale]}</p>
+    </div>
+    <div class="grid grid-cols-2 gap-2.5">
+      {
+        cards.map((item, index) => {
+          const indexLabel = `${String(index + 1).padStart(2, '0')}/${total}`;
+          const card = c.applianceCards[item.slug];
+          const isFridge = item.slug === 'refrigerators';
+          const isConnection = item.slug === 'connection';
+          const title = isFridge
+            ? `${item.label[locale]} · ${wine.label[locale]}`
+            : item.label[locale];
+          const description = isFridge
+            ? locale === 'ru'
+              ? 'Охлаждение, температура зон, влажность и электроника Gaggenau.'
+              : 'Gaggenau refrigerators and wine cabinets: cooling, zone temperature, humidity and electronics.'
+            : card.description[locale];
+          const href = localizePath(locale, item.path);
+          if (isConnection) {
+            return (
+              <a
+                href={href}
+                class="group col-span-2 flex flex-row overflow-hidden rounded border border-white/[0.08] bg-[#111317]"
+              >
+                <div class="relative w-2/5 min-w-[128px] self-stretch overflow-hidden bg-black/40">
+                  <img
+                    src={card.image}
+                    alt={item.label[locale]}
+                    width="400"
+                    height="280"
+                    loading="lazy"
+                    decoding="async"
+                    class="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                  />
+                  <div class="absolute inset-0 bg-gradient-to-r from-transparent to-[#111317] opacity-60"></div>
+                </div>
+                <div class="flex flex-1 flex-col justify-between p-3">
+                  <div>
+                    <span class="mb-1 block text-[10px] font-semibold uppercase tracking-[0.12em] text-primary">
+                      {card.series[locale]}
+                    </span>
+                    <h3 class="mb-1 text-[13px] font-bold leading-snug text-white">{title}</h3>
+                    <p class="mb-2.5 text-[12px] leading-snug text-[#a3a8b5]">{description}</p>
+                  </div>
+                  <div class="flex items-center justify-between border-t border-white/[0.05] pt-1.5">
+                    <span class="text-[10px] font-medium uppercase tracking-[0.12em] text-white">
+                      {c.appliancesSection.more[locale]} →
+                    </span>
+                    <span class="font-tech text-[10px] text-[#60646e]">{indexLabel}</span>
+                  </div>
+                </div>
+              </a>
+            );
+          }
+          return (
+            <a
+              href={href}
+              class="group flex flex-col overflow-hidden rounded border border-white/[0.08] bg-[#111317]"
+            >
+              <div class="relative h-36 w-full overflow-hidden bg-black/40">
+                <img
+                  src={card.image}
+                  alt={item.label[locale]}
+                  width="400"
+                  height="280"
+                  loading="lazy"
+                  decoding="async"
+                  class="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-[#111317] via-transparent to-transparent opacity-80"></div>
+              </div>
+              <div class="flex flex-1 flex-col justify-between p-2.5">
+                <div>
+                  <span class="mb-1 block text-[10px] font-semibold uppercase tracking-[0.12em] text-primary">
+                    {card.series[locale]}
+                  </span>
+                  <h3 class="mb-1 min-h-8 text-[13px] font-bold leading-snug text-white">{title}</h3>
+                  <p class="mb-2.5 line-clamp-3 text-[12px] leading-snug text-[#a3a8b5]">{description}</p>
+                </div>
+                <div class="flex items-center justify-between border-t border-white/[0.05] pt-1.5">
+                  <span class="text-[10px] font-medium uppercase tracking-[0.12em] text-white">
+                    {c.appliancesSection.more[locale]} →
+                  </span>
+                  <span class="font-tech text-[10px] text-[#60646e]">{indexLabel}</span>
+                </div>
+              </div>
+            </a>
+          );
+        })
+      }
+    </div>
+  </section>
+
+  <section class="border-b border-white/5 bg-[#090a0d] px-4 py-8" id="m-process">
+    <div class="mb-3.5">
+      <span class="mb-1 block text-[10px] font-bold uppercase tracking-widest text-primary">
+        {c.process.eyebrow[locale]}
+      </span>
+      <h2 class="text-xl font-bold uppercase tracking-tight text-white">{c.process.title[locale]}</h2>
+    </div>
+    <div class="grid grid-cols-2 gap-2.5">
+      {
+        c.process.steps.map((step) => (
+          <div class="flex flex-col justify-between rounded border border-white/[0.08] bg-[#111317] p-3">
+            <div>
+              <div class="mb-1 font-tech text-xs font-bold text-primary">{step.n}</div>
+              <h3 class="mb-1 text-xs font-semibold leading-snug text-white">{step.title[locale]}</h3>
+            </div>
+            <p class="text-[12px] leading-snug text-[#a3a8b5]">{step.text[locale]}</p>
+          </div>
+        ))
+      }
+    </div>
+    <div class="mt-5 rounded border border-white/[0.08] bg-[#111317] p-4">
+      <span class="mb-1 block text-[10px] font-bold uppercase tracking-widest text-primary">
+        {c.terms.eyebrow[locale]}
+      </span>
+      <h3 class="mb-2 text-base font-bold text-white">{c.terms.title[locale]}</h3>
+      <p class="text-xs leading-relaxed text-[#8e939d]">{c.terms.body[locale]}</p>
+    </div>
+    <div class="relative mt-4 overflow-hidden rounded border border-primary/40 bg-gradient-to-r from-[#171a22] to-[#121418] p-4">
+      <span class="mb-1 block text-[10px] font-bold uppercase tracking-widest text-primary">
+        {locale === 'ru' ? 'Акция' : 'Offer'}
+      </span>
+      <h3 class="mb-1 text-sm font-bold text-white">{promo.title[locale]}</h3>
+      <p class="text-[12px] leading-snug text-[#a3a8b5]">{promo.subtitle[locale]}</p>
+      <span class="mt-1 block text-[11px] text-[#8e939d]">{promo.fineprint[locale]}</span>
+      <a href="#m-form" class:list={['mt-3', goldBtn]}>{promo.cta[locale]}</a>
+    </div>
+    <div class="mt-8 overflow-hidden rounded border border-white/[0.08] bg-[#111317] p-5">
+      <span class="mb-1 block text-[10px] font-bold uppercase tracking-widest text-primary">
+        {c.trust.eyebrow[locale]}
+      </span>
+      <h3 class="mb-4 text-base font-bold uppercase text-white">{c.trust.title[locale]}</h3>
+      <div class="mb-4 h-36 w-full overflow-hidden rounded border border-white/10">
+        <img
+          src="/images/home/trust.webp"
+          alt=""
+          width="800"
+          height="360"
+          loading="lazy"
+          decoding="async"
+          class="h-full w-full object-cover"
+        />
+      </div>
+      <div class="grid gap-2">
+        {
+          c.trust.points.map((point) => (
+            <div class="rounded border border-white/5 bg-[#15181e] p-3">
+              <div class="mb-1 text-[13px] font-bold leading-snug text-white">{point.title[locale]}</div>
+              <p class="text-[12px] leading-snug text-[#a3a8b5]">{point.text[locale]}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="border-b border-white/5 bg-[#0b0d10] px-4 py-8">
+    <div class="mb-4">
+      <div class="mb-1 flex items-center justify-between gap-3">
+        <span class="text-[10px] font-bold uppercase tracking-widest text-primary">
+          {c.reviews.eyebrow[locale]}
+        </span>
+        <span class="shrink-0 rounded border border-white/10 px-2 py-1 text-[10px] uppercase tracking-wider text-[#8e939d]">
+          {c.reviews.badge[locale]}
+        </span>
+      </div>
+      <h2 class="text-xl font-bold uppercase tracking-tight text-white">{c.reviews.title[locale]}</h2>
+    </div>
+    <p class="mb-4 text-xs text-[#8e939d]">{c.reviews.note[locale]}</p>
+    <div class="mb-8 space-y-3">
+      {
+        c.reviews.items.map((item) => (
+          <blockquote class="rounded border border-white/[0.08] bg-[#111317] p-4">
+            <p class="mb-2 text-xs italic text-white/90">“{item.text[locale]}”</p>
+            <footer class="block text-[11px] font-semibold text-primary">{item.name[locale]}</footer>
+          </blockquote>
+        ))
+      }
+    </div>
+
+    <div class="mb-8" id="m-faq">
+      <span class="mb-1 block text-[10px] font-bold uppercase tracking-widest text-primary">
+        {c.faq.eyebrow[locale]}
+      </span>
+      <h2 class="mb-4 text-xl font-bold uppercase tracking-tight text-white">{c.faq.title[locale]}</h2>
+      <div class="space-y-2">
+        {
+          c.faq.items.map((item) => (
+            <details class="group overflow-hidden rounded border border-white/[0.08] bg-[#111317]">
+              <summary class="flex cursor-pointer select-none items-center justify-between gap-3 p-3.5 text-xs font-semibold text-white">
+                <span>{item.q[locale]}</span>
+                <span class="font-tech text-base text-primary transition-transform group-open:rotate-45">+</span>
+              </summary>
+              <div class="border-t border-white/5 px-3.5 pb-3.5 pt-2 text-xs leading-relaxed text-[#8e939d]">
+                {item.a[locale]}
+              </div>
+            </details>
+          ))
+        }
+      </div>
+    </div>
+
+    <div class="mb-8 rounded border border-white/[0.08] bg-[#111317] p-5">
+      <span class="mb-1 block text-[10px] font-bold uppercase tracking-widest text-primary">
+        {c.about.eyebrow[locale]}
+      </span>
+      <h3 class="mb-2 text-base font-bold uppercase leading-tight text-white">{c.about.title[locale]}</h3>
+      <p class="mb-4 text-xs leading-relaxed text-[#8e939d]">{c.about.body[locale]}</p>
+      <a
+        href="#m-about"
+        class="inline-block rounded border border-white/20 px-4 py-2 text-xs font-semibold text-white"
+      >
+        {c.about.link[locale]} →
+      </a>
+    </div>
+
+    <div class="rounded border border-primary/30 bg-[#14171d] px-4 py-6 text-center">
+      <h3 class="mb-2 text-base font-bold uppercase tracking-tight text-white">{c.bottomCta.title[locale]}</h3>
+      <p class="mb-4 text-xs text-[#8e939d]">{c.bottomCta.text[locale]}</p>
+      <div class="flex flex-col gap-2.5">
+        <a href="#m-form" class={goldBtn}>{t(locale, 'cta.request')}</a>
+        <CallPhonePicker
+          locale={locale}
+            placement="top"
+            fitParent
+            wrapClass="relative w-full min-w-0"
+            buttonClass="!h-11 w-full !max-w-full px-3 text-[12px] leading-none"
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="border-b border-white/5 bg-[#0b0d10] px-4 py-8" id="m-about">
+    <div class="mb-5 scroll-mt-24">
+      <span class="mb-1 block text-[10px] font-bold uppercase tracking-widest text-primary">
+        {about.eyebrow[locale]}
+      </span>
+      <h2 class="mb-2 text-xl font-bold uppercase tracking-tight text-white">{about.title[locale]}</h2>
+      <p class="text-xs leading-relaxed text-[#8e939d]">{about.lead[locale]}</p>
+    </div>
+    <div class="mb-5 space-y-3">
+      {
+        about.sections.map((section) => (
+          <div class="rounded border border-white/[0.08] bg-[#111317] p-4">
+            <h3 class="mb-1.5 text-sm font-bold text-white">{section.title[locale]}</h3>
+            {section.paragraphs.map((paragraph) => (
+              <p class="mb-2 text-xs leading-relaxed text-[#8e939d] last:mb-0">{paragraph[locale]}</p>
+            ))}
+          </div>
+        ))
+      }
+    </div>
+    <div class="flex items-center gap-2.5">
+      <a href={localizePath(locale, 'contacts')} class={ghostBtn}>{t(locale, 'nav.contacts')} →</a>
+      <a href="#m-form" class={goldBtn}>{t(locale, 'cta.request')}</a>
+    </div>
+  </section>
+
+  <section class="border-b border-white/5 bg-[#090a0d] px-4 py-8" id="m-contacts">
+    <div class="mb-5">
+      <span class="mb-1 block text-[10px] font-bold uppercase tracking-widest text-primary">
+        {contacts.eyebrow[locale]}
+      </span>
+      <h2 class="mb-2 text-xl font-bold uppercase tracking-tight text-white">{contacts.title[locale]}</h2>
+      <p class="text-xs leading-relaxed text-[#8e939d]">{contacts.lead[locale]}</p>
+    </div>
+    <div class="mb-6 space-y-3">
+      <div class="rounded border border-white/[0.08] bg-[#111317] p-4">
+        <span class="mb-1 block text-[11px] font-bold uppercase tracking-widest text-[#8e939d]">
+          {lead.phone}
+        </span>
+        {
+          siteConfig.phones.map((phone) => (
+            <a href={phone.href} class="block text-base font-bold text-white transition hover:text-primary">
+              {phone.display}
+            </a>
+          ))
+        }
+      </div>
+      <div class="rounded border border-white/[0.08] bg-[#111317] p-4">
+        <span class="mb-1 block text-[11px] font-bold uppercase tracking-widest text-[#8e939d]">Email</span>
+        <a href={`mailto:${siteConfig.email}`} class="text-sm font-semibold text-white transition hover:text-primary">
+          {siteConfig.email}
+        </a>
+      </div>
+      <div class="rounded border border-white/[0.08] bg-[#111317] p-4">
+        <span class="mb-1 block text-[11px] font-bold uppercase tracking-widest text-[#8e939d]">
+          {locale === 'ru' ? 'Режим' : 'Hours'}
+        </span>
+        <div class="text-xs font-semibold text-white">{siteConfig.hours.label[locale]}</div>
+        <div class="text-[11px] text-[#8e939d]">{siteConfig.geo[locale]}</div>
+      </div>
+      {
+        contacts.sections.map((section) => (
+          <div class="rounded border border-white/[0.08] bg-[#111317] p-4">
+            <h3 class="mb-1 text-xs font-bold text-white">{section.title[locale]}</h3>
+            {section.paragraphs.map((paragraph) => (
+              <p class="text-xs leading-relaxed text-[#8e939d]">{paragraph[locale]}</p>
+            ))}
+          </div>
+        ))
+      }
+    </div>
+
+    <div
+      id="m-form"
+      class="scroll-mt-24 rounded border border-primary/40 bg-[#111317] p-5"
+      data-mobile-lead
+      data-locale={locale}
+      data-api-url={siteConfig.leadApiUrl}
+      data-error-name={lead.errorName}
+      data-error-phone={lead.errorPhone}
+      data-error-network={lead.errorNetwork}
+      data-submitting={lead.submitting}
+      data-submit={lead.submit}
+      data-thanks-day={lead.thankyouDay}
+      data-thanks-night={lead.thankyouNight}
+    >
+      <div data-m-form-view>
+        <h3 class="mb-1 text-base font-bold uppercase text-white">{formCopy.title}</h3>
+        <p class="mb-4 text-xs text-[#8e939d]">{formCopy.lead}</p>
+        <div data-m-errors class="mb-3 hidden rounded border border-error/40 bg-error/10 px-3 py-2 text-[11px] text-error" role="alert"></div>
+        <form class="space-y-3" novalidate>
+          <div>
+            <label class="mb-1 block text-[10px] font-bold uppercase text-[#8e939d]" for="m-lead-name">{formCopy.name}</label>
+            <input id="m-lead-name" name="name" type="text" required autocomplete="name" placeholder={formCopy.namePh} class={fieldClass} />
+          </div>
+          <div>
+            <label class="mb-1 block text-[10px] font-bold uppercase text-[#8e939d]" for="m-lead-phone">{formCopy.phone}</label>
+            <input id="m-lead-phone" name="phone" type="tel" inputmode="tel" required autocomplete="tel" placeholder="+7 (___) ___-__-__" data-m-phone class:list={[fieldClass, 'font-tech tracking-wide']} />
+          </div>
+          <div>
+            <label class="mb-1 block text-[10px] font-bold uppercase text-[#8e939d]" for="m-lead-appliance">{formCopy.appliance}</label>
+            <select id="m-lead-appliance" name="applianceSlug" class={fieldClass}>
+              <option value="">{lead.applianceEmpty}</option>
+              {appliances.map((item) => (
+                <option value={item.slug}>{item.label[locale]}</option>
+              ))}
+            </select>
+          </div>
+          <div>
+            <label class="mb-1 block text-[10px] font-bold uppercase text-[#8e939d]" for="m-lead-problem">{formCopy.problem}</label>
+            <textarea id="m-lead-problem" name="problem" rows="2" placeholder={formCopy.problemPh} class:list={[fieldClass, 'resize-none']}></textarea>
+          </div>
+          <input type="text" name="company" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
+          <button type="submit" data-m-submit class:list={[goldBtn, 'py-3 text-xs']}>{lead.submit}</button>
+          <p class="text-center text-[11px] leading-snug text-[#8e939d]">
+            {formCopy.privacyBefore}{' '}
+            <a href={localizePath(locale, 'privacy')} class="underline decoration-white/20">{formCopy.privacyLink}</a>.
+          </p>
+        </form>
+      </div>
+      <div data-m-success class="hidden py-6 text-center">
+        <p class="mb-2 text-[10px] font-bold uppercase tracking-widest text-primary">{lead.successTitle}</p>
+        <p data-m-thanks class="text-sm leading-relaxed text-white"></p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<script>
+  function extractRuPhoneDigits(value: string): string {
+    let digits = value.replace(/\D/g, '');
+    if (!digits) return '';
+    if (digits.startsWith('8')) digits = `7${digits.slice(1)}`;
+    if (digits.length === 10 && digits.startsWith('9')) digits = `7${digits}`;
+    if (!digits.startsWith('7')) digits = `7${digits}`;
+    return digits.slice(0, 11);
+  }
+
+  function formatRuPhone(value: string): string {
+    const digits = extractRuPhoneDigits(value);
+    if (!digits) return '';
+    const rest = digits.slice(1);
+    let out = '+7';
+    if (!rest.length) return out;
+    out += ` (${rest.slice(0, 3)}`;
+    if (rest.length < 3) return out;
+    out += ')';
+    if (rest.length > 3) out += ` ${rest.slice(3, 6)}`;
+    if (rest.length > 6) out += `-${rest.slice(6, 8)}`;
+    if (rest.length > 8) out += `-${rest.slice(8, 10)}`;
+    return out;
+  }
+
+  function isBusinessHoursMoscow(date = new Date()): boolean {
+    const parts = new Intl.DateTimeFormat('en-GB', {
+      timeZone: 'Europe/Moscow',
+      hour: 'numeric',
+      hour12: false,
+    }).formatToParts(date);
+    const hour = Number(parts.find((part) => part.type === 'hour')?.value ?? '0');
+    return hour >= 8 && hour < 22;
+  }
+
+  const root = document.querySelector<HTMLElement>('[data-mobile-lead]');
+  const form = root?.querySelector<HTMLFormElement>('form');
+  const phoneInput = root?.querySelector<HTMLInputElement>('[data-m-phone]');
+  const errorBox = root?.querySelector<HTMLElement>('[data-m-errors]');
+  const submitBtn = root?.querySelector<HTMLButtonElement>('[data-m-submit]');
+  const formView = root?.querySelector<HTMLElement>('[data-m-form-view]');
+  const successView = root?.querySelector<HTMLElement>('[data-m-success]');
+  const thanks = root?.querySelector<HTMLElement>('[data-m-thanks]');
+
+  phoneInput?.addEventListener('input', () => {
+    phoneInput.value = formatRuPhone(phoneInput.value);
+  });
+
+  form?.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    if (!root || !form || !submitBtn) return;
+    const data = new FormData(form);
+    if (String(data.get('company') || '').trim()) return;
+
+    const name = String(data.get('name') || '').trim();
+    const phoneRaw = String(data.get('phone') || '').trim();
+    const digits = extractRuPhoneDigits(phoneRaw);
+    const messages: string[] = [];
+    if (!name) messages.push(root.dataset.errorName || '');
+    if (digits.length !== 11) messages.push(root.dataset.errorPhone || '');
+
+    if (errorBox) {
+      errorBox.textContent = messages.filter(Boolean).join(' · ');
+      errorBox.classList.toggle('hidden', messages.length === 0);
+    }
+    if (messages.length) return;
+
+    const applianceSlug = String(data.get('applianceSlug') || '');
+    const applianceSelect = form.querySelector<HTMLSelectElement>('[name="applianceSlug"]');
+    const applianceLabel =
+      applianceSlug && applianceSelect?.selectedOptions[0]
+        ? applianceSelect.selectedOptions[0].text
+        : '';
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = root.dataset.submitting || '';
+
+    try {
+      const response = await fetch(root.dataset.apiUrl || '/api/lead.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          locale: root.dataset.locale || 'ru',
+          name,
+          phone: `+${digits}`,
+          consent: true,
+          city: '',
+          time: '',
+          applianceSlug,
+          applianceLabel,
+          problem: String(data.get('problem') || '').trim(),
+          channels: [],
+          company: '',
+          page: window.location.pathname,
+        }),
+      });
+      const result = (await response.json().catch(() => null)) as { ok?: boolean } | null;
+      if (!response.ok || !result?.ok) throw new Error('lead');
+      if (thanks) {
+        thanks.textContent = isBusinessHoursMoscow()
+          ? root.dataset.thanksDay || ''
+          : root.dataset.thanksNight || '';
+      }
+      formView?.classList.add('hidden');
+      successView?.classList.remove('hidden');
+    } catch {
+      if (errorBox) {
+        errorBox.textContent = root.dataset.errorNetwork || '';
+        errorBox.classList.remove('hidden');
+      }
+      submitBtn.disabled = false;
+      submitBtn.textContent = root.dataset.submit || '';
+    }
+  });
+</script>

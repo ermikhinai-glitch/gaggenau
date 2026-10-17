@@ -83,6 +83,8 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss(), leadApiDevProxy()],
     server: {
+      // Phone preview via the temporary Cloudflare tunnel.
+      allowedHosts: ['.trycloudflare.com'],
       // Other /api/* → PHP; lead.php is handled by leadApiDevProxy above
       proxy: {
         '/api': {

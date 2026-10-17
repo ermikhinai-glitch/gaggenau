@@ -16,16 +16,20 @@ function syncWidth(root: PickerRoot): number {
   if (triggerWidth < 1) return 0;
 
   const sizerWidth = sizer ? sizer.scrollWidth : 0;
-  const width = Math.ceil(Math.max(triggerWidth, sizerWidth));
+  const contentWidth = Math.ceil(Math.max(triggerWidth, sizerWidth));
+  const parentWidth = root.parentElement?.clientWidth ?? contentWidth;
+  const buttonWidth =
+    root.dataset.fit === 'parent' ? Math.min(contentWidth, parentWidth) : contentWidth;
 
   trigger.style.boxSizing = 'border-box';
-  trigger.style.width = `${width}px`;
-  trigger.style.minWidth = `${width}px`;
+  trigger.style.width = `${buttonWidth}px`;
+  trigger.style.minWidth = `${buttonWidth}px`;
+  trigger.style.maxWidth = root.dataset.fit === 'parent' ? '100%' : '';
   panel.style.boxSizing = 'border-box';
-  panel.style.width = `${width}px`;
-  panel.style.minWidth = `${width}px`;
-  panel.style.maxWidth = `${width}px`;
-  return width;
+  panel.style.width = `${contentWidth}px`;
+  panel.style.minWidth = `${contentWidth}px`;
+  panel.style.maxWidth = `${contentWidth}px`;
+  return contentWidth;
 }
 
 function positionPanel(root: PickerRoot): void {
