@@ -11,9 +11,64 @@ const { locale } = Astro.props;
 const year = new Date().getFullYear();
 ---
 
-<footer class="border-t border-hairline bg-surface-container-lowest pb-24 md:pb-0">
+<footer class="border-t border-white/10 bg-[#07080a] pb-24 text-[#8e939d] md:bg-surface-container-lowest md:pb-0">
+  <div class="px-4 pb-4 pt-8 md:hidden">
+    <div class="mb-6">
+      <span class="mb-1.5 block text-xs font-bold uppercase tracking-widest text-white">
+        {siteConfig.workingTitle[locale]}
+      </span>
+      <p class="mb-1 text-xs leading-relaxed">{t(locale, 'footer.note')}</p>
+      <span class="text-xs">{t(locale, 'footer.geo')}</span>
+    </div>
+    <div class="mb-8 grid grid-cols-2 gap-6 text-xs">
+      <div>
+        <span class="mb-3 block text-[10px] font-bold uppercase tracking-wider text-primary">
+          {t(locale, 'nav.services')}
+        </span>
+        <ul class="space-y-2">
+          {
+            appliances.map((item) => (
+              <li>
+                <a href={localizePath(locale, item.path)} class="transition hover:text-white">
+                  {item.label[locale]}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+      <div>
+        <span class="mb-3 block text-[10px] font-bold uppercase tracking-wider text-primary">
+          {t(locale, 'nav.contacts')}
+        </span>
+        <div class="mb-4">
+          {
+            siteConfig.phones.map((phone) => (
+              <a href={phone.href} class="block font-semibold text-white transition hover:text-primary">
+                {phone.display}
+              </a>
+            ))
+          }
+          <span class="mt-1 block text-[11px]">{siteConfig.email}</span>
+          <span class="block text-[10px] text-[#60646e]">{siteConfig.hours.label[locale]}</span>
+        </div>
+        <ul class="space-y-2 border-t border-white/5 pt-3">
+          <li><a href={localizePath(locale, 'about')} class="transition hover:text-white">{t(locale, 'nav.about')}</a></li>
+          <li><a href={localizePath(locale, 'warranty')} class="transition hover:text-white">{t(locale, 'nav.warranty')}</a></li>
+          <li><a href={localizePath(locale, 'contacts')} class="transition hover:text-white">{t(locale, 'nav.contacts')}</a></li>
+          <li><a href={localizePath(locale, 'privacy')} class="transition hover:text-white">{t(locale, 'nav.privacy')}</a></li>
+          <li><a href={localizePath(locale, 'terms')} class="transition hover:text-white">{t(locale, 'nav.terms')}</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="flex flex-col gap-1 border-t border-white/5 pt-4 text-[10px] text-[#60646e]">
+      <div>© {year} {siteConfig.workingTitle[locale]}</div>
+      <div>{t(locale, 'footer.rights')}</div>
+    </div>
+  </div>
+
   <div
-    class="mx-auto max-w-[1520px] px-4 sm:px-6 lg:px-10 py-space-2xl grid gap-space-xl md:grid-cols-12"
+    class="mx-auto hidden max-w-[1520px] gap-space-xl px-4 py-space-2xl sm:px-6 md:grid md:grid-cols-12 lg:px-10"
   >
     <div class="md:col-span-5 space-y-space-md">
       <p class="text-label-caps text-text-primary">{siteConfig.workingTitle[locale]}</p>
@@ -80,7 +135,7 @@ const year = new Date().getFullYear();
       </div>
     </div>
   </div>
-  <div class="border-t border-hairline">
+  <div class="hidden border-t border-hairline md:block">
     <div
       class="mx-auto max-w-[1520px] px-4 sm:px-6 lg:px-10 py-space-md flex flex-wrap justify-between gap-2 text-[11px] text-text-tertiary"
     >

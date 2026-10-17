@@ -2,6 +2,7 @@
 import { appliances, type Locale } from '../../config/site';
 import { homeContent } from '../../content/home';
 import CallPhonePicker from '../CallPhonePicker.astro';
+import MobileHome from './MobileHome.astro';
 import PromoBanner from '../PromoBanner.astro';
 import { t } from '../../i18n/ui';
 import { localizePath } from '../../i18n/utils';
@@ -13,6 +14,9 @@ interface Props {
 const { locale } = Astro.props;
 const c = homeContent;
 ---
+
+<MobileHome locale={locale} />
+<div class="hidden md:contents">
 
 <!-- Hero: height = viewport minus fixed header (main pt-20); inner min-h forces justify-between -->
 <section
@@ -353,3 +357,4 @@ const c = homeContent;
     </div>
   </div>
 </section>
+</div>
