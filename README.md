@@ -9,6 +9,7 @@
 - [Продуктовый разбор](docs/product-discovery.md)
 - [ТЗ дизайна](docs/design-brief.md)
 - [Черновик акций](docs/promos-draft.md)
+- [Деплой на Amvera](docs/amvera-deploy.md) — Docker, GitHub webhook, переменные
 
 ## Стек
 
@@ -23,7 +24,7 @@
 
 ## Требования к машине разработки
 
-- Node.js 20+ (LTS)
+- Node.js 22+ (см. `engines` в `package.json`)
 - npm 10+
 - Для проверки формы локально: PHP 8.1+ (`php -S`)
 
