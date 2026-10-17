@@ -14,11 +14,13 @@ return [
     'dry_run' => true,
 
     // Allowed Origin values for CORS (exact match).
+    // On Amvera these come from ALLOWED_ORIGINS / SITE_URL env (see docs/amvera-deploy.md).
     'allowed_origins' => [
         'http://127.0.0.1:4321',
         'http://localhost:4321',
         'https://example.com',
         'https://www.example.com',
+        // Example Amvera free domain: https://<project>.<user>.amvera.io
     ],
 
     // Telegram Bot API (https://core.telegram.org/bots/api#sendmessage)

@@ -17,7 +17,7 @@
 | Фронт | Astro (static) + TypeScript + Tailwind CSS |
 | i18n | RU / EN |
 | Заявки | `api/lead.php` → Telegram + email (SMTP) |
-| Деплой | FTP/SFTP: содержимое `dist/` + папка `api/` |
+| Деплой | Amvera (Docker) или FTP/SFTP: `dist/` + `api/` |
 
 Исходные HTML-макеты Stitch лежат в `дизайн/` и **не** деплоятся как сайт.
 
@@ -53,7 +53,23 @@ curl -X POST http://127.0.0.1:8080/api/lead.php ^
   -d "{\"name\":\"Test\",\"phone\":\"+79991234567\",\"consent\":true,\"locale\":\"ru\"}"
 ```
 
-## Деплой (кратко)
+## Деплой
+
+### Amvera Cloud (рекомендуется)
+
+В корне уже есть `amvera.yml` + `Dockerfile` (Astro build → Apache + PHP).
+
+Пошаговая инструкция: **[docs/amvera-deploy.md](docs/amvera-deploy.md)**  
+Кратко:
+
+1. Создайте приложение в [Amvera](https://amvera.ru/) с окружением **Docker**.
+2. Привяжите GitHub (webhook) или добавьте remote:  
+   `git remote add amvera https://git.amvera.ru/<логин>/<проект>`  
+   затем `git push amvera main:master`.
+3. В **Переменные** задайте `SITE_URL`, `ALLOWED_ORIGINS`, секреты Telegram; на бою `LEAD_DRY_RUN=false`.
+4. Привяжите HTTPS-домен (`*.amvera.io` или свой).
+
+### Shared-хостинг (FTP/SFTP)
 
 - В `public_html` (или корень сайта): содержимое `dist/` + папка `api/`.
 - На сервере: `api/config.php` из example с боевыми секретами (`dry_run => false`).

@@ -53,9 +53,12 @@ function leadApiDevProxy() {
 }
 
 // Static site for RF shared hosting (FTP + PHP api alongside dist)
+// SITE_URL is used on Amvera/Docker builds (Dockerfile ARG / env).
+const siteUrl = (process.env.SITE_URL || 'https://example.com').replace(/\/$/, '');
+
 export default defineConfig({
   output: 'static',
-  site: 'https://example.com',
+  site: siteUrl,
   integrations: [
     sitemap({
       i18n: {
