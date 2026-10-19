@@ -21,68 +21,80 @@ const terms = homeContent.terms;
 
 <!-- Breadcrumbs -->
 <div class="max-w-[1520px] mx-auto px-4 sm:px-6 lg:px-10 pt-space-md pb-space-xs">
-  <nav class="flex flex-wrap items-center gap-2 text-[11px] text-text-tertiary" aria-label="Breadcrumb">
-    <a href={localizePath(locale)} class="hover:text-primary transition-colors">{locale === 'ru' ? 'Главная' : 'Home'}</a>
-    <span class="opacity-40">/</span>
-    <a href={`${localizePath(locale)}#appliances`} class="hover:text-primary transition-colors">
+  <nav class="flex flex-wrap items-center gap-2 text-[13px] text-[#c5cad3]" aria-label="Breadcrumb">
+    <a href={localizePath(locale)} class="crumb-link">{locale === 'ru' ? 'Главная' : 'Home'}</a>
+    <span class="text-[#8e939d]">/</span>
+    <a href={`${localizePath(locale)}#m-appliances`} class="crumb-link md:hidden">
       {locale === 'ru' ? 'Услуги' : 'Services'}
     </a>
-    <span class="opacity-40">/</span>
-    <span class="text-text-secondary">{label}</span>
+    <a href={`${localizePath(locale)}#appliances`} class="crumb-link hidden md:inline">
+      {locale === 'ru' ? 'Услуги' : 'Services'}
+    </a>
+    <span class="text-[#8e939d]">/</span>
+    <span class="text-[#f4f5f7]">{label}</span>
   </nav>
 </div>
 
 <!-- Hero -->
-<section class="max-w-[1520px] mx-auto px-4 sm:px-6 lg:px-10 pt-space-md pb-space-2xl">
+<section class="max-w-[1520px] mx-auto px-4 sm:px-6 lg:px-10 pt-space-md pb-0 lg:pb-space-2xl">
   <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-center">
     <div class="lg:col-span-7 motion-fade-up">
-      <div
-        class="surface-lux-glow inline-flex items-center gap-2.5 px-3 py-1.5 rounded-full bg-surface-raised border mb-space-md"
-      >
-        <span class="w-2 h-2 rounded-full bg-status-active"></span>
-        <span class="text-label-caps text-text-secondary tracking-[0.12em]">{page.badge[locale]}</span>
-      </div>
-      <h1 class="text-display-hero text-text-primary uppercase mb-space-md">
+      <div class="relative -mx-4 min-h-[460px] overflow-hidden sm:-mx-6 lg:mx-0 lg:min-h-0 lg:overflow-visible">
+      <img
+        src={page.heroImage}
+        alt=""
+        width="900"
+        height="1125"
+        fetchpriority="high"
+        decoding="async"
+        class="absolute inset-0 h-full w-full object-cover object-[center_30%] lg:hidden"
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-[#090a0d] via-[#090a0d]/50 to-[#090a0d]/15 lg:hidden"></div>
+      <div class="relative z-10 flex min-h-[460px] flex-col justify-end px-4 pb-5 pt-4 lg:block lg:min-h-0 lg:px-0 lg:py-0">
+      <h1 class="text-display-hero max-lg:!text-[20px] max-lg:!leading-[1.15] text-text-primary uppercase mb-space-md">
         {page.title[locale]}
         <span class="text-primary"> {page.titleAccent[locale]}</span>
       </h1>
       <p class="max-w-2xl text-base sm:text-lg text-text-secondary leading-relaxed mb-space-xl">
         {page.subtitle[locale]}
       </p>
-      <div class="flex flex-wrap gap-space-md mb-space-lg">
+      <div class="grid grid-cols-2 gap-2 lg:mb-space-lg">
         <button
           type="button"
           data-open-lead-modal
           data-appliance-prefill={page.slug}
           data-appliance-label={label}
-          class="btn-lead-glow inline-flex h-12 items-center justify-center rounded-DEFAULT bg-primary-container px-8 text-sm font-semibold uppercase tracking-wider text-on-primary-container"
+          class="btn-lead-glow inline-flex h-12 w-full items-center justify-center rounded-DEFAULT bg-primary-container px-2 text-[13px] font-semibold uppercase leading-none tracking-wide text-on-primary-container"
         >
           {t(locale, 'cta.request')}
         </button>
         <CallPhonePicker
           locale={locale}
-          buttonClass="h-12 w-full px-8 sm:w-auto"
+          fitParent
+          wrapClass="relative min-w-0 w-full"
+          buttonClass="!h-12 w-full !px-2 !text-[13px] !leading-none"
         />
       </div>
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-xl">
-        <div class="surface-lux-glow rounded-DEFAULT border bg-surface-raised p-4">
-          <div class="text-tech-data-lg text-primary">{homeContent.sla[0].value[locale]}</div>
-          <p class="text-xs text-text-secondary mt-1">{t(locale, 'sla.callback')}</p>
+      </div>
+      </div>
+      <div class="mt-4 grid grid-cols-2 items-stretch gap-2 max-w-xl lg:mt-0">
+        <div class="surface-lux-glow flex h-full min-w-0 flex-col rounded-DEFAULT border bg-surface-raised px-2 py-2.5">
+          <div class="whitespace-nowrap text-tech-data-lg text-primary max-sm:!text-[18px] max-sm:!leading-none">{homeContent.sla[0].value[locale]}</div>
+          <p class="mt-1 text-[13px] leading-snug text-text-secondary">{t(locale, 'sla.callback')}</p>
         </div>
-        <div class="surface-lux-glow rounded-DEFAULT border bg-surface-raised p-4">
-          <div class="text-tech-data-lg text-primary">{homeContent.sla[1].value[locale]}</div>
-          <p class="text-xs text-text-secondary mt-1">{t(locale, 'sla.visit')}</p>
+        <div class="surface-lux-glow flex h-full min-w-0 flex-col rounded-DEFAULT border bg-surface-raised px-2 py-2.5">
+          <div class="whitespace-nowrap text-tech-data-lg text-primary max-sm:!text-[18px] max-sm:!leading-none">{homeContent.sla[1].value[locale]}</div>
+          <p class="mt-1 text-[13px] leading-snug text-text-secondary">{t(locale, 'sla.visit')}</p>
         </div>
       </div>
     </div>
-    <div class="lg:col-span-5">
+    <div class="hidden lg:block lg:col-span-5">
       <div class="card-lux-glow relative aspect-[4/5] overflow-hidden rounded-lg border bg-surface-raised">
         <img
           src={page.heroImage}
           alt={label}
           width="900"
           height="1125"
-          fetchpriority="high"
           decoding="async"
           class="h-full w-full object-cover"
         />
@@ -245,3 +257,18 @@ const terms = homeContent.terms;
     </div>
   </div>
 </section>
+
+<style>
+  .crumb-link {
+    transition: color 0.2s ease, text-shadow 0.2s ease;
+  }
+
+  .crumb-link:hover,
+  .crumb-link:focus-visible,
+  .crumb-link:active {
+    color: #e9c176;
+    text-shadow:
+      0 0 8px rgba(197, 160, 89, 0.75),
+      0 0 18px rgba(197, 160, 89, 0.4);
+  }
+</style>

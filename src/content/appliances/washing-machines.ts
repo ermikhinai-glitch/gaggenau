@@ -33,6 +33,13 @@ export const washingMachinesPage: AppliancePageContent = {
       },
     },
     {
+      title: { ru: 'Не греет воду', en: 'Water not heating' },
+      text: {
+        ru: 'ТЭН, датчик температуры, реле нагрева, модуль управления.',
+        en: 'Heater, temperature sensor, heating relay, control module.',
+      },
+    },
+    {
       title: { ru: 'Шум и вибрация', en: 'Noise and vibration' },
       text: {
         ru: 'Подшипники, амортизаторы, крепление барабана.',

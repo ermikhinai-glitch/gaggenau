@@ -1,5 +1,4 @@
 ---
-import CallPhonePicker from '../CallPhonePicker.astro';
 import { appliances, siteConfig, type Locale } from '../../config/site';
 import { homeContent } from '../../content/home';
 import { leadCopy } from '../../content/lead';
@@ -54,11 +53,11 @@ const formCopy = {
 }[locale];
 
 const goldBtn =
-  'btn-lead-glow inline-flex h-11 w-full items-center justify-center rounded bg-primary-container px-2 text-center text-[12px] font-bold uppercase leading-none tracking-wide text-black';
+  'btn-lead-glow inline-flex h-11 w-full items-center justify-center rounded bg-primary-container px-2 text-center text-[13px] font-bold uppercase leading-none tracking-wide text-black';
 const ghostBtn =
-  'inline-flex h-11 w-full items-center justify-center rounded border border-white/20 bg-[#121418] px-2 text-center text-[12px] font-medium uppercase leading-none tracking-wide text-white';
+  'inline-flex h-11 w-full items-center justify-center rounded border border-white/20 bg-[#121418] px-2 text-center text-[13px] font-medium uppercase leading-none tracking-wide text-white';
 const fieldClass =
-  'scheme-dark w-full rounded border border-white/10 bg-[#181b22] px-3 py-2 text-xs text-white outline-none placeholder:text-white/20 focus:border-primary';
+  'scheme-dark w-full rounded border border-white/10 bg-[#181b22] px-3 py-2.5 text-[13px] text-white outline-none placeholder:text-white/20 focus:border-primary';
 ---
 
 <div class="md:hidden">
@@ -75,7 +74,7 @@ const fieldClass =
       />
       <div class="absolute inset-0 bg-gradient-to-t from-[#090a0d] via-[#090a0d]/50 to-[#090a0d]/15"></div>
       <div class="relative z-10 flex min-h-[460px] flex-col justify-between px-4 pb-5 pt-4">
-        <div class="inline-flex max-w-full items-center gap-2 self-start rounded-full border border-primary/40 bg-black/40 px-3 py-1.5 text-[11px] font-medium uppercase leading-tight tracking-normal text-primary backdrop-blur">
+        <div class="inline-flex max-w-full items-center gap-2 self-start rounded-full border border-primary/40 bg-black/40 px-3 py-1.5 text-[13px] font-medium uppercase leading-tight tracking-normal text-primary backdrop-blur">
           <span class="h-1.5 w-1.5 shrink-0 rounded-full bg-primary"></span>
           <span class="min-w-0">
             {
@@ -91,16 +90,7 @@ const fieldClass =
           <span class="text-brand-mark text-primary">{c.hero.titleAccent[locale]}</span>
         </h1>
         <p class="mb-4 max-w-[34ch] text-[13px] font-light leading-relaxed text-[#f3f4f6]">{c.hero.subtitle[locale]}</p>
-        <div class="grid grid-cols-2 gap-2">
-          <a href="#m-form" class={goldBtn}>{t(locale, 'cta.request')}</a>
-          <CallPhonePicker
-            locale={locale}
-            placement="bottom"
-            fitParent
-            wrapClass="relative w-full min-w-0"
-            buttonClass="!h-11 w-full !max-w-full !bg-[#121418]/75 px-2 text-[12px] leading-none backdrop-blur"
-          />
-        </div>
+        <a href="#m-form" class={goldBtn}>{t(locale, 'cta.request')}</a>
         </div>
       </div>
     </div>
@@ -108,26 +98,26 @@ const fieldClass =
       {
         c.sla.map((item) => (
           <div class="flex min-h-[104px] flex-col rounded-lg border border-white/[0.08] bg-[#111317] p-3">
-            <span class="text-[10px] font-bold uppercase tracking-[0.14em] text-[#8e939d]">
+            <span class="text-[13px] font-bold uppercase tracking-[0.14em] text-[#8e939d]">
               {item.label[locale]}
             </span>
             <div class="mt-1 text-[17px] font-bold leading-tight text-white">{item.value[locale]}</div>
-            <p class="mt-1 text-[12px] leading-snug text-[#a3a8b5]">{item.text[locale]}</p>
+            <p class="mt-1 text-[13px] leading-snug text-[#a3a8b5]">{item.text[locale]}</p>
           </div>
         ))
       }
     </div>
   </section>
 
-  <section class="border-b border-white/5 bg-[#0b0d10] px-4 py-8" id="m-appliances">
+  <section class="scroll-mt-20 border-b border-white/5 bg-[#0b0d10] px-4 py-6" id="m-appliances">
     <div class="mb-5">
-      <span class="mb-1 block text-[10px] font-bold uppercase tracking-widest text-primary">
+      <span class="mb-1 block text-[13px] font-bold uppercase tracking-widest text-primary">
         {c.appliancesSection.eyebrow[locale]}
       </span>
       <h2 class="mb-2 text-xl font-bold uppercase tracking-tight text-white">
         {c.appliancesSection.title[locale]}
       </h2>
-      <p class="text-xs leading-relaxed text-[#8e939d]">{c.appliancesSection.lead[locale]}</p>
+      <p class="text-[13px] leading-relaxed text-[#8e939d]">{c.appliancesSection.lead[locale]}</p>
     </div>
     <div class="grid grid-cols-2 gap-2.5">
       {
@@ -149,7 +139,7 @@ const fieldClass =
             return (
               <a
                 href={href}
-                class="group col-span-2 flex flex-row overflow-hidden rounded border border-white/[0.08] bg-[#111317]"
+                class="card-lux-glow group col-span-2 flex flex-row overflow-hidden rounded border bg-[#111317]"
               >
                 <div class="relative w-2/5 min-w-[128px] self-stretch overflow-hidden bg-black/40">
                   <img
@@ -165,14 +155,11 @@ const fieldClass =
                 </div>
                 <div class="flex flex-1 flex-col justify-between p-3">
                   <div>
-                    <span class="mb-1 block text-[10px] font-semibold uppercase tracking-[0.12em] text-primary">
-                      {card.series[locale]}
-                    </span>
-                    <h3 class="mb-1 text-[13px] font-bold leading-snug text-white">{title}</h3>
-                    <p class="mb-2.5 text-[12px] leading-snug text-[#a3a8b5]">{description}</p>
+                    <h3 class="mb-0.5 line-clamp-2 text-[13px] font-bold leading-snug text-primary">{title}</h3>
+                    <p class="mb-2.5 text-[13px] leading-snug text-[#a3a8b5]">{description}</p>
                   </div>
                   <div class="flex items-center justify-between border-t border-white/[0.05] pt-1.5">
-                    <span class="text-[10px] font-medium uppercase tracking-[0.12em] text-white">
+                    <span class="text-[11px] font-medium uppercase tracking-[0.08em] text-white">
                       {c.appliancesSection.more[locale]} →
                     </span>
                     <span class="font-tech text-[10px] text-[#60646e]">{indexLabel}</span>
@@ -184,7 +171,7 @@ const fieldClass =
           return (
             <a
               href={href}
-              class="group flex flex-col overflow-hidden rounded border border-white/[0.08] bg-[#111317]"
+              class="card-lux-glow group flex flex-col overflow-hidden rounded border bg-[#111317]"
             >
               <div class="relative h-36 w-full overflow-hidden bg-black/40">
                 <img
@@ -200,14 +187,11 @@ const fieldClass =
               </div>
               <div class="flex flex-1 flex-col justify-between p-2.5">
                 <div>
-                  <span class="mb-1 block text-[10px] font-semibold uppercase tracking-[0.12em] text-primary">
-                    {card.series[locale]}
-                  </span>
-                  <h3 class="mb-1 min-h-8 text-[13px] font-bold leading-snug text-white">{title}</h3>
-                  <p class="mb-2.5 line-clamp-3 text-[12px] leading-snug text-[#a3a8b5]">{description}</p>
+                  <h3 class="mb-0.5 line-clamp-2 text-[13px] font-bold leading-snug text-primary">{title}</h3>
+                  <p class="mb-2.5 text-[13px] leading-snug text-[#a3a8b5]">{description}</p>
                 </div>
                 <div class="flex items-center justify-between border-t border-white/[0.05] pt-1.5">
-                  <span class="text-[10px] font-medium uppercase tracking-[0.12em] text-white">
+                  <span class="text-[11px] font-medium uppercase tracking-[0.08em] text-white">
                     {c.appliancesSection.more[locale]} →
                   </span>
                   <span class="font-tech text-[10px] text-[#60646e]">{indexLabel}</span>
@@ -220,9 +204,9 @@ const fieldClass =
     </div>
   </section>
 
-  <section class="border-b border-white/5 bg-[#090a0d] px-4 py-8" id="m-process">
+  <section class="border-b border-white/5 bg-[#090a0d] px-4 py-6" id="m-process">
     <div class="mb-3.5">
-      <span class="mb-1 block text-[10px] font-bold uppercase tracking-widest text-primary">
+      <span class="mb-1 block text-[13px] font-bold uppercase tracking-widest text-primary">
         {c.process.eyebrow[locale]}
       </span>
       <h2 class="text-xl font-bold uppercase tracking-tight text-white">{c.process.title[locale]}</h2>
@@ -232,32 +216,32 @@ const fieldClass =
         c.process.steps.map((step) => (
           <div class="flex flex-col justify-between rounded border border-white/[0.08] bg-[#111317] p-3">
             <div>
-              <div class="mb-1 font-tech text-xs font-bold text-primary">{step.n}</div>
-              <h3 class="mb-1 text-xs font-semibold leading-snug text-white">{step.title[locale]}</h3>
+              <div class="mb-1 font-tech text-[13px] font-bold text-primary">{step.n}</div>
+              <h3 class="mb-1 text-[13px] font-semibold leading-snug text-white">{step.title[locale]}</h3>
             </div>
-            <p class="text-[12px] leading-snug text-[#a3a8b5]">{step.text[locale]}</p>
+            <p class="text-[13px] leading-snug text-[#a3a8b5]">{step.text[locale]}</p>
           </div>
         ))
       }
     </div>
     <div class="mt-5 rounded border border-white/[0.08] bg-[#111317] p-4">
-      <span class="mb-1 block text-[10px] font-bold uppercase tracking-widest text-primary">
+      <span class="mb-1 block text-[13px] font-bold uppercase tracking-widest text-primary">
         {c.terms.eyebrow[locale]}
       </span>
       <h3 class="mb-2 text-base font-bold text-white">{c.terms.title[locale]}</h3>
-      <p class="text-xs leading-relaxed text-[#8e939d]">{c.terms.body[locale]}</p>
+      <p class="text-[13px] leading-relaxed text-[#8e939d]">{c.terms.body[locale]}</p>
     </div>
     <div class="relative mt-4 overflow-hidden rounded border border-primary/40 bg-gradient-to-r from-[#171a22] to-[#121418] p-4">
-      <span class="mb-1 block text-[10px] font-bold uppercase tracking-widest text-primary">
+      <span class="mb-1 block text-[13px] font-bold uppercase tracking-widest text-primary">
         {locale === 'ru' ? 'Акция' : 'Offer'}
       </span>
       <h3 class="mb-1 text-sm font-bold text-white">{promo.title[locale]}</h3>
-      <p class="text-[12px] leading-snug text-[#a3a8b5]">{promo.subtitle[locale]}</p>
-      <span class="mt-1 block text-[11px] text-[#8e939d]">{promo.fineprint[locale]}</span>
+      <p class="text-[13px] leading-snug text-[#a3a8b5]">{promo.subtitle[locale]}</p>
+      <span class="mt-1 block text-[13px] text-[#8e939d]">{promo.fineprint[locale]}</span>
       <a href="#m-form" class:list={['mt-3', goldBtn]}>{promo.cta[locale]}</a>
     </div>
-    <div class="mt-8 overflow-hidden rounded border border-white/[0.08] bg-[#111317] p-5">
-      <span class="mb-1 block text-[10px] font-bold uppercase tracking-widest text-primary">
+    <div class="mt-5 overflow-hidden rounded border border-white/[0.08] bg-[#111317] p-5">
+      <span class="mb-1 block text-[13px] font-bold uppercase tracking-widest text-primary">
         {c.trust.eyebrow[locale]}
       </span>
       <h3 class="mb-4 text-base font-bold uppercase text-white">{c.trust.title[locale]}</h3>
@@ -277,7 +261,7 @@ const fieldClass =
           c.trust.points.map((point) => (
             <div class="rounded border border-white/5 bg-[#15181e] p-3">
               <div class="mb-1 text-[13px] font-bold leading-snug text-white">{point.title[locale]}</div>
-              <p class="text-[12px] leading-snug text-[#a3a8b5]">{point.text[locale]}</p>
+              <p class="text-[13px] leading-snug text-[#a3a8b5]">{point.text[locale]}</p>
             </div>
           ))
         }
@@ -285,32 +269,32 @@ const fieldClass =
     </div>
   </section>
 
-  <section class="border-b border-white/5 bg-[#0b0d10] px-4 py-8">
+  <section class="border-b border-white/5 bg-[#0b0d10] px-4 py-6">
     <div class="mb-4">
       <div class="mb-1 flex items-center justify-between gap-3">
-        <span class="text-[10px] font-bold uppercase tracking-widest text-primary">
+        <span class="text-[13px] font-bold uppercase tracking-widest text-primary">
           {c.reviews.eyebrow[locale]}
         </span>
-        <span class="shrink-0 rounded border border-white/10 px-2 py-1 text-[10px] uppercase tracking-wider text-[#8e939d]">
+        <span class="shrink-0 rounded border border-white/10 px-2 py-1 text-[13px] uppercase tracking-wider text-[#8e939d]">
           {c.reviews.badge[locale]}
         </span>
       </div>
       <h2 class="text-xl font-bold uppercase tracking-tight text-white">{c.reviews.title[locale]}</h2>
     </div>
-    <p class="mb-4 text-xs text-[#8e939d]">{c.reviews.note[locale]}</p>
-    <div class="mb-8 space-y-3">
+    <p class="mb-4 text-[13px] text-[#8e939d]">{c.reviews.note[locale]}</p>
+    <div class="mb-5 space-y-3">
       {
         c.reviews.items.map((item) => (
           <blockquote class="rounded border border-white/[0.08] bg-[#111317] p-4">
-            <p class="mb-2 text-xs italic text-white/90">“{item.text[locale]}”</p>
-            <footer class="block text-[11px] font-semibold text-primary">{item.name[locale]}</footer>
+            <p class="mb-2 text-[13px] italic text-white/90">“{item.text[locale]}”</p>
+            <footer class="block text-[13px] font-semibold text-primary">{item.name[locale]}</footer>
           </blockquote>
         ))
       }
     </div>
 
-    <div class="mb-8" id="m-faq">
-      <span class="mb-1 block text-[10px] font-bold uppercase tracking-widest text-primary">
+    <div class="mb-5" id="m-faq">
+      <span class="mb-1 block text-[13px] font-bold uppercase tracking-widest text-primary">
         {c.faq.eyebrow[locale]}
       </span>
       <h2 class="mb-4 text-xl font-bold uppercase tracking-tight text-white">{c.faq.title[locale]}</h2>
@@ -318,11 +302,11 @@ const fieldClass =
         {
           c.faq.items.map((item) => (
             <details class="group overflow-hidden rounded border border-white/[0.08] bg-[#111317]">
-              <summary class="flex cursor-pointer select-none items-center justify-between gap-3 p-3.5 text-xs font-semibold text-white">
+              <summary class="flex cursor-pointer select-none items-center justify-between gap-3 p-3.5 text-[13px] font-semibold text-white">
                 <span>{item.q[locale]}</span>
                 <span class="font-tech text-base text-primary transition-transform group-open:rotate-45">+</span>
               </summary>
-              <div class="border-t border-white/5 px-3.5 pb-3.5 pt-2 text-xs leading-relaxed text-[#8e939d]">
+              <div class="border-t border-white/5 px-3.5 pb-3.5 pt-2 text-[13px] leading-relaxed text-[#8e939d]">
                 {item.a[locale]}
               </div>
             </details>
@@ -331,43 +315,20 @@ const fieldClass =
       </div>
     </div>
 
-    <div class="mb-8 rounded border border-white/[0.08] bg-[#111317] p-5">
-      <span class="mb-1 block text-[10px] font-bold uppercase tracking-widest text-primary">
-        {c.about.eyebrow[locale]}
-      </span>
-      <h3 class="mb-2 text-base font-bold uppercase leading-tight text-white">{c.about.title[locale]}</h3>
-      <p class="mb-4 text-xs leading-relaxed text-[#8e939d]">{c.about.body[locale]}</p>
-      <a
-        href="#m-about"
-        class="inline-block rounded border border-white/20 px-4 py-2 text-xs font-semibold text-white"
-      >
-        {c.about.link[locale]} →
-      </a>
-    </div>
-
-    <div class="rounded border border-primary/30 bg-[#14171d] px-4 py-6 text-center">
+    <div class="rounded border border-primary/30 bg-[#14171d] px-4 py-5 text-center">
       <h3 class="mb-2 text-base font-bold uppercase tracking-tight text-white">{c.bottomCta.title[locale]}</h3>
-      <p class="mb-4 text-xs text-[#8e939d]">{c.bottomCta.text[locale]}</p>
-      <div class="flex flex-col gap-2.5">
-        <a href="#m-form" class={goldBtn}>{t(locale, 'cta.request')}</a>
-        <CallPhonePicker
-          locale={locale}
-            placement="top"
-            fitParent
-            wrapClass="relative w-full min-w-0"
-            buttonClass="!h-11 w-full !max-w-full px-3 text-[12px] leading-none"
-        />
-      </div>
+      <p class="mb-4 text-[13px] text-[#8e939d]">{c.bottomCta.text[locale]}</p>
+      <a href="#m-form" class={goldBtn}>{t(locale, 'cta.request')}</a>
     </div>
   </section>
 
-  <section class="border-b border-white/5 bg-[#0b0d10] px-4 py-8" id="m-about">
+  <section class="border-b border-white/5 bg-[#0b0d10] px-4 py-6" id="m-about">
     <div class="mb-5 scroll-mt-24">
-      <span class="mb-1 block text-[10px] font-bold uppercase tracking-widest text-primary">
+      <span class="mb-1 block text-[13px] font-bold uppercase tracking-widest text-primary">
         {about.eyebrow[locale]}
       </span>
       <h2 class="mb-2 text-xl font-bold uppercase tracking-tight text-white">{about.title[locale]}</h2>
-      <p class="text-xs leading-relaxed text-[#8e939d]">{about.lead[locale]}</p>
+      <p class="text-[13px] leading-relaxed text-[#8e939d]">{about.lead[locale]}</p>
     </div>
     <div class="mb-5 space-y-3">
       {
@@ -375,7 +336,7 @@ const fieldClass =
           <div class="rounded border border-white/[0.08] bg-[#111317] p-4">
             <h3 class="mb-1.5 text-sm font-bold text-white">{section.title[locale]}</h3>
             {section.paragraphs.map((paragraph) => (
-              <p class="mb-2 text-xs leading-relaxed text-[#8e939d] last:mb-0">{paragraph[locale]}</p>
+              <p class="mb-2 text-[13px] leading-relaxed text-[#8e939d] last:mb-0">{paragraph[locale]}</p>
             ))}
           </div>
         ))
@@ -387,17 +348,17 @@ const fieldClass =
     </div>
   </section>
 
-  <section class="border-b border-white/5 bg-[#090a0d] px-4 py-8" id="m-contacts">
+  <section class="border-b border-white/5 bg-[#090a0d] px-4 py-6" id="m-contacts">
     <div class="mb-5">
-      <span class="mb-1 block text-[10px] font-bold uppercase tracking-widest text-primary">
+      <span class="mb-1 block text-[13px] font-bold uppercase tracking-widest text-primary">
         {contacts.eyebrow[locale]}
       </span>
       <h2 class="mb-2 text-xl font-bold uppercase tracking-tight text-white">{contacts.title[locale]}</h2>
-      <p class="text-xs leading-relaxed text-[#8e939d]">{contacts.lead[locale]}</p>
+      <p class="text-[13px] leading-relaxed text-[#8e939d]">{contacts.lead[locale]}</p>
     </div>
     <div class="mb-6 space-y-3">
       <div class="rounded border border-white/[0.08] bg-[#111317] p-4">
-        <span class="mb-1 block text-[11px] font-bold uppercase tracking-widest text-[#8e939d]">
+        <span class="mb-1 block text-[13px] font-bold uppercase tracking-widest text-[#8e939d]">
           {lead.phone}
         </span>
         {
@@ -409,24 +370,24 @@ const fieldClass =
         }
       </div>
       <div class="rounded border border-white/[0.08] bg-[#111317] p-4">
-        <span class="mb-1 block text-[11px] font-bold uppercase tracking-widest text-[#8e939d]">Email</span>
+        <span class="mb-1 block text-[13px] font-bold uppercase tracking-widest text-[#8e939d]">Email</span>
         <a href={`mailto:${siteConfig.email}`} class="text-sm font-semibold text-white transition hover:text-primary">
           {siteConfig.email}
         </a>
       </div>
       <div class="rounded border border-white/[0.08] bg-[#111317] p-4">
-        <span class="mb-1 block text-[11px] font-bold uppercase tracking-widest text-[#8e939d]">
+        <span class="mb-1 block text-[13px] font-bold uppercase tracking-widest text-[#8e939d]">
           {locale === 'ru' ? 'Режим' : 'Hours'}
         </span>
-        <div class="text-xs font-semibold text-white">{siteConfig.hours.label[locale]}</div>
-        <div class="text-[11px] text-[#8e939d]">{siteConfig.geo[locale]}</div>
+        <div class="text-[13px] font-semibold text-white">{siteConfig.hours.label[locale]}</div>
+        <div class="text-[13px] text-[#8e939d]">{siteConfig.geo[locale]}</div>
       </div>
       {
         contacts.sections.map((section) => (
           <div class="rounded border border-white/[0.08] bg-[#111317] p-4">
-            <h3 class="mb-1 text-xs font-bold text-white">{section.title[locale]}</h3>
+            <h3 class="mb-1 text-[13px] font-bold text-white">{section.title[locale]}</h3>
             {section.paragraphs.map((paragraph) => (
-              <p class="text-xs leading-relaxed text-[#8e939d]">{paragraph[locale]}</p>
+              <p class="text-[13px] leading-relaxed text-[#8e939d]">{paragraph[locale]}</p>
             ))}
           </div>
         ))
@@ -449,19 +410,19 @@ const fieldClass =
     >
       <div data-m-form-view>
         <h3 class="mb-1 text-base font-bold uppercase text-white">{formCopy.title}</h3>
-        <p class="mb-4 text-xs text-[#8e939d]">{formCopy.lead}</p>
-        <div data-m-errors class="mb-3 hidden rounded border border-error/40 bg-error/10 px-3 py-2 text-[11px] text-error" role="alert"></div>
+        <p class="mb-4 text-[13px] text-[#8e939d]">{formCopy.lead}</p>
+        <div data-m-errors class="mb-3 hidden rounded border border-error/40 bg-error/10 px-3 py-2 text-[13px] text-error" role="alert"></div>
         <form class="space-y-3" novalidate>
           <div>
-            <label class="mb-1 block text-[10px] font-bold uppercase text-[#8e939d]" for="m-lead-name">{formCopy.name}</label>
+            <label class="mb-1 block text-[13px] font-bold uppercase text-[#8e939d]" for="m-lead-name">{formCopy.name}</label>
             <input id="m-lead-name" name="name" type="text" required autocomplete="name" placeholder={formCopy.namePh} class={fieldClass} />
           </div>
           <div>
-            <label class="mb-1 block text-[10px] font-bold uppercase text-[#8e939d]" for="m-lead-phone">{formCopy.phone}</label>
+            <label class="mb-1 block text-[13px] font-bold uppercase text-[#8e939d]" for="m-lead-phone">{formCopy.phone}</label>
             <input id="m-lead-phone" name="phone" type="tel" inputmode="tel" required autocomplete="tel" placeholder="+7 (___) ___-__-__" data-m-phone class:list={[fieldClass, 'font-tech tracking-wide']} />
           </div>
           <div>
-            <label class="mb-1 block text-[10px] font-bold uppercase text-[#8e939d]" for="m-lead-appliance">{formCopy.appliance}</label>
+            <label class="mb-1 block text-[13px] font-bold uppercase text-[#8e939d]" for="m-lead-appliance">{formCopy.appliance}</label>
             <select id="m-lead-appliance" name="applianceSlug" class={fieldClass}>
               <option value="">{lead.applianceEmpty}</option>
               {appliances.map((item) => (
@@ -470,19 +431,19 @@ const fieldClass =
             </select>
           </div>
           <div>
-            <label class="mb-1 block text-[10px] font-bold uppercase text-[#8e939d]" for="m-lead-problem">{formCopy.problem}</label>
+            <label class="mb-1 block text-[13px] font-bold uppercase text-[#8e939d]" for="m-lead-problem">{formCopy.problem}</label>
             <textarea id="m-lead-problem" name="problem" rows="2" placeholder={formCopy.problemPh} class:list={[fieldClass, 'resize-none']}></textarea>
           </div>
           <input type="text" name="company" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
-          <button type="submit" data-m-submit class:list={[goldBtn, 'py-3 text-xs']}>{lead.submit}</button>
-          <p class="text-center text-[11px] leading-snug text-[#8e939d]">
+          <button type="submit" data-m-submit class:list={[goldBtn, 'py-3 text-[13px]']}>{lead.submit}</button>
+          <p class="text-center text-[13px] leading-snug text-[#8e939d]">
             {formCopy.privacyBefore}{' '}
             <a href={localizePath(locale, 'privacy')} class="underline decoration-white/20">{formCopy.privacyLink}</a>.
           </p>
         </form>
       </div>
       <div data-m-success class="hidden py-6 text-center">
-        <p class="mb-2 text-[10px] font-bold uppercase tracking-widest text-primary">{lead.successTitle}</p>
+        <p class="mb-2 text-[13px] font-bold uppercase tracking-widest text-primary">{lead.successTitle}</p>
         <p data-m-thanks class="text-sm leading-relaxed text-white"></p>
       </div>
     </div>
