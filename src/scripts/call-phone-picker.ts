@@ -17,14 +17,12 @@ function syncWidth(root: PickerRoot): number {
 
   const sizerWidth = sizer ? sizer.scrollWidth : 0;
   const contentWidth = Math.ceil(Math.max(triggerWidth, sizerWidth));
-  const parentWidth = root.parentElement?.clientWidth ?? contentWidth;
-  const buttonWidth =
-    root.dataset.fit === 'parent' ? Math.min(contentWidth, parentWidth) : contentWidth;
+  const fitParent = root.dataset.fit === 'parent';
 
   trigger.style.boxSizing = 'border-box';
-  trigger.style.width = `${buttonWidth}px`;
-  trigger.style.minWidth = `${buttonWidth}px`;
-  trigger.style.maxWidth = root.dataset.fit === 'parent' ? '100%' : '';
+  trigger.style.width = fitParent ? '100%' : `${contentWidth}px`;
+  trigger.style.minWidth = fitParent ? '0' : `${contentWidth}px`;
+  trigger.style.maxWidth = fitParent ? '100%' : '';
   panel.style.boxSizing = 'border-box';
   panel.style.width = `${contentWidth}px`;
   panel.style.minWidth = `${contentWidth}px`;

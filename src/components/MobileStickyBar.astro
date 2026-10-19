@@ -13,16 +13,17 @@ const { locale, applianceSlug, applianceLabel } = Astro.props;
 ---
 
 <div
-  class="fixed inset-x-0 bottom-0 z-[100] border-t border-white/10 bg-[#0b0d10]/95 px-2.5 py-2.5 backdrop-blur-md md:hidden"
+  data-sticky-bar
+  class="fixed inset-x-0 bottom-0 z-[100] translate-y-full border-t border-white/10 bg-[#0b0d10]/95 px-2.5 py-2.5 backdrop-blur-md transition-transform duration-300 pointer-events-none md:hidden"
 >
-  <div class="mx-auto flex max-w-md items-center gap-2">
+  <div class="mx-auto grid max-w-md grid-cols-2 items-center gap-2">
     <CallPhonePicker
       locale={locale}
       placement="top"
       showIcon
-      wrapClass="relative min-w-0 flex-1"
+      wrapClass="relative min-w-0 w-full"
       fitParent
-      buttonClass="!h-auto w-full gap-1.5 !bg-[#181b22] px-2 py-3 text-[11px] tracking-wide"
+      buttonClass="!h-[38px] w-full gap-1.5 !bg-[#181b22] px-2 !py-0 !text-[13px] !leading-none tracking-wide"
     />
     <button
       type="button"
@@ -30,7 +31,7 @@ const { locale, applianceSlug, applianceLabel } = Astro.props;
       data-sticky-request
       data-appliance-prefill={applianceSlug}
       data-appliance-label={applianceLabel}
-      class="btn-lead-glow flex min-w-0 flex-1 items-center justify-center gap-1.5 rounded-DEFAULT bg-primary-container px-2 py-3 text-[11px] font-bold uppercase leading-none tracking-wide text-black active:scale-95"
+      class="btn-lead-glow flex h-[38px] w-full min-w-0 items-center justify-center gap-1.5 rounded-DEFAULT bg-primary-container px-2 text-[13px] font-bold uppercase leading-none tracking-wide text-black active:scale-95"
     >
       <svg class="h-3.5 w-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
@@ -41,6 +42,21 @@ const { locale, applianceSlug, applianceLabel } = Astro.props;
 </div>
 
 <script>
+  const bar = document.querySelector('[data-sticky-bar]');
+  const showAfter = () => Math.max(320, window.innerHeight * 0.65);
+
+  const syncBar = () => {
+    if (!bar) return;
+    const visible = window.scrollY > showAfter();
+    bar.classList.toggle('translate-y-full', !visible);
+    bar.classList.toggle('pointer-events-none', !visible);
+    bar.toggleAttribute('aria-hidden', !visible);
+  };
+
+  syncBar();
+  window.addEventListener('scroll', syncBar, { passive: true });
+  window.addEventListener('resize', syncBar);
+
   const button = document.querySelector('[data-sticky-request]');
   button?.addEventListener('click', (event) => {
     const form = document.getElementById('m-form');

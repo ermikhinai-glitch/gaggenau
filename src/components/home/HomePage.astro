@@ -99,7 +99,7 @@ const c = homeContent;
 </section>
 
 <!-- Appliances -->
-<section class="py-space-2xl md:py-space-3xl bg-[#0e1015]" id="appliances">
+<section class="scroll-mt-20 py-space-2xl md:py-space-3xl bg-[#0e1015]" id="appliances">
   <div class="max-w-[1520px] mx-auto px-4 sm:px-6 lg:px-10">
     <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-space-xl">
       <div>
@@ -148,10 +148,9 @@ const c = homeContent;
                     </div>
                     <div class="absolute inset-0 bg-gradient-to-t from-[#0c0e12] via-[#0c0e12]/75 to-[#0c0e12]/15" />
                     <div class="relative z-10 mt-auto flex w-full flex-col justify-end p-5 pt-24">
-                      <p class="text-label-caps text-primary mb-1">{fridgeCard.series[locale]}</p>
-                      <h3 class="font-display text-lg text-text-primary mb-2 group-hover:text-primary transition-colors">
+                      <h3 class="font-display text-lg text-primary mb-2">
                         {item.label[locale]}
-                        <span class="text-[#a3a8b5]"> · </span>
+                        <span> · </span>
                         {wine.label[locale]}
                       </h3>
                       <p class="text-xs text-[#c5cad3] leading-relaxed mb-5">
@@ -188,8 +187,7 @@ const c = homeContent;
                   />
                   <div class="absolute inset-0 bg-gradient-to-t from-[#0c0e12] via-[#0c0e12]/75 to-[#0c0e12]/15" />
                   <div class="relative z-10 mt-auto flex w-full flex-col justify-end p-5 pt-24">
-                    <p class="text-label-caps text-primary mb-1">{card.series[locale]}</p>
-                    <h3 class="font-display text-lg text-text-primary mb-2 group-hover:text-primary transition-colors">
+                    <h3 class="font-display text-lg text-primary mb-2">
                       {item.label[locale]}
                     </h3>
                     <p class="text-xs text-[#c5cad3] leading-relaxed mb-5">{card.description[locale]}</p>

@@ -26,6 +26,13 @@ export const dishwashersPage: AppliancePageContent = {
       },
     },
     {
+      title: { ru: 'Не греет воду', en: 'Water not heating' },
+      text: {
+        ru: 'ТЭН, датчик температуры, проточный нагрев, модуль управления.',
+        en: 'Heater, temperature sensor, flow-through heating, control module.',
+      },
+    },
+    {
       title: { ru: 'Протечка / Aquastop', en: 'Leak / Aquastop' },
       text: {
         ru: 'Уплотнения, патрубки, датчик протечки, поддон.',
