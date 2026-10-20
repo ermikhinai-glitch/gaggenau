@@ -29,7 +29,7 @@ const year = new Date().getFullYear();
           {
             appliances.map((item) => (
               <li>
-                <a href={localizePath(locale, item.path)} class="transition hover:text-white">
+                <a href={localizePath(locale, item.path)} class="footer-link">
                   {item.label[locale]}
                 </a>
               </li>
@@ -44,7 +44,7 @@ const year = new Date().getFullYear();
         <div class="mb-4">
           {
             siteConfig.phones.map((phone) => (
-              <a href={phone.href} class="block font-semibold text-white transition hover:text-primary">
+              <a href={phone.href} class="footer-link block font-semibold text-white">
                 {phone.display}
               </a>
             ))
@@ -53,11 +53,11 @@ const year = new Date().getFullYear();
           <span class="block text-[13px] text-[#60646e]">{siteConfig.hours.label[locale]}</span>
         </div>
         <ul class="space-y-2 border-t border-white/5 pt-3">
-          <li><a href={localizePath(locale, 'about')} class="transition hover:text-white">{t(locale, 'nav.about')}</a></li>
-          <li><a href={localizePath(locale, 'warranty')} class="transition hover:text-white">{t(locale, 'nav.warranty')}</a></li>
-          <li><a href={localizePath(locale, 'contacts')} class="transition hover:text-white">{t(locale, 'nav.contacts')}</a></li>
-          <li><a href={localizePath(locale, 'privacy')} class="transition hover:text-white">{t(locale, 'nav.privacy')}</a></li>
-          <li><a href={localizePath(locale, 'terms')} class="transition hover:text-white">{t(locale, 'nav.terms')}</a></li>
+          <li><a href={localizePath(locale, 'about')} class="footer-link">{t(locale, 'nav.about')}</a></li>
+          <li><a href={localizePath(locale, 'warranty')} class="footer-link">{t(locale, 'nav.warranty')}</a></li>
+          <li><a href={localizePath(locale, 'contacts')} class="footer-link">{t(locale, 'nav.contacts')}</a></li>
+          <li><a href={localizePath(locale, 'privacy')} class="footer-link">{t(locale, 'nav.privacy')}</a></li>
+          <li><a href={localizePath(locale, 'terms')} class="footer-link">{t(locale, 'nav.terms')}</a></li>
         </ul>
       </div>
     </div>
@@ -144,3 +144,19 @@ const year = new Date().getFullYear();
     </div>
   </div>
 </footer>
+
+<style>
+  .footer-link {
+    text-shadow: 0 0 8px rgba(244, 245, 247, 0.35);
+    transition: color 0.2s ease, text-shadow 0.2s ease;
+  }
+
+  .footer-link:hover,
+  .footer-link:focus-visible,
+  .footer-link:active {
+    color: #f4f5f7;
+    text-shadow:
+      0 0 8px rgba(244, 245, 247, 0.7),
+      0 0 16px rgba(255, 255, 255, 0.28);
+  }
+</style>

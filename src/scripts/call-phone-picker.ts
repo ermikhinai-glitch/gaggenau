@@ -15,19 +15,23 @@ function syncWidth(root: PickerRoot): number {
   const triggerWidth = trigger.getBoundingClientRect().width;
   if (triggerWidth < 1) return 0;
 
+  const iconOnly = root.dataset.iconOnly === 'true';
   const sizerWidth = sizer ? sizer.scrollWidth : 0;
   const contentWidth = Math.ceil(Math.max(triggerWidth, sizerWidth));
+  const panelWidth = iconOnly ? Math.ceil(Math.max(sizerWidth, triggerWidth)) : contentWidth;
   const fitParent = root.dataset.fit === 'parent';
 
   trigger.style.boxSizing = 'border-box';
-  trigger.style.width = fitParent ? '100%' : `${contentWidth}px`;
-  trigger.style.minWidth = fitParent ? '0' : `${contentWidth}px`;
-  trigger.style.maxWidth = fitParent ? '100%' : '';
+  if (!iconOnly) {
+    trigger.style.width = fitParent ? '100%' : `${contentWidth}px`;
+    trigger.style.minWidth = fitParent ? '0' : `${contentWidth}px`;
+    trigger.style.maxWidth = fitParent ? '100%' : '';
+  }
   panel.style.boxSizing = 'border-box';
-  panel.style.width = `${contentWidth}px`;
-  panel.style.minWidth = `${contentWidth}px`;
-  panel.style.maxWidth = `${contentWidth}px`;
-  return contentWidth;
+  panel.style.width = `${panelWidth}px`;
+  panel.style.minWidth = `${panelWidth}px`;
+  panel.style.maxWidth = `${panelWidth}px`;
+  return panelWidth;
 }
 
 function positionPanel(root: PickerRoot): void {

@@ -76,15 +76,20 @@ const isWarranty = page.slug === 'warranty';
           <p class="text-base text-text-primary">{siteConfig.hours.label[locale]}</p>
           <p class="mt-2 text-sm text-text-tertiary">{siteConfig.geo[locale]}</p>
         </div>
-        <div class="sm:col-span-2 flex flex-col sm:flex-row gap-3">
+        <div class="sm:col-span-2 grid grid-cols-1 gap-3 sm:grid-cols-2">
           <button
             type="button"
             data-open-lead-modal
-            class="btn-lead-glow inline-flex h-12 items-center justify-center rounded-DEFAULT bg-primary-container px-8 text-sm font-semibold uppercase tracking-wider text-on-primary-container"
+            class="btn-lead-glow inline-flex h-12 w-full items-center justify-center rounded-DEFAULT bg-primary-container px-4 text-sm font-semibold uppercase tracking-wider text-on-primary-container"
           >
             {t(locale, 'cta.request')}
           </button>
-          <CallPhonePicker locale={locale} />
+          <CallPhonePicker
+            locale={locale}
+            fitParent
+            wrapClass="relative min-w-0 w-full"
+            buttonClass="h-12 w-full px-4"
+          />
         </div>
       </div>
     )
