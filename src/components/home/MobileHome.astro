@@ -4,6 +4,7 @@ import { homeContent } from '../../content/home';
 import { leadCopy } from '../../content/lead';
 import { promoA } from '../../content/promo';
 import { utilityPages } from '../../content/utility';
+import CallPhonePicker from '../CallPhonePicker.astro';
 import { t } from '../../i18n/ui';
 import { localizePath } from '../../i18n/utils';
 
@@ -26,13 +27,11 @@ const formCopy = {
     title: 'Быстрая онлайн-заявка',
     lead: 'Инженер свяжется с вами в течение 15 минут',
     name: 'Ваше имя',
-    namePh: 'Константин',
+    namePh: 'Как к вам обращаться',
     phone: 'Телефон для связи',
     appliance: 'Техника Gaggenau',
     problem: 'Кратко опишите проблему',
     problemPh: 'Например: выдаёт ошибку, не греет…',
-    privacyBefore: 'Нажимая кнопку, вы подтверждаете согласие с условиями',
-    privacyLink: 'политики конфиденциальности',
     caption: 'Премиальный сервис Gaggenau',
     contactsMenu: 'Контакты',
   },
@@ -40,13 +39,11 @@ const formCopy = {
     title: 'Quick online request',
     lead: 'An engineer will contact you within 15 minutes',
     name: 'Your name',
-    namePh: 'Alex',
+    namePh: 'Your name',
     phone: 'Phone',
     appliance: 'Gaggenau appliance',
     problem: 'Briefly describe the issue',
     problemPh: 'For example: error code, not heating…',
-    privacyBefore: 'By submitting you agree to the',
-    privacyLink: 'privacy policy',
     caption: 'Premium Gaggenau service',
     contactsMenu: 'Contacts',
   },
@@ -55,14 +52,14 @@ const formCopy = {
 const goldBtn =
   'btn-lead-glow inline-flex h-11 w-full items-center justify-center rounded bg-primary-container px-2 text-center text-[13px] font-bold uppercase leading-none tracking-wide text-black';
 const ghostBtn =
-  'inline-flex h-11 w-full items-center justify-center rounded border border-white/20 bg-[#121418] px-2 text-center text-[13px] font-medium uppercase leading-none tracking-wide text-white';
+  'btn-outline-glow inline-flex h-11 w-full items-center justify-center rounded border border-primary/70 bg-[#121418] px-2 text-center text-[13px] font-medium uppercase leading-none tracking-wide text-white shadow-[0_0_0_1px_rgba(197,160,89,0.4),0_0_22px_rgba(197,160,89,0.55),0_0_46px_rgba(197,160,89,0.3)]';
 const fieldClass =
   'scheme-dark w-full rounded border border-white/10 bg-[#181b22] px-3 py-2.5 text-[13px] text-white outline-none placeholder:text-white/20 focus:border-primary';
 ---
 
 <div class="md:hidden">
   <section class="border-b border-white/5 pb-5">
-    <div class="relative min-h-[460px] overflow-hidden">
+    <div class="relative min-h-[460px]">
       <img
         src="/images/home/hero-kitchen.webp"
         alt=""
@@ -70,9 +67,8 @@ const fieldClass =
         height="640"
         fetchpriority="high"
         decoding="async"
-        class="absolute inset-0 h-full w-full object-cover object-[center_30%]"
+        class="absolute inset-0 h-full w-full overflow-hidden object-cover object-[center_30%]"
       />
-      <div class="absolute inset-0 bg-gradient-to-t from-[#090a0d] via-[#090a0d]/50 to-[#090a0d]/15"></div>
       <div class="relative z-10 flex min-h-[460px] flex-col justify-between px-4 pb-5 pt-4">
         <div class="inline-flex max-w-full items-center gap-2 self-start rounded-full border border-primary/40 bg-black/40 px-3 py-1.5 text-[13px] font-medium uppercase leading-tight tracking-normal text-primary backdrop-blur">
           <span class="h-1.5 w-1.5 shrink-0 rounded-full bg-primary"></span>
@@ -90,7 +86,20 @@ const fieldClass =
           <span class="text-brand-mark text-primary">{c.hero.titleAccent[locale]}</span>
         </h1>
         <p class="mb-4 max-w-[34ch] text-[13px] font-light leading-relaxed text-[#f3f4f6]">{c.hero.subtitle[locale]}</p>
-        <a href="#m-form" class={goldBtn}>{t(locale, 'cta.request')}</a>
+        <div class="flex flex-col gap-2">
+          <a href="#m-form" class="btn-lead-glow inline-flex h-12 w-full items-center justify-center gap-2 rounded-DEFAULT bg-primary-container px-4 text-center text-[13px] font-bold uppercase leading-none tracking-wide text-black">
+            {locale === 'ru' ? 'Оставить заявку на выезд' : 'Request an on-site visit'}
+            <span aria-hidden="true">→</span>
+          </a>
+          <CallPhonePicker
+            locale={locale}
+            showIcon
+            fitParent
+            placement="bottom"
+            wrapClass="relative w-full"
+            buttonClass="h-12 w-full gap-2 px-4 text-[13px] font-bold leading-none"
+          />
+        </div>
         </div>
       </div>
     </div>
@@ -109,7 +118,7 @@ const fieldClass =
     </div>
   </section>
 
-  <section class="scroll-mt-20 border-b border-white/5 bg-[#0b0d10] px-4 py-6" id="m-appliances">
+  <section class="scroll-mt-36 border-b border-white/5 bg-[#0b0d10] px-4 py-6" id="m-appliances">
     <div class="mb-5">
       <span class="mb-1 block text-[13px] font-bold uppercase tracking-widest text-primary">
         {c.appliancesSection.eyebrow[locale]}
@@ -141,7 +150,7 @@ const fieldClass =
                 href={href}
                 class="card-lux-glow group col-span-2 flex flex-row overflow-hidden rounded border bg-[#111317]"
               >
-                <div class="relative w-2/5 min-w-[128px] self-stretch overflow-hidden bg-black/40">
+                <div class="relative w-[calc(50%+5px)] shrink-0 self-stretch overflow-hidden bg-black/40">
                   <img
                     src={card.image}
                     alt={item.label[locale]}
@@ -149,11 +158,11 @@ const fieldClass =
                     height="280"
                     loading="lazy"
                     decoding="async"
-                    class="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                    class="absolute inset-0 h-full w-full object-cover saturate-[1.35] brightness-[1.08] contrast-[1.08] transition duration-500 group-hover:scale-105"
                   />
-                  <div class="absolute inset-0 bg-gradient-to-r from-transparent to-[#111317] opacity-60"></div>
+                  <div class="absolute inset-0 bg-gradient-to-r from-transparent to-[#111317] opacity-35"></div>
                 </div>
-                <div class="flex flex-1 flex-col justify-between p-3">
+                <div class="flex flex-1 flex-col justify-between p-2.5">
                   <div>
                     <h3 class="mb-0.5 line-clamp-2 text-[13px] font-bold leading-snug text-primary">{title}</h3>
                     <p class="mb-2.5 text-[13px] leading-snug text-[#a3a8b5]">{description}</p>
@@ -181,9 +190,9 @@ const fieldClass =
                   height="280"
                   loading="lazy"
                   decoding="async"
-                  class="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                  class="h-full w-full object-cover saturate-[1.35] brightness-[1.08] contrast-[1.08] transition duration-500 group-hover:scale-105"
                 />
-                <div class="absolute inset-0 bg-gradient-to-t from-[#111317] via-transparent to-transparent opacity-80"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-[#111317] via-transparent to-transparent opacity-45"></div>
               </div>
               <div class="flex flex-1 flex-col justify-between p-2.5">
                 <div>
@@ -323,7 +332,7 @@ const fieldClass =
   </section>
 
   <section class="border-b border-white/5 bg-[#0b0d10] px-4 py-6" id="m-about">
-    <div class="mb-5 scroll-mt-24">
+    <div class="mb-5 scroll-mt-36">
       <span class="mb-1 block text-[13px] font-bold uppercase tracking-widest text-primary">
         {about.eyebrow[locale]}
       </span>
@@ -361,13 +370,19 @@ const fieldClass =
         <span class="mb-1 block text-[13px] font-bold uppercase tracking-widest text-[#8e939d]">
           {lead.phone}
         </span>
-        {
-          siteConfig.phones.map((phone) => (
-            <a href={phone.href} class="block text-base font-bold text-white transition hover:text-primary">
-              {phone.display}
-            </a>
-          ))
-        }
+        <div class="grid w-max grid-cols-[max-content_max-content] gap-x-1.5 tabular-nums">
+          {
+            siteConfig.phones.map((phone) => (
+              <a
+                href={phone.href}
+                class="col-span-2 grid grid-cols-subgrid whitespace-nowrap text-base font-bold text-white transition hover:text-primary"
+              >
+                <span class="text-right">{phone.prefix}</span>
+                <span>{phone.rest}</span>
+              </a>
+            ))
+          }
+        </div>
       </div>
       <div class="rounded border border-white/[0.08] bg-[#111317] p-4">
         <span class="mb-1 block text-[13px] font-bold uppercase tracking-widest text-[#8e939d]">Email</span>
@@ -396,12 +411,13 @@ const fieldClass =
 
     <div
       id="m-form"
-      class="scroll-mt-24 rounded border border-primary/40 bg-[#111317] p-5"
+      class="scroll-mt-36 rounded border border-primary/40 bg-[#111317] p-5"
       data-mobile-lead
       data-locale={locale}
       data-api-url={siteConfig.leadApiUrl}
       data-error-name={lead.errorName}
       data-error-phone={lead.errorPhone}
+      data-error-consent={lead.errorConsent}
       data-error-network={lead.errorNetwork}
       data-submitting={lead.submitting}
       data-submit={lead.submit}
@@ -421,25 +437,37 @@ const fieldClass =
             <label class="mb-1 block text-[13px] font-bold uppercase text-[#8e939d]" for="m-lead-phone">{formCopy.phone}</label>
             <input id="m-lead-phone" name="phone" type="tel" inputmode="tel" required autocomplete="tel" placeholder="+7 (___) ___-__-__" data-m-phone class:list={[fieldClass, 'font-tech tracking-wide']} />
           </div>
-          <div>
-            <label class="mb-1 block text-[13px] font-bold uppercase text-[#8e939d]" for="m-lead-appliance">{formCopy.appliance}</label>
-            <select id="m-lead-appliance" name="applianceSlug" class={fieldClass}>
-              <option value="">{lead.applianceEmpty}</option>
-              {appliances.map((item) => (
-                <option value={item.slug}>{item.label[locale]}</option>
-              ))}
-            </select>
-          </div>
-          <div>
-            <label class="mb-1 block text-[13px] font-bold uppercase text-[#8e939d]" for="m-lead-problem">{formCopy.problem}</label>
-            <textarea id="m-lead-problem" name="problem" rows="2" placeholder={formCopy.problemPh} class:list={[fieldClass, 'resize-none']}></textarea>
-          </div>
+          <details class="rounded border border-white/10 bg-[#181b22]">
+            <summary class="cursor-pointer list-none px-3 py-2.5 text-[13px] font-bold uppercase text-[#c5cad3]">
+              {lead.optional}
+            </summary>
+            <div class="space-y-3 border-t border-white/10 px-3 py-3">
+              <div>
+                <label class="mb-1 block text-[13px] font-bold uppercase text-[#8e939d]" for="m-lead-appliance">{formCopy.appliance}</label>
+                <select id="m-lead-appliance" name="applianceSlug" class={fieldClass}>
+                  <option value="">{lead.applianceEmpty}</option>
+                  {appliances.map((item) => (
+                    <option value={item.slug}>{item.label[locale]}</option>
+                  ))}
+                </select>
+              </div>
+              <div>
+                <label class="mb-1 block text-[13px] font-bold uppercase text-[#8e939d]" for="m-lead-problem">{formCopy.problem}</label>
+                <textarea id="m-lead-problem" name="problem" rows="2" placeholder={formCopy.problemPh} class:list={[fieldClass, 'resize-none']}></textarea>
+              </div>
+            </div>
+          </details>
           <input type="text" name="company" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
+          <label class="flex items-start gap-2.5 text-[13px] leading-snug text-[#c5cad3]">
+            <input id="m-lead-consent" name="consent" type="checkbox" required data-m-consent class="lux-checkbox mt-0.5" />
+            <span>
+              {lead.consent}{' '}
+              <a href={localizePath(locale, 'privacy')} class="text-primary underline decoration-primary/40" target="_blank" rel="noopener noreferrer">
+                ({lead.privacy})
+              </a>
+            </span>
+          </label>
           <button type="submit" data-m-submit class:list={[goldBtn, 'py-3 text-[13px]']}>{lead.submit}</button>
-          <p class="text-center text-[13px] leading-snug text-[#8e939d]">
-            {formCopy.privacyBefore}{' '}
-            <a href={localizePath(locale, 'privacy')} class="underline decoration-white/20">{formCopy.privacyLink}</a>.
-          </p>
         </form>
       </div>
       <div data-m-success class="hidden py-6 text-center">
@@ -507,9 +535,11 @@ const fieldClass =
     const name = String(data.get('name') || '').trim();
     const phoneRaw = String(data.get('phone') || '').trim();
     const digits = extractRuPhoneDigits(phoneRaw);
+    const consent = Boolean(form.querySelector<HTMLInputElement>('[data-m-consent]')?.checked);
     const messages: string[] = [];
     if (!name) messages.push(root.dataset.errorName || '');
     if (digits.length !== 11) messages.push(root.dataset.errorPhone || '');
+    if (!consent) messages.push(root.dataset.errorConsent || '');
 
     if (errorBox) {
       errorBox.textContent = messages.filter(Boolean).join(' · ');
@@ -535,7 +565,7 @@ const fieldClass =
           locale: root.dataset.locale || 'ru',
           name,
           phone: `+${digits}`,
-          consent: true,
+          consent,
           city: '',
           time: '',
           applianceSlug,

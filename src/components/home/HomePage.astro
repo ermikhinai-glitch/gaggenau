@@ -30,10 +30,8 @@ const c = homeContent;
       height="1080"
       fetchpriority="high"
       decoding="async"
-      class="h-full w-full object-cover object-[center_30%] brightness-[0.72] contrast-[1.05] scale-105 motion-hero-bg"
+      class="h-full w-full object-cover object-[center_30%] contrast-[1.05] motion-hero-bg"
     />
-    <div class="absolute inset-0 bg-gradient-to-r from-[#0c0e12] via-[#0c0e12]/85 to-[#0c0e12]/30"></div>
-    <div class="absolute inset-0 bg-gradient-to-t from-[#0c0e12] via-transparent to-[#0c0e12]/70"></div>
   </div>
 
   <div
@@ -60,17 +58,19 @@ const c = homeContent;
         {c.hero.subtitle[locale]}
       </p>
 
-      <div class="flex max-w-xl flex-col gap-4 sm:flex-row">
+      <div class="grid max-w-xl grid-cols-1 gap-3 sm:grid-cols-2">
         <button
           type="button"
           data-open-lead-modal
-          class="btn-lead-glow inline-flex h-14 items-center justify-center rounded-DEFAULT bg-primary-container px-10 text-sm font-semibold uppercase tracking-wider text-on-primary-container active:scale-[0.98]"
+          class="btn-lead-glow inline-flex h-14 w-full items-center justify-center rounded-DEFAULT bg-primary-container px-4 text-sm font-semibold uppercase tracking-wider text-on-primary-container active:scale-[0.98]"
         >
           {t(locale, 'cta.request')}
         </button>
         <CallPhonePicker
           locale={locale}
-          buttonClass="h-14 w-full px-10 sm:w-auto"
+          fitParent
+          wrapClass="relative min-w-0 w-full"
+          buttonClass="h-14 w-full px-4"
         />
       </div>
     </div>
@@ -134,7 +134,7 @@ const c = homeContent;
                         height="600"
                         loading="lazy"
                         decoding="async"
-                        class="h-full w-full object-cover transition-transform duration-700 motion-safe:group-hover:scale-105"
+                        class="h-full w-full object-cover saturate-[1.35] brightness-[1.08] contrast-[1.08] transition-transform duration-700 motion-safe:group-hover:scale-105"
                       />
                       <img
                         src={wineCard.image}
@@ -143,10 +143,10 @@ const c = homeContent;
                         height="600"
                         loading="lazy"
                         decoding="async"
-                        class="h-full w-full object-cover transition-transform duration-700 motion-safe:group-hover:scale-105"
+                        class="h-full w-full object-cover saturate-[1.35] brightness-[1.08] contrast-[1.08] transition-transform duration-700 motion-safe:group-hover:scale-105"
                       />
                     </div>
-                    <div class="absolute inset-0 bg-gradient-to-t from-[#0c0e12] via-[#0c0e12]/75 to-[#0c0e12]/15" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#0c0e12] via-[#0c0e12]/35 to-transparent" />
                     <div class="relative z-10 mt-auto flex w-full flex-col justify-end p-5 pt-24">
                       <h3 class="font-display text-lg text-primary mb-2">
                         {item.label[locale]}
@@ -183,9 +183,9 @@ const c = homeContent;
                     height="600"
                     loading="lazy"
                     decoding="async"
-                    class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 motion-safe:group-hover:scale-105"
+                    class="absolute inset-0 h-full w-full object-cover saturate-[1.35] brightness-[1.08] contrast-[1.08] transition-transform duration-700 motion-safe:group-hover:scale-105"
                   />
-                  <div class="absolute inset-0 bg-gradient-to-t from-[#0c0e12] via-[#0c0e12]/75 to-[#0c0e12]/15" />
+                  <div class="absolute inset-0 bg-gradient-to-t from-[#0c0e12] via-[#0c0e12]/35 to-transparent" />
                   <div class="relative z-10 mt-auto flex w-full flex-col justify-end p-5 pt-24">
                     <h3 class="font-display text-lg text-primary mb-2">
                       {item.label[locale]}
@@ -250,9 +250,9 @@ const c = homeContent;
         height="900"
         loading="lazy"
         decoding="async"
-        class="absolute inset-0 h-full w-full object-cover"
+        class="absolute inset-0 h-full w-full object-cover saturate-[1.35] brightness-[1.08] contrast-[1.08]"
       />
-      <div class="absolute inset-0 bg-gradient-to-t from-surface-base via-transparent to-transparent"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-surface-base/70 via-transparent to-transparent"></div>
     </div>
     <div class="lg:col-span-7">
       <p class="text-label-caps text-primary mb-2">{c.trust.eyebrow[locale]}</p>
@@ -343,15 +343,20 @@ const c = homeContent;
       {c.bottomCta.title[locale]}
     </h2>
     <p class="text-text-secondary mb-space-xl max-w-xl mx-auto">{c.bottomCta.text[locale]}</p>
-    <div class="flex flex-col sm:flex-row justify-center gap-4">
+    <div class="mx-auto grid w-full max-w-xl grid-cols-1 gap-3 sm:grid-cols-2">
       <button
         type="button"
         data-open-lead-modal
-        class="btn-lead-glow inline-flex h-12 items-center justify-center rounded-DEFAULT bg-primary-container px-8 text-sm font-semibold uppercase tracking-wider text-on-primary-container"
+        class="btn-lead-glow inline-flex h-12 w-full items-center justify-center rounded-DEFAULT bg-primary-container px-4 text-sm font-semibold uppercase tracking-wider text-on-primary-container"
       >
         {t(locale, 'cta.request')}
       </button>
-      <CallPhonePicker locale={locale} />
+      <CallPhonePicker
+        locale={locale}
+        fitParent
+        wrapClass="relative min-w-0 w-full"
+        buttonClass="h-12 w-full px-4"
+      />
     </div>
   </div>
 </section>

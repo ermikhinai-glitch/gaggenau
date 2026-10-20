@@ -9,10 +9,12 @@ interface Props {
   placement?: 'top' | 'bottom';
   showIcon?: boolean;
   fitParent?: boolean;
+  iconOnly?: boolean;
+  label?: string;
 }
 
 const callButtonType =
-  'btn-outline-glow inline-flex items-center justify-center rounded-DEFAULT border bg-transparent font-tech text-tech-data uppercase tracking-wider text-text-primary';
+  'btn-lead-glow inline-flex items-center justify-center rounded-DEFAULT border border-primary/50 bg-[#181b22]/65 font-tech text-tech-data font-semibold uppercase tracking-wider text-[#f4f5f7] backdrop-blur-md hover:bg-[#181b22]/80';
 
 const {
   locale,
@@ -21,7 +23,10 @@ const {
   placement = 'bottom',
   showIcon = false,
   fitParent = false,
+  iconOnly = false,
+  label,
 } = Astro.props;
+const buttonLabel = label || t(locale, 'cta.call');
 ---
 
 <div
@@ -29,28 +34,37 @@ const {
   data-call-phone-picker
   data-placement={placement}
   data-fit={fitParent ? 'parent' : undefined}
+  data-icon-only={iconOnly ? 'true' : undefined}
 >
-  <div class="grid w-full grid-cols-[minmax(max-content,1fr)]">
+  <div class:list={[iconOnly ? 'inline-flex' : 'grid w-full grid-cols-[minmax(max-content,1fr)]']}>
     <button
       type="button"
       data-call-phone-trigger
-      class:list={[callButtonType, buttonClass, 'col-start-1 row-start-1 !w-full !max-w-none']}
+      class:list={[
+        iconOnly
+          ? 'btn-lead-glow inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-DEFAULT border border-primary/50 bg-[#181b22]/65 text-primary backdrop-blur-md hover:bg-[#181b22]/80'
+          : [callButtonType, buttonClass, 'col-start-1 row-start-1 !w-full !max-w-none'],
+      ]}
       aria-haspopup="dialog"
       aria-expanded="false"
+      aria-label={iconOnly ? t(locale, 'cta.call') : undefined}
     >
       {
-        showIcon && (
-          <svg class="h-3.5 w-3.5 shrink-0 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        (showIcon || iconOnly) && (
+          <svg class={iconOnly ? 'h-4 w-4' : 'h-3.5 w-3.5 shrink-0 text-primary'} fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
           </svg>
         )
       }
-      {t(locale, 'cta.call')}
+      {!iconOnly && buttonLabel}
     </button>
     <div
       aria-hidden="true"
       data-call-phone-sizer
-      class="pointer-events-none invisible col-start-1 row-start-1 h-0 min-h-0 w-max justify-self-start self-start overflow-hidden"
+      class:list={[
+        'pointer-events-none invisible h-0 min-h-0 w-max overflow-hidden',
+        iconOnly ? 'absolute' : 'col-start-1 row-start-1 justify-self-start self-start',
+      ]}
     >
       <div class="w-max border p-3">
         <div class="grid w-max grid-cols-[max-content_max-content] gap-x-1.5 px-1 font-tech text-tech-data tabular-nums">
@@ -69,7 +83,7 @@ const {
   <div
     data-call-phone-panel
     role="dialog"
-    aria-label={t(locale, 'cta.call')}
+    aria-label={buttonLabel}
     hidden
     class="btn-outline-glow fixed z-[150] hidden border bg-[#14171d] p-3"
   >
