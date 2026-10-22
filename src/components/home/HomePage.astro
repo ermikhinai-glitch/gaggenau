@@ -30,7 +30,7 @@ const c = homeContent;
       height="1080"
       fetchpriority="high"
       decoding="async"
-      class="h-full w-full object-cover object-[center_30%] contrast-[1.05] motion-hero-bg"
+      class="h-full w-full object-cover object-[center_30%] brightness-[0.72] contrast-[1.05] motion-hero-bg"
     />
   </div>
 
@@ -134,7 +134,7 @@ const c = homeContent;
                         height="600"
                         loading="lazy"
                         decoding="async"
-                        class="h-full w-full object-cover saturate-[1.35] brightness-[1.08] contrast-[1.08] transition-transform duration-700 motion-safe:group-hover:scale-105"
+                        class="h-full w-full object-cover saturate-[1.35] brightness-[0.72] contrast-[1.08] transition-transform duration-700 motion-safe:group-hover:scale-105"
                       />
                       <img
                         src={wineCard.image}
@@ -143,7 +143,7 @@ const c = homeContent;
                         height="600"
                         loading="lazy"
                         decoding="async"
-                        class="h-full w-full object-cover saturate-[1.35] brightness-[1.08] contrast-[1.08] transition-transform duration-700 motion-safe:group-hover:scale-105"
+                        class="h-full w-full object-cover saturate-[1.35] brightness-[0.72] contrast-[1.08] transition-transform duration-700 motion-safe:group-hover:scale-105"
                       />
                     </div>
                     <div class="absolute inset-0 bg-gradient-to-t from-[#0c0e12] via-[#0c0e12]/35 to-transparent" />
@@ -183,7 +183,7 @@ const c = homeContent;
                     height="600"
                     loading="lazy"
                     decoding="async"
-                    class="absolute inset-0 h-full w-full object-cover saturate-[1.35] brightness-[1.08] contrast-[1.08] transition-transform duration-700 motion-safe:group-hover:scale-105"
+                    class="absolute inset-0 h-full w-full object-cover saturate-[1.35] brightness-[0.72] contrast-[1.08] transition-transform duration-700 motion-safe:group-hover:scale-105"
                   />
                   <div class="absolute inset-0 bg-gradient-to-t from-[#0c0e12] via-[#0c0e12]/35 to-transparent" />
                   <div class="relative z-10 mt-auto flex w-full flex-col justify-end p-5 pt-24">
@@ -250,7 +250,7 @@ const c = homeContent;
         height="900"
         loading="lazy"
         decoding="async"
-        class="absolute inset-0 h-full w-full object-cover saturate-[1.35] brightness-[1.08] contrast-[1.08]"
+        class="absolute inset-0 h-full w-full object-cover saturate-[1.35] brightness-[0.72] contrast-[1.08]"
       />
       <div class="absolute inset-0 bg-gradient-to-t from-surface-base/70 via-transparent to-transparent"></div>
     </div>
@@ -271,25 +271,44 @@ const c = homeContent;
   </div>
 </section>
 
-<!-- Reviews placeholder -->
-<section class="py-space-2xl md:py-space-3xl border-t border-hairline bg-[#0e1015]">
+<!-- Reviews -->
+<section class="py-space-2xl md:py-space-3xl border-t border-hairline bg-[#0e1015]" id="reviews">
   <div class="max-w-[1520px] mx-auto px-4 sm:px-6 lg:px-10">
     <div class="flex flex-wrap items-end justify-between gap-4 mb-space-lg">
       <div>
         <p class="text-label-caps text-primary mb-2">{c.reviews.eyebrow[locale]}</p>
         <h2 class="text-headline-lg text-text-primary uppercase">{c.reviews.title[locale]}</h2>
       </div>
-      <span class="inline-flex rounded-full border border-status-warning/40 px-3 py-1 text-[11px] font-tech uppercase tracking-wider text-status-warning">
-        {c.reviews.badge[locale]}
-      </span>
+      <button
+        type="button"
+        data-open-review-modal
+        class="btn-lead-glow inline-flex h-11 items-center justify-center rounded-DEFAULT bg-primary-container px-5 text-[13px] font-semibold uppercase tracking-wider text-on-primary-container"
+      >
+        {c.reviews.cta[locale]}
+      </button>
     </div>
     <p class="text-sm text-text-tertiary mb-space-lg max-w-2xl">{c.reviews.note[locale]}</p>
-    <div class="grid md:grid-cols-3 gap-4">
+    <div
+      class="reviews-track flex snap-x snap-mandatory gap-4 overflow-x-auto px-1 pt-2 pb-3"
+      data-reviews-list
+    >
+      <template data-review-card-template>
+        <blockquote class="surface-lux-glow flex min-h-[10.5rem] w-[calc(100%-2px)] shrink-0 snap-start flex-col justify-between rounded-DEFAULT border bg-surface-raised/50 p-space-lg md:w-[calc((100%-1rem)/2)] lg:w-[calc((100%-2rem)/3)] xl:w-[calc((100%-3rem)/4)]">
+          <p class="text-sm text-text-secondary leading-relaxed mb-space-md">
+            “<span data-review-text></span>”
+          </p>
+          <footer class="text-tech-data text-text-tertiary">
+            <span data-review-name></span>, <span data-review-city></span>
+          </footer>
+        </blockquote>
+      </template>
       {
         c.reviews.items.map((item) => (
-          <blockquote class="rounded-DEFAULT border border-dashed border-white/15 bg-surface-raised/50 p-space-lg">
+          <blockquote class="surface-lux-glow flex min-h-[10.5rem] w-[calc(100%-2px)] shrink-0 snap-start flex-col justify-between rounded-DEFAULT border bg-surface-raised/50 p-space-lg md:w-[calc((100%-1rem)/2)] lg:w-[calc((100%-2rem)/3)] xl:w-[calc((100%-3rem)/4)]">
             <p class="text-sm text-text-secondary leading-relaxed mb-space-md">“{item.text[locale]}”</p>
-            <footer class="text-tech-data text-text-tertiary">{item.name[locale]}</footer>
+            <footer class="text-tech-data text-text-tertiary">
+              {item.name[locale]}, {item.city[locale]}
+            </footer>
           </blockquote>
         ))
       }
@@ -321,11 +340,16 @@ const c = homeContent;
 <!-- About teaser -->
 <section class="py-space-2xl border-t border-hairline bg-[#0e1015]" id="about">
   <div class="max-w-[1520px] mx-auto px-4 sm:px-6 lg:px-10 flex flex-col md:flex-row md:items-end justify-between gap-space-lg">
-    <div class="max-w-2xl">
+    <a
+      href={localizePath(locale)}
+      class="group block max-w-2xl no-underline"
+    >
       <p class="text-label-caps text-primary mb-2">{c.about.eyebrow[locale]}</p>
-      <h2 class="text-headline-lg text-text-primary uppercase mb-space-md">{c.about.title[locale]}</h2>
+      <h2 class="text-lux-glow text-headline-lg text-text-primary uppercase mb-space-md">
+        {c.about.title[locale]}
+      </h2>
       <p class="text-text-secondary leading-relaxed">{c.about.body[locale]}</p>
-    </div>
+    </a>
     <a
       href={localizePath(locale, 'about')}
       class="btn-outline-glow inline-flex h-12 items-center justify-center rounded-DEFAULT border px-6 font-tech text-tech-data uppercase tracking-wider text-primary hover:bg-white/5"

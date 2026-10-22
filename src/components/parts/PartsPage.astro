@@ -1,0 +1,204 @@
+---
+import CallPhonePicker from '../CallPhonePicker.astro';
+import { appliances, type Locale } from '../../config/site';
+import { formatPartPrice, partsPage, sortedPartsCatalog } from '../../content/parts';
+import { t } from '../../i18n/ui';
+import { localizePath } from '../../i18n/utils';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const c = partsPage;
+const catalog = sortedPartsCatalog();
+const groups = appliances
+  .map((item) => ({
+    slug: item.slug,
+    label: item.label[locale],
+    items: catalog.filter((part) => part.applianceSlug === item.slug),
+  }))
+  .filter((group) => group.items.length > 0);
+---
+
+<div class="max-w-[1520px] mx-auto px-4 sm:px-6 lg:px-10 pt-space-md pb-space-xs">
+  <nav class="flex flex-wrap items-center gap-2 text-[13px] md:text-[14px] text-text-secondary" aria-label="Breadcrumb">
+    <a href={localizePath(locale)} class="hover:text-primary transition-colors">
+      {locale === 'ru' ? 'Главная' : 'Home'}
+    </a>
+    <span class="opacity-40">/</span>
+    <span class="crumb-white-glow">{c.title[locale]}</span>
+  </nav>
+</div>
+
+<section class="mx-auto max-w-[1100px] px-4 sm:px-6 lg:px-10 pt-space-lg pb-space-3xl motion-fade-up">
+  <p class="text-label-caps text-primary mb-3">{c.eyebrow[locale]}</p>
+  <h1 class="text-headline-lg text-text-primary uppercase mb-space-md">{c.title[locale]}</h1>
+  <p class="text-base sm:text-lg text-text-secondary leading-relaxed mb-space-xl max-w-3xl">
+    {c.lead[locale]}
+  </p>
+
+  <div class="mb-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between" data-parts-toolbar>
+    <div class="flex flex-wrap gap-2" role="tablist" aria-label={locale === 'ru' ? 'Категории' : 'Categories'}>
+      <button
+        type="button"
+        data-parts-filter=""
+        aria-pressed="true"
+        class="rounded-full border border-primary/50 bg-primary/15 px-3 py-1.5 text-[11px] font-tech uppercase tracking-wider text-primary"
+      >
+        {c.all[locale]}
+      </button>
+      {
+        appliances.map((item) => (
+          <button
+            type="button"
+            data-parts-filter={item.slug}
+            aria-pressed="false"
+            class="rounded-full border border-white/15 bg-transparent px-3 py-1.5 text-[11px] font-tech uppercase tracking-wider text-[#c5cad3] hover:border-primary/40 hover:text-primary"
+          >
+            {item.label[locale]}
+          </button>
+        ))
+      }
+    </div>
+    <label class="sr-only" for="parts-search">{c.searchPlaceholder[locale]}</label>
+    <input
+      id="parts-search"
+      type="search"
+      data-parts-search
+      placeholder={c.searchPlaceholder[locale]}
+      class="scheme-dark w-full rounded-DEFAULT border border-white/10 bg-[#181b22] px-3 py-2.5 text-[13px] text-white outline-none placeholder:text-white/30 focus:border-primary sm:max-w-xs"
+    />
+  </div>
+
+  <div class="space-y-space-xl" data-parts-catalog>
+    {
+      groups.map((group) => (
+        <div data-parts-group data-category={group.slug}>
+          <h2 class="text-label-caps text-primary mb-3">{group.label}</h2>
+          <div class="overflow-hidden rounded-DEFAULT border border-hairline bg-surface-raised/40">
+            <div class="hidden md:grid grid-cols-[8.5rem_minmax(0,1fr)_8rem_8.5rem] border-b border-white/10 text-[11px] font-tech uppercase tracking-wider text-primary">
+              <span class="border-r border-white/10 px-4 py-3">{c.sku[locale]}</span>
+              <span class="border-r border-white/10 px-4 py-3">{c.nameCol[locale]}</span>
+              <span class="border-r border-white/10 px-4 py-3 text-right">{c.price[locale]}</span>
+              <span class="px-4 py-3"></span>
+            </div>
+            <ul>
+              {
+                group.items.map((item) => (
+                  <li
+                    data-parts-row
+                    data-category={item.applianceSlug}
+                    data-search={`${item.sku} ${item.name.ru} ${item.name.en} ${item.note.ru} ${item.note.en}`}
+                    class="border-b border-white/5 last:border-b-0"
+                  >
+                    <div class="px-4 py-4 md:grid md:grid-cols-[8.5rem_minmax(0,1fr)_8rem_8.5rem] md:items-center md:gap-0 md:px-0 md:py-0">
+                      <div class="mb-1 font-tech text-[12px] tracking-wide text-primary md:mb-0 md:border-r md:border-white/10 md:px-4 md:py-4">
+                        {item.sku || '—'}
+                      </div>
+                      <div class="md:border-r md:border-white/10 md:px-4 md:py-4">
+                        <div class="parts-name-glow text-sm font-medium">{item.name[locale]}</div>
+                        <p class="mt-1 text-[13px] leading-snug text-[#8e939d]">{item.note[locale]}</p>
+                      </div>
+                      <div class="mt-2 font-tech text-base text-text-primary md:mt-0 md:border-r md:border-white/10 md:px-4 md:py-4 md:text-right">
+                        {formatPartPrice(item.priceRub, locale)}
+                      </div>
+                      <div class="md:px-4 md:py-4">
+                        <button
+                          type="button"
+                          data-open-lead-modal
+                          data-appliance-prefill={item.applianceSlug}
+                          data-appliance-label={item.name[locale]}
+                          class="btn-lead-glow mt-3 inline-flex h-10 w-full items-center justify-center rounded-DEFAULT bg-primary-container px-3 text-[11px] font-semibold uppercase tracking-wider text-on-primary-container md:mt-0"
+                        >
+                          {c.order[locale]}
+                        </button>
+                      </div>
+                    </div>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+        </div>
+      ))
+    }
+    <p data-parts-empty class="hidden px-4 py-8 text-center text-sm text-[#8e939d]">{c.empty[locale]}</p>
+  </div>
+
+  <div class="mt-space-2xl grid grid-cols-1 gap-3 border-t border-hairline pt-space-xl sm:grid-cols-2">
+    <button
+      type="button"
+      data-open-lead-modal
+      class="btn-lead-glow inline-flex h-12 w-full items-center justify-center rounded-DEFAULT bg-primary-container px-4 text-sm font-semibold uppercase tracking-wider text-on-primary-container"
+    >
+      {t(locale, 'cta.request')}
+    </button>
+    <CallPhonePicker
+      locale={locale}
+      fitParent
+      wrapClass="relative min-w-0 w-full"
+      buttonClass="h-12 w-full px-4"
+    />
+  </div>
+</section>
+
+<script>
+  const toolbar = document.querySelector('[data-parts-toolbar]');
+  const empty = document.querySelector('[data-parts-empty]');
+  const search = document.querySelector<HTMLInputElement>('[data-parts-search]');
+  const filters = [...document.querySelectorAll<HTMLButtonElement>('[data-parts-filter]')];
+  const rows = [...document.querySelectorAll<HTMLElement>('[data-parts-row]')];
+  const groups = [...document.querySelectorAll<HTMLElement>('[data-parts-group]')];
+  if (toolbar) {
+    let category = '';
+
+    const apply = () => {
+      const q = (search?.value || '').trim().toLowerCase();
+      let shown = 0;
+      rows.forEach((row) => {
+        const matchCat = !category || row.dataset.category === category;
+        const matchQ = !q || (row.dataset.search || '').toLowerCase().includes(q);
+        const on = matchCat && matchQ;
+        row.classList.toggle('hidden', !on);
+        if (on) shown += 1;
+      });
+      groups.forEach((group) => {
+        const matchCat = !category || group.dataset.category === category;
+        const hasRow = rows.some(
+          (row) => row.dataset.category === group.dataset.category && !row.classList.contains('hidden'),
+        );
+        group.classList.toggle('hidden', !matchCat || !hasRow);
+      });
+      empty?.classList.toggle('hidden', shown > 0);
+    };
+
+    filters.forEach((button) => {
+      button.addEventListener('click', () => {
+        category = button.dataset.partsFilter || '';
+        filters.forEach((item) => {
+          const on = item === button;
+          item.setAttribute('aria-pressed', on ? 'true' : 'false');
+          item.classList.toggle('border-primary/50', on);
+          item.classList.toggle('bg-primary/15', on);
+          item.classList.toggle('text-primary', on);
+          item.classList.toggle('border-white/15', !on);
+          item.classList.toggle('bg-transparent', !on);
+          item.classList.toggle('text-[#c5cad3]', !on);
+        });
+        apply();
+      });
+    });
+    search?.addEventListener('input', apply);
+  }
+</script>
+
+<style>
+  .parts-name-glow {
+    color: #cfc6b6;
+    text-shadow:
+      0 0 8px rgba(197, 160, 89, 0.28),
+      0 0 16px rgba(226, 201, 154, 0.16),
+      0 0 28px rgba(197, 160, 89, 0.08);
+  }
+</style>

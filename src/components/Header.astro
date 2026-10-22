@@ -11,7 +11,8 @@ interface Props {
 }
 
 const { locale, applianceSlug, applianceLabel } = Astro.props;
-const pathname = Astro.url.pathname;
+const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
+const isHere = (path: string) => pathname === localizePath(locale, path).replace(/\/$/, '');
 const ruHref = switchLocalePath(pathname, 'ru');
 const enHref = switchLocalePath(pathname, 'en');
 const headerPhone = siteConfig.phones[1];
@@ -22,65 +23,67 @@ const brandKicker = locale === 'ru' ? 'Официальный сервис' : 'O
   class="fixed top-0 inset-x-0 z-50 border-b border-white/10 bg-[rgba(12,14,18,0.95)] backdrop-blur-xl"
 >
   <div class="md:hidden" data-mobile-header>
-    <div class="grid grid-cols-[minmax(0,1fr)_auto_auto] items-center pr-[max(0.75rem,env(safe-area-inset-right))]">
-      <span class="col-start-1 row-start-1 flex min-w-0 items-center gap-1.5 self-stretch border-b border-white/[0.06] py-1.5 pl-[max(0.5rem,env(safe-area-inset-left))] font-tech text-[11px] font-medium uppercase leading-none tracking-tight text-[#f4f5f7] min-[360px]:text-[12px] min-[360px]:tracking-normal">
-        <span class="h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-500 shadow-[0_0_8px_#4ade80]"></span>
-        <span class="whitespace-nowrap">{siteConfig.hours.label[locale]}</span>
-      </span>
-      <div class="col-span-2 col-start-2 row-start-1 flex items-center justify-end gap-1.5 self-stretch border-b border-white/[0.06] py-1.5">
-        <div class="flex items-center gap-1 font-tech text-[11px] font-bold leading-none">
-          <a href={ruHref} hreflang="ru" class:list={['uppercase', locale === 'ru' ? 'text-primary' : 'text-white/60']}>
-            {t(locale, 'lang.ru')}
-          </a>
-          <span class="text-white/30" aria-hidden="true">|</span>
-          <a href={enHref} hreflang="en" class:list={['uppercase', locale === 'en' ? 'text-primary' : 'text-white/60']}>
-            {t(locale, 'lang.en')}
-          </a>
-        </div>
-        <a href={headerPhone.href} class="font-tech text-[11px] font-semibold leading-none tracking-normal whitespace-nowrap text-white tabular-nums">
-          {headerPhone.display}
-        </a>
-      </div>
-
-      <a href={localizePath(locale)} class="col-start-1 row-start-2 min-w-0 py-2 pl-[max(0.75rem,env(safe-area-inset-left))]">
-        <span class="block text-[11px] font-bold uppercase leading-none tracking-[0.12em] text-white">
-          {brandKicker}
-        </span>
-        <span class="mt-1 block font-[family-name:var(--font-brand)] text-[15px] font-extrabold uppercase leading-none tracking-[0.14em] text-primary">
+    <div class="flex items-center gap-2 px-[max(0.75rem,env(safe-area-inset-left))] pr-[max(0.5rem,env(safe-area-inset-right))] pt-2.5">
+      <a href={localizePath(locale)} class="min-w-0 flex-1 py-1">
+        <span class="block font-[family-name:var(--font-brand)] text-[18px] font-extrabold uppercase leading-none tracking-[0.12em] text-primary">
           Gaggenau
         </span>
-        <span class="mt-1 block text-[11px] leading-none text-[#8e939d]">
-          {siteConfig.geo[locale]}
+        <span class="mt-1.5 flex min-w-0 items-center gap-1.5 text-[12px] leading-none">
+          <span class="truncate text-white/70">{brandKicker}</span>
+          <span class="text-white/30" aria-hidden="true">·</span>
+          <span class="shrink-0 text-[#f4f5f7]">{siteConfig.geo[locale]}</span>
         </span>
       </a>
+      <div class="flex shrink-0 items-center font-tech text-[13px] font-semibold leading-none">
+        <a href={ruHref} hreflang="ru" class:list={['inline-flex h-11 items-center px-1.5 uppercase', locale === 'ru' ? 'text-primary' : 'text-white/45']}>
+          {t(locale, 'lang.ru')}
+        </a>
+        <span class="text-white/25" aria-hidden="true">|</span>
+        <a href={enHref} hreflang="en" class:list={['inline-flex h-11 items-center px-1.5 uppercase', locale === 'en' ? 'text-primary' : 'text-white/45']}>
+          {t(locale, 'lang.en')}
+        </a>
+      </div>
+    </div>
+
+    <div class="mt-1.5 flex items-center gap-1.5 px-[max(0.75rem,env(safe-area-inset-left))] text-[12px] leading-none text-[#9aa0aa]">
+      <span class="h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-500"></span>
+      <span>{siteConfig.hours.label[locale]}</span>
+    </div>
+
+    <div class="mt-2.5 grid grid-cols-[minmax(0,1fr)_auto] items-center gap-2 px-[max(0.75rem,env(safe-area-inset-left))] pr-[max(0.75rem,env(safe-area-inset-right))]">
       <CallPhonePicker
         locale={locale}
-        iconOnly
+        plain
+        showIcon
+        fitParent
+        label={headerPhone.display}
         placement="bottom"
-        wrapClass="relative col-start-2 row-start-2 inline-flex shrink-0 justify-self-start self-center pr-1"
+        wrapClass="relative min-w-0 w-full"
+        buttonClass="h-11 px-3"
       />
       <button
         type="button"
         data-open-lead-modal
         data-appliance-prefill={applianceSlug}
         data-appliance-label={applianceLabel}
-        class="btn-lead-glow col-start-3 row-start-2 inline-flex h-9 justify-self-start items-center justify-center whitespace-nowrap rounded-DEFAULT bg-primary-container px-1.5 text-[10px] font-bold uppercase leading-none tracking-wide text-black min-[360px]:px-3 min-[360px]:text-[11px]"
+        class="btn-lead-glow inline-flex h-11 items-center justify-center whitespace-nowrap rounded-DEFAULT bg-primary-container px-4 text-[13px] font-semibold uppercase leading-none tracking-wide text-black"
       >
-        {t(locale, 'cta.request')}
+        {t(locale, 'cta.requestShort')}
       </button>
     </div>
 
     <nav
-      class="flex items-center justify-between gap-2 border-t border-white/[0.06] py-2 pl-[max(0.75rem,env(safe-area-inset-left))] pr-[max(0.75rem,env(safe-area-inset-right))] text-[13px] text-[#d7dbe3]"
+      class="mt-2.5 grid grid-cols-5 border-t border-white/[0.06] text-[13px]"
       aria-label={locale === 'ru' ? 'Основное меню' : 'Main'}
     >
-      <button type="button" data-mobile-menu-toggle class="mobile-nav-link flex items-center gap-1 whitespace-nowrap" aria-expanded="false" aria-controls="mobile-menu-panel">
+      <button type="button" data-mobile-menu-toggle class="mobile-nav-link flex h-11 items-center justify-center gap-1 whitespace-nowrap text-[#c5cad3]" aria-expanded="false" aria-controls="mobile-menu-panel">
         {t(locale, 'nav.services')}
-        <span class="text-[12px] text-primary" aria-hidden="true">▾</span>
+        <span class="text-[11px] text-primary" aria-hidden="true">▾</span>
       </button>
-      <a href={localizePath(locale, 'about')} class="mobile-nav-link whitespace-nowrap">{t(locale, 'nav.about')}</a>
-      <a href={localizePath(locale, 'warranty')} class="mobile-nav-link whitespace-nowrap">{t(locale, 'nav.warranty')}</a>
-      <a href={localizePath(locale, 'contacts')} class="mobile-nav-link whitespace-nowrap">{t(locale, 'nav.contacts')}</a>
+      <a href={localizePath(locale, 'about')} class:list={['mobile-nav-link flex h-11 items-center justify-center whitespace-nowrap', isHere('about') ? 'text-primary' : 'text-[#c5cad3]']}>{t(locale, 'nav.about')}</a>
+      <a href={localizePath(locale, 'warranty')} class:list={['mobile-nav-link flex h-11 items-center justify-center whitespace-nowrap', isHere('warranty') ? 'text-primary' : 'text-[#c5cad3]']}>{t(locale, 'nav.warranty')}</a>
+      <a href={localizePath(locale, 'parts')} class:list={['mobile-nav-link flex h-11 items-center justify-center whitespace-nowrap', isHere('parts') ? 'text-primary' : 'text-[#c5cad3]']}>{t(locale, 'nav.parts')}</a>
+      <a href={localizePath(locale, 'contacts')} class:list={['mobile-nav-link flex h-11 items-center justify-center whitespace-nowrap', isHere('contacts') ? 'text-primary' : 'text-[#c5cad3]']}>{t(locale, 'nav.contacts')}</a>
     </nav>
 
     <div id="mobile-menu-panel" data-mobile-menu-panel hidden class="border-t border-white/10 bg-[#12151b] px-3 py-2">
@@ -100,6 +103,7 @@ const brandKicker = locale === 'ru' ? 'Официальный сервис' : 'O
   <div
     class="mx-auto hidden h-20 max-w-[1520px] items-center justify-between gap-space-md px-4 sm:px-6 lg:px-10 md:flex"
   >
+    <div class="flex min-w-0 items-baseline gap-space-md">
     <a href={localizePath(locale)} class="brand-lux-glow flex min-w-0 flex-col">
       <span class="font-tech text-[13px] sm:text-[14px] font-semibold uppercase tracking-[0.12em] text-text-primary truncate">
         {siteConfig.workingTitle[locale]}
@@ -109,8 +113,8 @@ const brandKicker = locale === 'ru' ? 'Официальный сервис' : 'O
       </span>
     </a>
 
-    <nav class="hidden xl:flex items-center gap-7 text-[15px] font-medium tracking-wide" aria-label={locale === 'ru' ? 'Основное меню' : 'Main'}>
-      <div class="relative group py-2">
+    <nav class="hidden xl:flex shrink-0 items-baseline gap-7 whitespace-nowrap text-[15px] font-medium tracking-wide" aria-label={locale === 'ru' ? 'Основное меню' : 'Main'}>
+      <div class="relative group pb-2">
         <button
           type="button"
           class="flex items-center gap-1 text-[#d7dbe3] hover:text-primary transition-colors"
@@ -147,12 +151,19 @@ const brandKicker = locale === 'ru' ? 'Официальный сервис' : 'O
         {t(locale, 'nav.warranty')}
       </a>
       <a
+        href={localizePath(locale, 'parts')}
+        class="text-[#d7dbe3] hover:text-primary transition-colors"
+      >
+        {t(locale, 'nav.parts')}
+      </a>
+      <a
         href={localizePath(locale, 'contacts')}
         class="text-[#d7dbe3] hover:text-primary transition-colors"
       >
         {t(locale, 'nav.contacts')}
       </a>
     </nav>
+    </div>
 
     <div class="flex items-center gap-3 sm:gap-4 shrink-0">
       <div class="hidden md:flex flex-col items-start">
@@ -231,11 +242,15 @@ const brandKicker = locale === 'ru' ? 'Официальный сервис' : 'O
 </header>
 
 <style>
-  .mobile-nav-link {
-    text-shadow: 0 0 8px rgba(244, 245, 247, 0.35);
-    transition: color 0.2s ease, text-shadow 0.2s ease;
+  .mobile-nav-scroll {
+    scrollbar-width: none;
   }
 
+  .mobile-nav-scroll::-webkit-scrollbar {
+    display: none;
+  }
+
+  .mobile-nav-link,
   .mobile-appliance-link {
     transition: color 0.2s ease, text-shadow 0.2s ease;
   }
@@ -247,9 +262,7 @@ const brandKicker = locale === 'ru' ? 'Официальный сервис' : 'O
   .mobile-appliance-link:focus-visible,
   .mobile-appliance-link:active {
     color: #f4f5f7;
-    text-shadow:
-      0 0 8px rgba(244, 245, 247, 0.7),
-      0 0 16px rgba(255, 255, 255, 0.28);
+    text-shadow: 0 0 8px rgba(244, 245, 247, 0.28);
   }
 </style>
 

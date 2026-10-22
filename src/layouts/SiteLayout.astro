@@ -5,6 +5,7 @@ import Footer from '../components/Footer.astro';
 import PromoBanner from '../components/PromoBanner.astro';
 import MobileStickyBar from '../components/MobileStickyBar.astro';
 import LeadModal from '../components/LeadModal.astro';
+import ReviewModal from '../components/ReviewModal.astro';
 import type { Locale } from '../config/site';
 
 interface Props {
@@ -55,4 +56,5 @@ const {
     applianceLabel={applianceLabel}
   />
   <LeadModal locale={locale} />
+  <ReviewModal locale={locale} />
 </BaseLayout>

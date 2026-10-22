@@ -295,6 +295,10 @@
   details > summary::-webkit-details-marker {
     display: none;
   }
+
+  main img {
+    filter: brightness(0.72);
+  }
 }
 
 /* Custom checkboxes — Atelier dark / champagne (DESIGN.md) */
@@ -397,11 +401,41 @@
     transition: text-shadow 0.25s ease;
   }
 
-  .brand-lux-glow:hover {
+  .brand-lux-glow:hover,
+  .brand-lux-glow:active,
+  .group:hover .brand-lux-glow,
+  .group:active .brand-lux-glow {
     text-shadow:
       0 0 14px rgba(226, 193, 154, 0.65),
       0 0 32px rgba(197, 160, 89, 0.4),
       0 0 56px rgba(197, 160, 89, 0.22);
+  }
+
+  /* Light champagne text bloom for headings */
+  .text-lux-glow {
+    text-shadow:
+      0 0 10px rgba(197, 160, 89, 0.22),
+      0 0 22px rgba(226, 201, 154, 0.14),
+      0 0 36px rgba(197, 160, 89, 0.08);
+    transition: text-shadow 0.25s ease;
+  }
+
+  .text-lux-glow:hover,
+  .text-lux-glow:active,
+  .group:hover .text-lux-glow,
+  .group:active .text-lux-glow {
+    text-shadow:
+      0 0 12px rgba(197, 160, 89, 0.32),
+      0 0 26px rgba(226, 201, 154, 0.2),
+      0 0 42px rgba(197, 160, 89, 0.12);
+  }
+
+  /* Light white bloom for current breadcrumb on inner pages */
+  .crumb-white-glow {
+    color: #f4f5f7;
+    text-shadow:
+      0 0 6px rgba(255, 255, 255, 0.32),
+      0 0 14px rgba(255, 255, 255, 0.14);
   }
 
   /* Soft surface glow for content cards / panels */
@@ -417,6 +451,7 @@
 
   .surface-lux-glow:hover,
   .surface-lux-glow:focus-visible,
+  .surface-lux-glow:active,
   .surface-lux-glow[open] {
     border-color: rgba(197, 160, 89, 0.5);
     box-shadow:
@@ -536,6 +571,15 @@
     .btn-lead-glow {
       transition: none;
     }
+  }
+
+  .reviews-track {
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .reviews-track::-webkit-scrollbar {
+    display: none;
   }
 }
 
