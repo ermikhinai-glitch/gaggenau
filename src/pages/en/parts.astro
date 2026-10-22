@@ -1,0 +1,17 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import PartsPage from '../../components/parts/PartsPage.astro';
+import { partsPage } from '../../content/parts';
+import { withBrandTitle } from '../../content/seo';
+
+const locale = 'en' as const;
+---
+
+<SiteLayout
+  locale={locale}
+  title={withBrandTitle(partsPage.title[locale], locale)}
+  description={partsPage.description[locale]}
+  showPromo={false}
+>
+  <PartsPage locale={locale} />
+</SiteLayout>

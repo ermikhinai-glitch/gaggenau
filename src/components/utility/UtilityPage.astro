@@ -16,12 +16,12 @@ const isWarranty = page.slug === 'warranty';
 ---
 
 <div class="max-w-[1520px] mx-auto px-4 sm:px-6 lg:px-10 pt-space-md pb-space-xs">
-  <nav class="flex flex-wrap items-center gap-2 text-[11px] text-text-tertiary" aria-label="Breadcrumb">
+  <nav class="flex flex-wrap items-center gap-2 text-[13px] md:text-[14px] text-text-secondary" aria-label="Breadcrumb">
     <a href={localizePath(locale)} class="hover:text-primary transition-colors">
       {locale === 'ru' ? 'Главная' : 'Home'}
     </a>
     <span class="opacity-40">/</span>
-    <span class="text-text-secondary">{page.title[locale]}</span>
+    <span class="crumb-white-glow">{page.title[locale]}</span>
   </nav>
 </div>
 
@@ -33,7 +33,14 @@ const isWarranty = page.slug === 'warranty';
 >
   <p class="text-label-caps text-primary mb-3">{page.eyebrow[locale]}</p>
   <h1 class="text-headline-lg text-text-primary uppercase mb-space-md">{page.title[locale]}</h1>
-  <p class="text-base sm:text-lg text-text-secondary leading-relaxed mb-space-xl">
+  <p
+    class:list={[
+      'text-text-secondary mb-space-xl',
+      page.slug === 'about'
+        ? 'text-sm leading-snug sm:text-lg sm:leading-relaxed'
+        : 'text-base leading-relaxed sm:text-lg',
+    ]}
+  >
     {page.lead[locale]}
   </p>
 
@@ -47,10 +54,10 @@ const isWarranty = page.slug === 'warranty';
 
   {
     isContacts && (
-      <div class="mb-space-2xl grid gap-4 sm:grid-cols-2">
-        <div class="surface-lux-glow rounded-DEFAULT border bg-surface-raised p-space-lg">
-          <p class="text-label-caps text-primary mb-2">{locale === 'ru' ? 'Телефон' : 'Phone'}</p>
-          <div class="grid w-max grid-cols-[max-content_max-content] gap-x-1.5 gap-y-2 font-tech text-tech-data-lg tabular-nums">
+      <div class="mb-space-2xl grid gap-2.5 sm:grid-cols-2 sm:gap-4">
+        <div class="surface-lux-glow rounded-DEFAULT border bg-surface-raised p-3 sm:p-space-lg">
+          <p class="text-label-caps text-primary mb-1.5 sm:mb-2">{locale === 'ru' ? 'Телефон' : 'Phone'}</p>
+          <div class="grid w-max grid-cols-[max-content_max-content] gap-x-1.5 gap-y-1 font-tech text-[17px] font-semibold leading-6 tabular-nums sm:gap-y-2 sm:text-[28px] sm:leading-[34px] sm:tracking-[-0.01em]">
             {
               siteConfig.phones.map((phone) => (
                 <a
@@ -66,15 +73,15 @@ const isWarranty = page.slug === 'warranty';
         </div>
         <a
           href={`mailto:${siteConfig.email}`}
-          class="surface-lux-glow rounded-DEFAULT border bg-surface-raised p-space-lg"
+          class="surface-lux-glow rounded-DEFAULT border bg-surface-raised p-3 sm:p-space-lg"
         >
-          <p class="text-label-caps text-primary mb-2">Email</p>
-          <p class="text-base text-text-primary break-all">{siteConfig.email}</p>
+          <p class="text-label-caps text-primary mb-1.5 sm:mb-2">Email</p>
+          <p class="text-sm text-text-primary break-all sm:text-base">{siteConfig.email}</p>
         </a>
-        <div class="surface-lux-glow rounded-DEFAULT border bg-surface-raised p-space-lg sm:col-span-2">
-          <p class="text-label-caps text-primary mb-2">{locale === 'ru' ? 'Режим' : 'Hours'}</p>
-          <p class="text-base text-text-primary">{siteConfig.hours.label[locale]}</p>
-          <p class="mt-2 text-sm text-text-tertiary">{siteConfig.geo[locale]}</p>
+        <div class="surface-lux-glow rounded-DEFAULT border bg-surface-raised p-3 sm:col-span-2 sm:p-space-lg">
+          <p class="text-label-caps text-primary mb-1.5 sm:mb-2">{locale === 'ru' ? 'Режим' : 'Hours'}</p>
+          <p class="text-sm text-text-primary sm:text-base">{siteConfig.hours.label[locale]}</p>
+          <p class="mt-1 text-[13px] text-text-tertiary sm:mt-2 sm:text-sm">{siteConfig.geo[locale]}</p>
         </div>
         <div class="sm:col-span-2 grid grid-cols-1 gap-3 sm:grid-cols-2">
           <button
@@ -97,29 +104,50 @@ const isWarranty = page.slug === 'warranty';
 
   {
     isWarranty ? (
-      <div class="grid gap-4 sm:grid-cols-2">
+      <div class="grid gap-2.5 sm:grid-cols-2 sm:gap-4">
         {page.sections.map((section, index) => (
-          <section class="card-lux-glow rounded-DEFAULT border bg-surface-raised/70 p-space-lg">
-            <p class="font-tech text-[11px] tracking-wider text-primary mb-2">
+          <section class="card-lux-glow rounded-DEFAULT border bg-surface-raised/70 p-3 sm:p-space-lg">
+            <p class="font-tech text-[11px] tracking-wider text-primary mb-1 sm:mb-2">
               {String(index + 1).padStart(2, '0')}
             </p>
-            <h2 class="font-display text-xl text-text-primary mb-space-sm">{section.title[locale]}</h2>
-            <div class="space-y-2">
+            <h2 class="font-display text-base text-text-primary mb-2 sm:mb-space-sm sm:text-xl">{section.title[locale]}</h2>
+            <div class="space-y-1.5 sm:space-y-2">
               {section.paragraphs.map((paragraph) => (
-                <p class="text-sm text-text-secondary leading-relaxed">{paragraph[locale]}</p>
+                <p class="text-[13px] leading-snug text-text-secondary sm:text-sm sm:leading-relaxed">{paragraph[locale]}</p>
               ))}
             </div>
           </section>
         ))}
       </div>
     ) : (
-      <div class="space-y-space-xl">
+      <div class:list={[page.slug === 'about' ? 'space-y-2.5 sm:space-y-space-xl' : 'space-y-space-xl']}>
         {page.sections.map((section) => (
-          <section class="surface-lux-glow rounded-DEFAULT border bg-surface-raised/50 p-space-lg">
-            <h2 class="font-display text-xl text-text-primary mb-space-md">{section.title[locale]}</h2>
-            <div class="space-y-3">
+          <section
+            class:list={[
+              'surface-lux-glow rounded-DEFAULT border bg-surface-raised/50',
+              page.slug === 'about' ? 'p-3 sm:p-space-lg' : 'p-space-lg',
+            ]}
+          >
+            <h2
+              class:list={[
+                'font-display text-text-primary',
+                page.slug === 'about' ? 'mb-2 text-base sm:mb-space-md sm:text-xl' : 'mb-space-md text-xl',
+              ]}
+            >
+              {section.title[locale]}
+            </h2>
+            <div class:list={[page.slug === 'about' ? 'space-y-1.5 sm:space-y-3' : 'space-y-3']}>
               {section.paragraphs.map((paragraph) => (
-                <p class="text-sm sm:text-base text-text-secondary leading-relaxed">{paragraph[locale]}</p>
+                <p
+                  class:list={[
+                    'text-text-secondary',
+                    page.slug === 'about'
+                      ? 'text-[13px] leading-snug sm:text-base sm:leading-relaxed'
+                      : 'text-sm leading-relaxed sm:text-base',
+                  ]}
+                >
+                  {paragraph[locale]}
+                </p>
               ))}
             </div>
           </section>

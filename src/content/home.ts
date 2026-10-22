@@ -45,7 +45,7 @@ export const homeContent = {
         ru: 'Устанавливаем только оригинальные комплектующие',
         en: 'We install original parts only',
       },
-      href: 'warranty',
+      href: 'parts',
     },
     {
       label: { ru: 'Гарантия', en: 'Warranty' },
@@ -240,17 +240,54 @@ export const homeContent = {
   reviews: {
     eyebrow: { ru: 'Отзывы', en: 'Reviews' },
     title: { ru: 'Отзывы клиентов', en: 'Customer reviews' },
-    badge: {
-      ru: 'Демонстрация',
-      en: 'Demo',
-    },
     note: {
-      ru: 'Пока показаны примеры текстов для макета. Перед запуском заменим на реальные отзывы или скроем блок.',
-      en: 'Sample copy for layout only. Before launch we will replace these with real reviews or hide the block.',
+      ru: 'В отзыве публикуются имя и город. Отзыв появляется в этом блоке после проверки модерации.',
+      en: 'Reviews show your name and city. The review appears in this block after moderation.',
+    },
+    cta: { ru: 'Оставить отзыв', en: 'Leave a review' },
+    form: {
+      title: { ru: 'Оставить отзыв', en: 'Leave a review' },
+      lead: {
+        ru: 'Укажите имя, город и как прошёл ремонт.',
+        en: 'Enter your name, city and how the repair went.',
+      },
+      name: { ru: 'Имя', en: 'Name' },
+      namePh: { ru: 'Как к вам обращаться', en: 'Your name' },
+      city: { ru: 'Город', en: 'City' },
+      cityPh: { ru: 'Москва', en: 'Moscow' },
+      text: { ru: 'Отзыв', en: 'Review' },
+      textPh: {
+        ru: 'Например: приехали быстро, объяснили причину…',
+        en: 'For example: they arrived quickly, explained the issue…',
+      },
+      consent: {
+        ru: 'Отзыв добавится на сайте после проверки',
+        en: 'The review will be added to the site after verification',
+      },
+      submit: { ru: 'Отправить отзыв', en: 'Send review' },
+      submitting: { ru: 'Отправляем…', en: 'Sending…' },
+      close: { ru: 'Закрыть', en: 'Close' },
+      successTitle: { ru: 'Спасибо', en: 'Thank you' },
+      success: {
+        ru: 'Отзыв отправлен. Он появится в блоке после проверки модерации.',
+        en: 'The review has been sent. It will appear in this block after moderation.',
+      },
+      errorName: { ru: 'Укажите имя', en: 'Enter your name' },
+      errorCity: { ru: 'Укажите город', en: 'Enter your city' },
+      errorText: { ru: 'Напишите отзыв', en: 'Write a review' },
+      errorConsent: {
+        ru: 'Подтвердите, что отзыв появится после проверки',
+        en: 'Confirm that the review will appear after verification',
+      },
+      errorNetwork: {
+        ru: 'Не удалось отправить. Попробуйте ещё раз.',
+        en: 'Could not send. Please try again.',
+      },
     },
     items: [
       {
         name: { ru: 'Виталий', en: 'Vitaliy' },
+        city: { ru: 'Москва', en: 'Moscow' },
         text: {
           ru: 'Приехали быстро, объяснили причину ошибки на духовке и согласовали ремонт без давления.',
           en: 'They arrived quickly, explained the oven fault and agreed the repair without pressure.',
@@ -258,6 +295,7 @@ export const homeContent = {
       },
       {
         name: { ru: 'Алексей', en: 'Alexey' },
+        city: { ru: 'Химки', en: 'Khimki' },
         text: {
           ru: 'По холодильнику всё сделали аккуратно, детали оригинальные, документы на работы передали.',
           en: 'Fridge work was careful, parts were original, paperwork was provided.',
@@ -265,9 +303,186 @@ export const homeContent = {
       },
       {
         name: { ru: 'Артур', en: 'Artur' },
+        city: { ru: 'Одинцово', en: 'Odintsovo' },
         text: {
           ru: 'Удобно, что можно и позвонить, и оставить заявку — перезвонили в тот же день.',
           en: 'Helpful that I could call or leave a request — they called back the same day.',
+        },
+      },
+      {
+        name: { ru: 'Елена', en: 'Elena' },
+        city: { ru: 'Мытищи', en: 'Mytishchi' },
+        text: {
+          ru: 'Посудомоечная машина выдавала ошибку. Диагностику сделали на месте, запчасть привезли на следующий визит.',
+          en: 'The dishwasher showed an error. They diagnosed it on site and brought the part on the next visit.',
+        },
+      },
+      {
+        name: { ru: 'Дмитрий', en: 'Dmitry' },
+        city: { ru: 'Красногорск', en: 'Krasnogorsk' },
+        text: {
+          ru: 'На варочной панели не включалась зона. Мастер нашёл причину, работу и сроки назвал сразу.',
+          en: 'A cooktop zone would not switch on. The engineer found the cause and stated the work and timing at once.',
+        },
+      },
+      {
+        name: { ru: 'Ольга', en: 'Olga' },
+        city: { ru: 'Королёв', en: 'Korolev' },
+        text: {
+          ru: 'Стиральная машина останавливалась на отжиме. После ремонта отжимает как раньше, документы оставили.',
+          en: 'The washing machine stopped on spin. After the repair it spins as before, and they left the paperwork.',
+        },
+      },
+      {
+        name: { ru: 'Сергей', en: 'Sergey' },
+        city: { ru: 'Подольск', en: 'Podolsk' },
+        text: {
+          ru: 'Кофемашина не грела воду. Приехали в согласованное окно, починили без лишних допродаж.',
+          en: 'The coffee machine was not heating water. They arrived in the agreed window and repaired it without extra upsells.',
+        },
+      },
+      {
+        name: { ru: 'Марина', en: 'Marina' },
+        city: { ru: 'Балашиха', en: 'Balashikha' },
+        text: {
+          ru: 'Вытяжка стала шуметь сильнее обычного. Подтянули крепления и заменили фильтр — шум ушёл.',
+          en: 'The hood got louder than usual. They tightened the mounts and replaced the filter — the noise went away.',
+        },
+      },
+      {
+        name: { ru: 'Игорь', en: 'Igor' },
+        city: { ru: 'Люберцы', en: 'Lyubertsy' },
+        text: {
+          ru: 'В винном шкафу плавала температура. Настроили зоны и объяснили, как следить за режимом.',
+          en: 'The wine cabinet temperature was drifting. They set the zones and explained how to keep the mode stable.',
+        },
+      },
+      {
+        name: { ru: 'Анна', en: 'Anna' },
+        city: { ru: 'Москва', en: 'Moscow' },
+        text: {
+          ru: 'Духовка не набирала температуру. Мастер приехал в тот же день, заменил тэн, проверил работу на месте.',
+          en: 'The oven was not reaching temperature. The engineer came the same day, replaced the heating element and checked it on site.',
+        },
+      },
+      {
+        name: { ru: 'Павел', en: 'Pavel' },
+        city: { ru: 'Москва', en: 'Moscow' },
+        text: {
+          ru: 'Холодильник Gaggenau начал шуметь по ночам. Нашли износ вентилятора, поставили оригинал, шум пропал.',
+          en: 'The Gaggenau fridge started making noise at night. They found a worn fan, fitted an original part, and the noise stopped.',
+        },
+      },
+      {
+        name: { ru: 'Наталья', en: 'Natalia' },
+        city: { ru: 'Москва', en: 'Moscow' },
+        text: {
+          ru: 'Посудомойка не сливала воду. Диагностику сделали сразу, ремонт согласовали по сумме, без сюрпризов.',
+          en: 'The dishwasher was not draining. They diagnosed it at once and agreed the repair cost with no surprises.',
+        },
+      },
+      {
+        name: { ru: 'Кирилл', en: 'Kirill' },
+        city: { ru: 'Москва', en: 'Moscow' },
+        text: {
+          ru: 'Индукционная панель отключалась на середине готовки. Прошили модуль, панель держит заданную мощность.',
+          en: 'The induction hob cut out mid-cooking. They flashed the module, and it now holds the set power.',
+        },
+      },
+      {
+        name: { ru: 'Юлия', en: 'Yulia' },
+        city: { ru: 'Москва', en: 'Moscow' },
+        text: {
+          ru: 'Кофемашина выдавала ошибку помола. Разобрали, почистили узел, кофе снова идёт как раньше.',
+          en: 'The coffee machine showed a grind error. They took it apart, cleaned the unit, and coffee runs as before.',
+        },
+      },
+      {
+        name: { ru: 'Андрей', en: 'Andrey' },
+        city: { ru: 'Москва', en: 'Moscow' },
+        text: {
+          ru: 'Сушильная машина не закрывала цикл. Заменили датчик, документы на работу передали в тот же визит.',
+          en: 'The dryer would not finish the cycle. They replaced the sensor and handed over the paperwork on the same visit.',
+        },
+      },
+      {
+        name: { ru: 'Вероника', en: 'Veronika' },
+        city: { ru: 'Коммунарка', en: 'Kommunarka' },
+        text: {
+          ru: 'В Новой Москве выехали без задержки. Духовка с паром не набирала пар — устранили на первом визите.',
+          en: 'They came out to New Moscow without delay. The steam oven was not making steam — fixed on the first visit.',
+        },
+      },
+      {
+        name: { ru: 'Роман', en: 'Roman' },
+        city: { ru: 'Московский', en: 'Moskovsky' },
+        text: {
+          ru: 'Варочная панель в доме в Новой Москве моргала ошибкой. Заменили модуль управления, проверили все зоны.',
+          en: 'The cooktop in a New Moscow house was flashing an error. They replaced the control module and checked every zone.',
+        },
+      },
+      {
+        name: { ru: 'Светлана', en: 'Svetlana' },
+        city: { ru: 'Щербинка', en: 'Shcherbinka' },
+        text: {
+          ru: 'Посудомоечная машина текла на стыке. Уплотнитель поставили оригинальный, протечка ушла.',
+          en: 'The dishwasher leaked at the joint. They fitted an original seal, and the leak stopped.',
+        },
+      },
+      {
+        name: { ru: 'Максим', en: 'Maxim' },
+        city: { ru: 'Саларьево', en: 'Salaryevo' },
+        text: {
+          ru: 'Холодильник на кухне в Новой Москве не держал холод. Заправили контур, температуру выставили по норме.',
+          en: 'The fridge in a New Moscow kitchen was not holding the cold. They charged the circuit and set the temperature to spec.',
+        },
+      },
+      {
+        name: { ru: 'Екатерина', en: 'Ekaterina' },
+        city: { ru: 'Барвиха', en: 'Barvikha' },
+        text: {
+          ru: 'Приехали на участок в Барвихе вовремя. Винный шкаф сбивал зоны — откалибровали, режим держит стабильно.',
+          en: 'They arrived on time at the Barvikha property. The wine cabinet was losing its zones — they calibrated it, and the mode stays stable.',
+        },
+      },
+      {
+        name: { ru: 'Николай', en: 'Nikolay' },
+        city: { ru: 'Жуковка', en: 'Zhukovka' },
+        text: {
+          ru: 'Газовая панель Gaggenau в Жуковке не держала пламя. Заменили термопару, все конфорки зажигаются ровно.',
+          en: 'The Gaggenau gas hob in Zhukovka would not hold the flame. They replaced the thermocouple, and all burners ignite evenly.',
+        },
+      },
+      {
+        name: { ru: 'Ирина', en: 'Irina' },
+        city: { ru: 'Горки-2', en: 'Gorki-2' },
+        text: {
+          ru: 'Духовой шкаф серии 400 в Горках-2 пищал и не запускал режим. Плату проверили, ошибку сняли, работает тихо.',
+          en: 'The 400 series oven in Gorki-2 beeped and would not start. They checked the board, cleared the error, and it runs quietly.',
+        },
+      },
+      {
+        name: { ru: 'Александр', en: 'Alexander' },
+        city: { ru: 'Николина Гора', en: 'Nikolina Gora' },
+        text: {
+          ru: 'Вытяжка в доме на Николиной Горе потеряла тягу. Почистили канал, заменили фильтр — тяга вернулась.',
+          en: 'The hood in a house at Nikolina Gora lost suction. They cleaned the duct and replaced the filter — suction is back.',
+        },
+      },
+      {
+        name: { ru: 'Татьяна', en: 'Tatiana' },
+        city: { ru: 'Усово', en: 'Usovo' },
+        text: {
+          ru: 'Кофемашина в Усово не нагревала бойлер. Деталь привезли с собой, ремонт занял один визит.',
+          en: 'The coffee machine in Usovo was not heating the boiler. They brought the part with them, and the repair took one visit.',
+        },
+      },
+      {
+        name: { ru: 'Владимир', en: 'Vladimir' },
+        city: { ru: 'Сколково', en: 'Skolkovo' },
+        text: {
+          ru: 'Стиральная машина в Сколково не набирала воду. Клапан заменили на оригинал, цикл проходит до конца.',
+          en: 'The washing machine in Skolkovo was not taking in water. They replaced the valve with an original, and the cycle now finishes.',
         },
       },
     ],

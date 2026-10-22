@@ -106,13 +106,16 @@ const fieldClass =
     <div class="grid grid-cols-2 gap-2 px-4 pt-4">
       {
         c.sla.map((item) => (
-          <div class="flex min-h-[104px] flex-col rounded-lg border border-white/[0.08] bg-[#111317] p-3">
+          <a
+            href={localizePath(locale, item.href)}
+            class="surface-lux-glow flex min-h-[104px] flex-col rounded-lg border bg-[#111317] p-3"
+          >
             <span class="text-[13px] font-bold uppercase tracking-[0.14em] text-[#8e939d]">
               {item.label[locale]}
             </span>
             <div class="mt-1 text-[17px] font-bold leading-tight text-white">{item.value[locale]}</div>
             <p class="mt-1 text-[13px] leading-snug text-[#a3a8b5]">{item.text[locale]}</p>
-          </div>
+          </a>
         ))
       }
     </div>
@@ -158,7 +161,7 @@ const fieldClass =
                     height="280"
                     loading="lazy"
                     decoding="async"
-                    class="absolute inset-0 h-full w-full object-cover saturate-[1.35] brightness-[1.08] contrast-[1.08] transition duration-500 group-hover:scale-105"
+                    class="absolute inset-0 h-full w-full object-cover saturate-[1.35] brightness-[0.72] contrast-[1.08] transition duration-500 group-hover:scale-105"
                   />
                   <div class="absolute inset-0 bg-gradient-to-r from-transparent to-[#111317] opacity-35"></div>
                 </div>
@@ -190,7 +193,7 @@ const fieldClass =
                   height="280"
                   loading="lazy"
                   decoding="async"
-                  class="h-full w-full object-cover saturate-[1.35] brightness-[1.08] contrast-[1.08] transition duration-500 group-hover:scale-105"
+                  class="h-full w-full object-cover saturate-[1.35] brightness-[0.72] contrast-[1.08] transition duration-500 group-hover:scale-105"
                 />
                 <div class="absolute inset-0 bg-gradient-to-t from-[#111317] via-transparent to-transparent opacity-45"></div>
               </div>
@@ -278,25 +281,42 @@ const fieldClass =
     </div>
   </section>
 
-  <section class="border-b border-white/5 bg-[#0b0d10] px-4 py-6">
+  <section class="border-b border-white/5 bg-[#0b0d10] px-4 py-6" id="m-reviews">
     <div class="mb-4">
-      <div class="mb-1 flex items-center justify-between gap-3">
-        <span class="text-[13px] font-bold uppercase tracking-widest text-primary">
-          {c.reviews.eyebrow[locale]}
-        </span>
-        <span class="shrink-0 rounded border border-white/10 px-2 py-1 text-[13px] uppercase tracking-wider text-[#8e939d]">
-          {c.reviews.badge[locale]}
-        </span>
-      </div>
+      <span class="mb-1 block text-[13px] font-bold uppercase tracking-widest text-primary">
+        {c.reviews.eyebrow[locale]}
+      </span>
       <h2 class="text-xl font-bold uppercase tracking-tight text-white">{c.reviews.title[locale]}</h2>
     </div>
     <p class="mb-4 text-[13px] text-[#8e939d]">{c.reviews.note[locale]}</p>
-    <div class="mb-5 space-y-3">
+    <button
+      type="button"
+      data-open-review-modal
+      class="btn-lead-glow mb-4 inline-flex h-11 w-full items-center justify-center rounded-DEFAULT bg-primary-container px-4 text-[13px] font-bold uppercase tracking-wide text-black"
+    >
+      {c.reviews.cta[locale]}
+    </button>
+    <div
+      class="reviews-track mb-5 flex snap-x snap-mandatory gap-2.5 overflow-x-auto px-0.5 pb-3 pt-1"
+      data-reviews-list
+    >
+      <template data-review-card-template>
+        <blockquote class="surface-lux-glow flex min-h-[9.5rem] w-full shrink-0 snap-start flex-col justify-between rounded-lg border bg-[#111317] p-4">
+          <p class="mb-2 text-[13px] italic text-white/90">
+            “<span data-review-text></span>”
+          </p>
+          <footer class="block text-[13px]">
+            <span class="font-semibold text-primary" data-review-name></span>, <span class="text-[#8e939d]" data-review-city></span>
+          </footer>
+        </blockquote>
+      </template>
       {
         c.reviews.items.map((item) => (
-          <blockquote class="rounded border border-white/[0.08] bg-[#111317] p-4">
+          <blockquote class="surface-lux-glow flex min-h-[9.5rem] w-full shrink-0 snap-start flex-col justify-between rounded-lg border bg-[#111317] p-4">
             <p class="mb-2 text-[13px] italic text-white/90">“{item.text[locale]}”</p>
-            <footer class="block text-[13px] font-semibold text-primary">{item.name[locale]}</footer>
+            <footer class="block text-[13px]">
+              <span class="font-semibold text-primary">{item.name[locale]}</span>, <span class="text-[#8e939d]">{item.city[locale]}</span>
+            </footer>
           </blockquote>
         ))
       }

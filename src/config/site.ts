@@ -38,6 +38,7 @@ export const siteConfig = {
     en: 'Moscow and MO',
   },
   leadApiUrl: '/api/lead.php',
+  reviewApiUrl: '/api/review.php',
 } as const;
 
 export const locales = ['ru', 'en'] as const;

@@ -53,8 +53,8 @@ export const utilityPages: Record<UtilitySlug, UtilityPageContent> = {
             en: 'Request or call → specialist contact during business hours → visit and diagnostics → repair with original parts after approval.',
           },
           {
-            ru: 'Ежедневно с 8:00 до 22:00 (Europe/Moscow) перезваниваем в течение 15 минут. Ночью заявку принимаем и связываемся после 8:00.',
-            en: 'Daily 8:00–22:00 (Europe/Moscow) we call back within 15 minutes. Overnight requests are accepted; we contact after 8:00.',
+            ru: 'Ежедневно с 8:00 до 22:00 перезваниваем в течение 15 минут. Ночью заявку принимаем и связываемся после 8:00.',
+            en: 'Daily 8:00–22:00 we call back within 15 minutes. Overnight requests are accepted; we contact after 8:00.',
           },
         ],
       },

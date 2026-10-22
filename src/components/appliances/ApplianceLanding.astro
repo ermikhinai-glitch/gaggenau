@@ -20,8 +20,8 @@ const terms = homeContent.terms;
 ---
 
 <!-- Hero -->
-<section class="relative -mt-20 min-h-[100svh] flex flex-col border-b border-hairline">
-  <div class="absolute inset-0 z-0 overflow-hidden">
+<section class="relative flex flex-col border-b border-hairline md:-mt-20 md:min-h-[100svh]">
+  <div class="relative aspect-[16/10] overflow-hidden md:hidden">
     <img
       src={page.heroImage}
       alt=""
@@ -29,12 +29,23 @@ const terms = homeContent.terms;
       height="1080"
       fetchpriority="high"
       decoding="async"
-      class="h-full w-full object-cover object-[center_30%] contrast-[1.05] motion-hero-bg"
+      class="h-full w-full object-cover object-[center_42%]"
+    />
+  </div>
+  <div class="absolute inset-0 z-0 hidden overflow-hidden md:block">
+    <img
+      src={page.heroImage}
+      alt=""
+      width="1920"
+      height="1080"
+      fetchpriority="high"
+      decoding="async"
+      class="h-full w-full object-cover object-[center_30%] brightness-[0.72] contrast-[1.05] motion-hero-bg"
     />
   </div>
 
   <div
-    class="relative z-10 flex min-h-[100svh] w-full max-w-[1520px] mx-auto flex-col justify-between gap-10 px-4 pt-28 pb-8 sm:px-6 sm:pt-32 sm:pb-10 lg:px-10 lg:pt-36 lg:pb-12 motion-fade-up"
+    class="relative z-10 flex w-full max-w-[1520px] mx-auto flex-col gap-5 bg-[#111317] px-4 pt-6 pb-8 sm:px-6 md:min-h-[100svh] md:justify-between md:gap-10 md:bg-transparent md:pt-28 md:pb-10 lg:px-10 lg:pt-36 lg:pb-12 motion-fade-up"
   >
     <div class="max-w-3xl">
       <nav class="mb-6 flex flex-wrap items-center gap-2 text-[13px] text-[#c5cad3] lg:mb-8" aria-label="Breadcrumb">
@@ -47,14 +58,14 @@ const terms = homeContent.terms;
           {locale === 'ru' ? 'Услуги' : 'Services'}
         </a>
         <span class="text-[#8e939d]">/</span>
-        <span class="text-[#f4f5f7]">{label}</span>
+        <span class="crumb-white-glow">{label}</span>
       </nav>
       <h1 class="text-display-hero max-lg:!text-[20px] max-lg:!leading-[1.15] text-text-primary uppercase mb-space-md">
         {page.title[locale]}
         <span class="text-primary"> {page.titleAccent[locale]}</span>
       </h1>
       <p
-        class="mb-space-xl max-w-xl rounded-DEFAULT border border-white/10 bg-[#0c0e12]/50 px-5 py-4 text-base leading-relaxed text-[#e8eaef] backdrop-blur-md sm:text-lg"
+        class="mb-space-xl max-w-xl rounded-DEFAULT border border-white/10 bg-[#0c0e12]/92 px-5 py-4 text-base leading-relaxed text-[#f4f5f7] backdrop-blur-md sm:text-lg md:bg-[#0c0e12]/50 md:text-[#e8eaef]"
       >
         {page.subtitle[locale]}
       </p>
@@ -77,13 +88,13 @@ const terms = homeContent.terms;
       </div>
     </div>
     <div class="grid max-w-xl grid-cols-2 items-stretch gap-2">
-      <div class="surface-lux-glow flex h-full min-w-0 flex-col rounded-DEFAULT border bg-surface-raised/85 px-2 py-2.5 backdrop-blur-md">
+      <div class="surface-lux-glow flex h-full min-w-0 flex-col rounded-DEFAULT border bg-[#14171d] px-2 py-2.5 backdrop-blur-md md:bg-surface-raised/85">
         <div class="whitespace-nowrap text-tech-data-lg text-primary max-sm:!text-[18px] max-sm:!leading-none">{homeContent.sla[0].value[locale]}</div>
-        <p class="mt-1 text-[13px] leading-snug text-text-secondary">{t(locale, 'sla.callback')}</p>
+        <p class="mt-1 text-[13px] leading-snug text-[#d7dbe3] md:text-text-secondary">{t(locale, 'sla.callback')}</p>
       </div>
-      <div class="surface-lux-glow flex h-full min-w-0 flex-col rounded-DEFAULT border bg-surface-raised/85 px-2 py-2.5 backdrop-blur-md">
+      <div class="surface-lux-glow flex h-full min-w-0 flex-col rounded-DEFAULT border bg-[#14171d] px-2 py-2.5 backdrop-blur-md md:bg-surface-raised/85">
         <div class="whitespace-nowrap text-tech-data-lg text-primary max-sm:!text-[18px] max-sm:!leading-none">{homeContent.sla[1].value[locale]}</div>
-        <p class="mt-1 text-[13px] leading-snug text-text-secondary">{t(locale, 'sla.visit')}</p>
+        <p class="mt-1 text-[13px] leading-snug text-[#d7dbe3] md:text-text-secondary">{t(locale, 'sla.visit')}</p>
       </div>
     </div>
   </div>
