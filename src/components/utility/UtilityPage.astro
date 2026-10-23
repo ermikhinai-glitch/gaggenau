@@ -1,5 +1,6 @@
 ---
 import CallPhonePicker from '../CallPhonePicker.astro';
+import PageWash from '../PageWash.astro';
 import { siteConfig, type Locale } from '../../config/site';
 import type { UtilityPageContent } from '../../content/utility';
 import { t } from '../../i18n/ui';
@@ -13,7 +14,12 @@ interface Props {
 const { locale, page } = Astro.props;
 const isContacts = page.slug === 'contacts';
 const isWarranty = page.slug === 'warranty';
+const isAbout = page.slug === 'about';
+const hasPageWash = isAbout || isWarranty || isContacts;
 ---
+
+<div class:list={[hasPageWash && 'relative isolate']}>
+{hasPageWash && <PageWash />}
 
 <div class="max-w-[1520px] mx-auto px-4 sm:px-6 lg:px-10 pt-space-md pb-space-xs">
   <nav class="flex flex-wrap items-center gap-2 text-[13px] md:text-[14px] text-text-secondary" aria-label="Breadcrumb">
@@ -176,3 +182,4 @@ const isWarranty = page.slug === 'warranty';
     )
   }
 </section>
+</div>
