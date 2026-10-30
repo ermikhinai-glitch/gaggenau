@@ -43,7 +43,7 @@ const groups = appliances
 
   <div class="parts-catalog-block">
   <div
-    class="parts-toolbar sticky top-[var(--site-header,9rem)] z-30 -mx-4 border-b border-white/10 bg-surface-base px-4 pb-4 pt-3 sm:-mx-6 sm:px-6 md:top-20 lg:-mx-10 lg:px-10"
+    class="parts-toolbar sticky top-[var(--site-header,9rem)] z-30 -mx-4 bg-surface-base px-4 pb-4 pt-3 sm:-mx-6 sm:px-6 md:top-20 lg:-mx-10 lg:px-10"
     data-parts-toolbar
   >
     <div
@@ -87,7 +87,7 @@ const groups = appliances
       groups.map((group) => (
         <div data-parts-group data-category={group.slug}>
           <div class="surface-lux-glow overflow-hidden rounded-DEFAULT border bg-[#14171d]">
-            <div class="parts-row flex items-center justify-between gap-3 border-b border-white/10 px-4 py-3 md:gap-0 md:px-0">
+            <div class="parts-row flex items-center justify-between gap-3 px-4 py-3 md:gap-0 md:px-0">
               <h2 class="text-label-caps text-primary md:col-span-2 md:px-4">{group.label}</h2>
               <span class="font-tech text-[11px] uppercase tracking-[0.14em] text-primary md:px-4 md:text-right">{c.price[locale]}</span>
               <span class="hidden md:block" aria-hidden="true"></span>
@@ -99,7 +99,7 @@ const groups = appliances
                     data-parts-row
                     data-category={item.applianceSlug}
                     data-search={`${item.sku} ${item.name.ru} ${item.name.en} ${item.note.ru} ${item.note.en}`}
-                    class="border-b border-white/10 transition-colors last:border-b-0 hover:bg-white/[0.03]"
+                    class="transition-colors hover:bg-white/[0.03]"
                   >
                     <div class="parts-row px-4 py-4 md:items-center md:px-0 md:py-0">
                       <div class="mb-1.5 font-tech text-[11px] tracking-[0.14em] text-primary md:mb-0 md:px-4 md:py-4">
@@ -231,4 +231,5 @@ const groups = appliances
   .parts-chip-scroll::-webkit-scrollbar {
     display: none;
   }
+
 </style>

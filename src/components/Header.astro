@@ -16,77 +16,90 @@ const isHere = (path: string) => pathname === localizePath(locale, path).replace
 const ruHref = switchLocalePath(pathname, 'ru');
 const enHref = switchLocalePath(pathname, 'en');
 const headerPhone = siteConfig.phones[1];
+const brandKicker = locale === 'ru' ? 'Официальный сервис' : 'Official service';
 ---
 
 <header
   class="fixed top-0 inset-x-0 z-50 border-b border-white/10 bg-[rgba(12,14,18,0.95)] backdrop-blur-xl"
 >
   <div class="md:hidden" data-mobile-header>
-    <div class="flex items-center gap-2 px-[max(0.75rem,env(safe-area-inset-left))] pr-[max(0.75rem,env(safe-area-inset-right))] py-2">
-      <a href={localizePath(locale)} class="min-w-0 flex-1">
-        <span class="block font-[family-name:var(--font-brand)] text-[16px] font-extrabold uppercase leading-none tracking-[0.08em] text-primary">
-          Gaggenau
-        </span>
-        <span class="mt-1 flex min-w-0 items-center gap-1.5 text-[11px] leading-none text-[#9aa0aa]">
+    <div class="flex flex-col gap-1 px-[max(0.75rem,env(safe-area-inset-left))] pr-[max(0.75rem,env(safe-area-inset-right))] py-1.5 text-[12px] font-medium leading-none text-[#f4f5f7]">
+      <div class="flex items-center justify-between gap-3">
+        <span class="flex min-w-0 items-center gap-1.5 text-[11px] uppercase tracking-wide">
           <span class="h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-500"></span>
           <span class="truncate">{siteConfig.hours.label[locale]}</span>
-          <span class="text-white/30" aria-hidden="true">·</span>
-          <span class="shrink-0 text-[#f4f5f7]">{siteConfig.geo[locale]}</span>
         </span>
-      </a>
-      <CallPhonePicker
-        locale={locale}
-        iconOnly
-        placement="bottom"
-        wrapClass="relative shrink-0"
-      />
-      <button
-        type="button"
-        data-open-lead-modal
-        data-appliance-prefill={applianceSlug}
-        data-appliance-label={applianceLabel}
-        class="btn-lead-glow inline-flex h-9 shrink-0 items-center justify-center whitespace-nowrap rounded-DEFAULT bg-primary-container px-3 text-[12px] font-semibold uppercase leading-none tracking-wide text-black"
-      >
-        {t(locale, 'cta.requestShort')}
+        <div class="flex shrink-0 items-center uppercase">
+          <a href={ruHref} hreflang="ru" class:list={['inline-flex items-center px-1.5', locale === 'ru' ? 'text-primary' : 'text-white/45']}>
+            {t(locale, 'lang.ru')}
+          </a>
+          <span class="text-white/40" aria-hidden="true">|</span>
+          <a href={enHref} hreflang="en" class:list={['inline-flex items-center px-1.5', locale === 'en' ? 'text-primary' : 'text-white/45']}>
+            {t(locale, 'lang.en')}
+          </a>
+        </div>
+      </div>
+      <div class="flex items-center justify-between gap-3">
+        <a href={localizePath(locale)} class="min-w-0 truncate text-[11px] uppercase tracking-[0.04em]">{brandKicker}</a>
+        <a href={headerPhone.href} class="shrink-0 tabular-nums hover:text-primary">{headerPhone.display}</a>
+      </div>
+      <div class="flex items-center gap-2">
+        <a href={localizePath(locale)} class="flex min-w-0 flex-1 items-center justify-between gap-2">
+          <span class="flex min-w-0 items-center gap-1 normal-case tracking-normal">
+            <span class="h-1 w-1 shrink-0 rounded-full bg-current" aria-hidden="true"></span>
+            <span class="truncate">{siteConfig.geo[locale]}</span>
+          </span>
+          <span class="text-brand-mark shrink-0 text-[15px] text-primary">Gaggenau</span>
+        </a>
+        <CallPhonePicker
+          locale={locale}
+          iconOnly
+          placement="bottom"
+          wrapClass="relative shrink-0"
+        />
+        <button
+          type="button"
+          data-mobile-menu-toggle
+          class="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-DEFAULT border border-primary/50 bg-[#181b22]/65 text-primary"
+          aria-expanded="false"
+          aria-controls="mobile-menu-panel"
+          aria-label={locale === 'ru' ? 'Меню' : 'Menu'}
+        >
+        <svg class="menu-icon-bars h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-width="2" d="M4 7h16M4 12h16M4 17h16"></path>
+        </svg>
+        <svg class="menu-icon-close h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-width="2" d="M6 6l12 12M18 6L6 18"></path>
+        </svg>
       </button>
     </div>
-
-    <div class="flex items-center border-t border-white/[0.06] pr-[max(0.5rem,env(safe-area-inset-right))]">
-      <nav
-        class="mobile-nav-scroll flex min-w-0 flex-1 items-center gap-3 overflow-x-auto px-[max(0.75rem,env(safe-area-inset-left))] text-[13px]"
-        aria-label={locale === 'ru' ? 'Основное меню' : 'Main'}
-      >
-        <button type="button" data-mobile-menu-toggle class="mobile-nav-link inline-flex h-10 shrink-0 items-center gap-1 whitespace-nowrap text-[#d7dbe3]" aria-expanded="false" aria-controls="mobile-menu-panel">
-          {t(locale, 'nav.services')}
-          <span class="mobile-services-caret text-[11px] text-primary" aria-hidden="true">▾</span>
-        </button>
-        <a href={localizePath(locale, 'about')} class:list={['mobile-nav-link inline-flex h-10 shrink-0 items-center whitespace-nowrap', isHere('about') ? 'text-primary' : 'text-[#d7dbe3]']}>{t(locale, 'nav.about')}</a>
-        <a href={localizePath(locale, 'warranty')} class:list={['mobile-nav-link inline-flex h-10 shrink-0 items-center whitespace-nowrap', isHere('warranty') ? 'text-primary' : 'text-[#d7dbe3]']}>{t(locale, 'nav.warranty')}</a>
-        <a href={localizePath(locale, 'parts')} class:list={['mobile-nav-link inline-flex h-10 shrink-0 items-center whitespace-nowrap', isHere('parts') ? 'text-primary' : 'text-[#d7dbe3]']}>{t(locale, 'nav.parts')}</a>
-        <a href={localizePath(locale, 'contacts')} class:list={['mobile-nav-link inline-flex h-10 shrink-0 items-center whitespace-nowrap', isHere('contacts') ? 'text-primary' : 'text-[#d7dbe3]']}>{t(locale, 'nav.contacts')}</a>
-      </nav>
-      <div class="flex shrink-0 items-center border-l border-white/10 pl-1 font-tech text-[12px] font-semibold leading-none">
-        <a href={ruHref} hreflang="ru" class:list={['inline-flex h-10 items-center px-1.5 uppercase', locale === 'ru' ? 'text-primary' : 'text-white/45']}>
-          {t(locale, 'lang.ru')}
-        </a>
-        <span class="text-white/25" aria-hidden="true">|</span>
-        <a href={enHref} hreflang="en" class:list={['inline-flex h-10 items-center px-1.5 uppercase', locale === 'en' ? 'text-primary' : 'text-white/45']}>
-          {t(locale, 'lang.en')}
-        </a>
-      </div>
     </div>
 
     <div id="mobile-menu-panel" data-mobile-menu-panel hidden class="border-t border-white/10 bg-[#12151b] px-3 py-2">
+      <div class="px-1 pb-1 pt-2 text-[11px] font-medium uppercase tracking-[0.08em] text-white/45">{t(locale, 'nav.services')}</div>
       {
         appliances.map((item) => (
           <a
             href={localizePath(locale, item.path)}
-            class="mobile-appliance-link block px-1 py-2 text-[13px] text-[#c5cad3]"
+            class="mobile-appliance-link block px-1 py-2 text-[13px] font-medium text-[#f4f5f7]"
           >
             {item.label[locale]}
           </a>
         ))
       }
+      <a href={localizePath(locale, 'about')} class:list={['mobile-nav-link block px-1 py-2 text-[13px] font-medium', isHere('about') ? 'text-primary' : 'text-[#f4f5f7]']}>{t(locale, 'nav.about')}</a>
+      <a href={localizePath(locale, 'warranty')} class:list={['mobile-nav-link block px-1 py-2 text-[13px] font-medium', isHere('warranty') ? 'text-primary' : 'text-[#f4f5f7]']}>{t(locale, 'nav.warranty')}</a>
+      <a href={localizePath(locale, 'parts')} class:list={['mobile-nav-link block px-1 py-2 text-[13px] font-medium', isHere('parts') ? 'text-primary' : 'text-[#f4f5f7]']}>{t(locale, 'nav.parts')}</a>
+      <a href={localizePath(locale, 'contacts')} class:list={['mobile-nav-link block px-1 py-2 text-[13px] font-medium', isHere('contacts') ? 'text-primary' : 'text-[#f4f5f7]']}>{t(locale, 'nav.contacts')}</a>
+      <button
+        type="button"
+        data-open-lead-modal
+        data-appliance-prefill={applianceSlug}
+        data-appliance-label={applianceLabel}
+        class="btn-lead-glow mt-2 inline-flex h-10 w-full items-center justify-center rounded-DEFAULT bg-primary-container text-[13px] font-semibold uppercase tracking-wide text-black"
+      >
+        {t(locale, 'cta.request')}
+      </button>
     </div>
   </div>
 
@@ -237,8 +250,8 @@ const headerPhone = siteConfig.phones[1];
   }
 
   :global([data-mobile-header] [data-call-phone-trigger]) {
-    width: 2.25rem;
-    height: 2.25rem;
+    width: 2rem;
+    height: 2rem;
   }
 
   .mobile-nav-scroll::-webkit-scrollbar {
@@ -260,9 +273,16 @@ const headerPhone = siteConfig.phones[1];
     text-shadow: 0 0 8px rgba(244, 245, 247, 0.28);
   }
 
-  [data-mobile-menu-toggle][aria-expanded='true'] .mobile-services-caret {
-    display: inline-block;
-    transform: rotate(180deg);
+  .menu-icon-close {
+    display: none;
+  }
+
+  [data-mobile-menu-toggle][aria-expanded='true'] .menu-icon-bars {
+    display: none;
+  }
+
+  [data-mobile-menu-toggle][aria-expanded='true'] .menu-icon-close {
+    display: block;
   }
 </style>
 
