@@ -52,7 +52,7 @@ const formCopy = {
 const goldBtn =
   'btn-lead-glow inline-flex h-11 w-full items-center justify-center rounded bg-primary-container px-2 text-center text-[13px] font-bold uppercase leading-none tracking-wide text-black';
 const ghostBtn =
-  'btn-outline-glow inline-flex h-11 w-full items-center justify-center rounded border border-primary/70 bg-[#121418] px-2 text-center text-[13px] font-medium uppercase leading-none tracking-wide text-white shadow-[0_0_0_1px_rgba(197,160,89,0.4),0_0_22px_rgba(197,160,89,0.55),0_0_46px_rgba(197,160,89,0.3)]';
+  'btn-outline-glow inline-flex h-11 w-full items-center justify-center rounded border border-primary/70 bg-[#121418] px-2 text-center text-[13px] font-medium uppercase leading-none tracking-wide text-white';
 const fieldClass =
   'scheme-dark w-full rounded border border-white/10 bg-[#181b22] px-3 py-2.5 text-[13px] text-white outline-none placeholder:text-white/20 focus:border-primary';
 ---
@@ -330,13 +330,17 @@ const fieldClass =
       <div class="space-y-2">
         {
           c.faq.items.map((item) => (
-            <details class="group overflow-hidden rounded border border-white/[0.08] bg-[#111317]">
+            <details data-faq-details class="group overflow-hidden rounded border border-white/[0.08] bg-[#111317]">
               <summary class="flex cursor-pointer select-none items-center justify-between gap-3 p-3.5 text-[13px] font-semibold text-white">
                 <span>{item.q[locale]}</span>
                 <span class="font-tech text-base text-primary transition-transform group-open:rotate-45">+</span>
               </summary>
-              <div class="border-t border-white/5 px-3.5 pb-3.5 pt-2 text-[13px] leading-relaxed text-[#8e939d]">
-                {item.a[locale]}
+              <div data-faq-panel>
+                <div data-faq-panel-inner>
+                  <div class="border-t border-white/5 px-3.5 pb-3.5 pt-2 text-[13px] leading-relaxed text-[#8e939d]">
+                    {item.a[locale]}
+                  </div>
+                </div>
               </div>
             </details>
           ))
