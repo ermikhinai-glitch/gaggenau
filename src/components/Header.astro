@@ -15,7 +15,6 @@ const isHere = (path: string) => pathname === localizePath(locale, path).replace
 const ruHref = switchLocalePath(pathname, 'ru');
 const enHref = switchLocalePath(pathname, 'en');
 const headerPhone = siteConfig.phones[1];
-const isAppliancePage = appliances.some((item) => isHere(item.path));
 const otherLocaleHref = locale === 'ru' ? enHref : ruHref;
 const otherLocale = locale === 'ru' ? 'en' : 'ru';
 const langToggleLabel =
@@ -107,30 +106,33 @@ const langToggleLabel =
             type="button"
             data-mobile-submenu-toggle
             class="mobile-nav-link flex w-full items-center justify-between gap-2 rounded-DEFAULT px-1 py-2.5 text-left text-[13px] font-medium text-[#f4f5f7]"
-            aria-expanded={isAppliancePage ? 'true' : 'false'}
+            aria-expanded="false"
             aria-controls="mobile-services-submenu"
           >
             <span>{t(locale, 'nav.services')}</span>
-            <span data-mobile-submenu-chevron class:list={['text-primary transition-transform duration-200', isAppliancePage && 'rotate-180']} aria-hidden="true">▾</span>
+            <span data-mobile-submenu-chevron class="text-primary transition-transform duration-200" aria-hidden="true">▾</span>
           </button>
           <div
             id="mobile-services-submenu"
             data-mobile-submenu-panel
-            class:list={['mb-1 space-y-0.5 border-b border-white/10 pb-2', !isAppliancePage && 'hidden']}
+            hidden
+            class="mb-1 border-b border-white/10 pb-2"
           >
-            {
-              appliances.map((item) => (
-                <a
-                  href={localizePath(locale, item.path)}
-                  class:list={[
-                    'mobile-appliance-link block rounded-DEFAULT py-2 pl-3 pr-1 text-[13px] font-medium',
-                    isHere(item.path) ? 'text-primary' : 'text-[#c5cad3]',
-                  ]}
-                >
-                  {item.label[locale]}
-                </a>
-              ))
-            }
+            <div class="grid grid-cols-2 gap-x-2 gap-y-0.5">
+              {
+                appliances.map((item) => (
+                  <a
+                    href={localizePath(locale, item.path)}
+                    class:list={[
+                      'mobile-appliance-link block rounded-DEFAULT px-1.5 py-2 text-[12px] font-medium leading-snug',
+                      isHere(item.path) ? 'text-primary' : 'text-[#c5cad3]',
+                    ]}
+                  >
+                    {item.label[locale]}
+                  </a>
+                ))
+              }
+            </div>
           </div>
         </div>
         <a href={localizePath(locale, 'about')} class:list={['mobile-nav-link block rounded-DEFAULT px-1 py-2.5 text-[13px] font-medium', isHere('about') ? 'text-primary' : 'text-[#f4f5f7]']}>{t(locale, 'nav.about')}</a>
@@ -444,7 +446,7 @@ const langToggleLabel =
       toggle.addEventListener('click', () => {
         const open = toggle.getAttribute('aria-expanded') !== 'true';
         toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-        panel.classList.toggle('hidden', !open);
+        panel.hidden = !open;
         chevron?.classList.toggle('rotate-180', open);
       });
     });

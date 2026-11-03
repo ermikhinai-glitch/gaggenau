@@ -58,20 +58,14 @@ const c = homeContent;
         {c.hero.subtitle[locale]}
       </p>
 
-      <div class="grid max-w-xl grid-cols-1 gap-3 sm:grid-cols-2">
+      <div class="max-w-xl">
         <button
           type="button"
           data-open-lead-modal
-          class="btn-lead-glow inline-flex h-14 w-full items-center justify-center rounded-DEFAULT bg-primary-container px-4 text-sm font-semibold uppercase tracking-wider text-on-primary-container active:scale-[0.98]"
+          class="btn-lead-glow inline-flex h-14 w-full max-w-sm items-center justify-center rounded-DEFAULT bg-primary-container px-4 text-sm font-semibold uppercase tracking-wider text-on-primary-container active:scale-[0.98]"
         >
           {t(locale, 'cta.request')}
         </button>
-        <CallPhonePicker
-          locale={locale}
-          fitParent
-          wrapClass="relative min-w-0 w-full"
-          buttonClass="h-14 w-full px-4"
-        />
       </div>
     </div>
 
