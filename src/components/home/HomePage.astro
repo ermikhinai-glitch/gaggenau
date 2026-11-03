@@ -58,20 +58,14 @@ const c = homeContent;
         {c.hero.subtitle[locale]}
       </p>
 
-      <div class="grid max-w-xl grid-cols-1 gap-3 sm:grid-cols-2">
+      <div class="max-w-xl">
         <button
           type="button"
           data-open-lead-modal
-          class="btn-lead-glow inline-flex h-14 w-full items-center justify-center rounded-DEFAULT bg-primary-container px-4 text-sm font-semibold uppercase tracking-wider text-on-primary-container active:scale-[0.98]"
+          class="btn-lead-glow inline-flex h-14 w-full max-w-sm items-center justify-center rounded-DEFAULT bg-primary-container px-4 text-sm font-semibold uppercase tracking-wider text-on-primary-container active:scale-[0.98]"
         >
           {t(locale, 'cta.request')}
         </button>
-        <CallPhonePicker
-          locale={locale}
-          fitParent
-          wrapClass="relative min-w-0 w-full"
-          buttonClass="h-14 w-full px-4"
-        />
       </div>
     </div>
 
@@ -324,12 +318,16 @@ const c = homeContent;
     <div class="space-y-3" data-faq>
       {
         c.faq.items.map((item) => (
-          <details class="surface-lux-glow group rounded-DEFAULT border bg-surface-raised">
+          <details data-faq-details class="surface-lux-glow group rounded-DEFAULT border bg-surface-raised">
             <summary class="cursor-pointer list-none px-5 py-4 flex items-center justify-between gap-4 font-display text-base text-text-primary">
               <span>{item.q[locale]}</span>
               <span class="text-primary transition group-open:rotate-180">▾</span>
             </summary>
-            <div class="px-5 pb-5 text-sm text-text-secondary leading-relaxed">{item.a[locale]}</div>
+            <div data-faq-panel>
+              <div data-faq-panel-inner>
+                <div class="px-5 pb-5 text-sm text-text-secondary leading-relaxed">{item.a[locale]}</div>
+              </div>
+            </div>
           </details>
         ))
       }

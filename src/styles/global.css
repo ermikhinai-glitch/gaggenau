@@ -296,6 +296,24 @@
     display: none;
   }
 
+  details[data-faq-details] > [data-faq-panel] {
+    display: grid;
+    grid-template-rows: 0fr;
+    opacity: 0;
+    overflow: hidden;
+  }
+
+  details[data-faq-details][open] > [data-faq-panel] {
+    /* JS drives the animated value; this is a sensible fallback without JS */
+    grid-template-rows: 1fr;
+    opacity: 1;
+  }
+
+  details[data-faq-details] > [data-faq-panel] > [data-faq-panel-inner] {
+    min-height: 0;
+    overflow: hidden;
+  }
+
   main img {
     filter: brightness(0.72);
   }
@@ -395,9 +413,8 @@
   /* Header brand mark — soft champagne text bloom */
   .brand-lux-glow {
     text-shadow:
-      0 0 12px rgba(197, 160, 89, 0.45),
-      0 0 28px rgba(197, 160, 89, 0.28),
-      0 0 48px rgba(197, 160, 89, 0.14);
+      0 0 8px rgba(197, 160, 89, 0.22),
+      0 0 18px rgba(197, 160, 89, 0.1);
     transition: text-shadow 0.25s ease;
   }
 
@@ -406,17 +423,15 @@
   .group:hover .brand-lux-glow,
   .group:active .brand-lux-glow {
     text-shadow:
-      0 0 14px rgba(226, 193, 154, 0.65),
-      0 0 32px rgba(197, 160, 89, 0.4),
-      0 0 56px rgba(197, 160, 89, 0.22);
+      0 0 10px rgba(226, 193, 154, 0.32),
+      0 0 22px rgba(197, 160, 89, 0.16);
   }
 
   /* Light champagne text bloom for headings */
   .text-lux-glow {
     text-shadow:
-      0 0 10px rgba(197, 160, 89, 0.22),
-      0 0 22px rgba(226, 201, 154, 0.14),
-      0 0 36px rgba(197, 160, 89, 0.08);
+      0 0 8px rgba(197, 160, 89, 0.12),
+      0 0 18px rgba(226, 201, 154, 0.06);
     transition: text-shadow 0.25s ease;
   }
 
@@ -425,25 +440,24 @@
   .group:hover .text-lux-glow,
   .group:active .text-lux-glow {
     text-shadow:
-      0 0 12px rgba(197, 160, 89, 0.32),
-      0 0 26px rgba(226, 201, 154, 0.2),
-      0 0 42px rgba(197, 160, 89, 0.12);
+      0 0 10px rgba(197, 160, 89, 0.18),
+      0 0 22px rgba(226, 201, 154, 0.1);
   }
 
   /* Light white bloom for current breadcrumb on inner pages */
   .crumb-white-glow {
     color: #f4f5f7;
     text-shadow:
-      0 0 6px rgba(255, 255, 255, 0.32),
-      0 0 14px rgba(255, 255, 255, 0.14);
+      0 0 4px rgba(255, 255, 255, 0.18),
+      0 0 10px rgba(255, 255, 255, 0.08);
   }
 
   /* Soft surface glow for content cards / panels */
   .surface-lux-glow {
-    border-color: rgba(197, 160, 89, 0.22);
+    border-color: rgba(197, 160, 89, 0.18);
     box-shadow:
-      0 0 0 1px rgba(197, 160, 89, 0.08),
-      0 0 18px rgba(197, 160, 89, 0.12);
+      0 0 0 1px rgba(197, 160, 89, 0.05),
+      0 0 12px rgba(197, 160, 89, 0.06);
     transition:
       border-color 0.25s ease,
       box-shadow 0.25s ease;
@@ -451,20 +465,18 @@
 
   .surface-lux-glow:hover,
   .surface-lux-glow:focus-visible,
-  .surface-lux-glow:active,
-  .surface-lux-glow[open] {
-    border-color: rgba(197, 160, 89, 0.5);
+  .surface-lux-glow:active {
+    border-color: rgba(197, 160, 89, 0.36);
     box-shadow:
-      0 0 0 1px rgba(197, 160, 89, 0.22),
-      0 0 24px rgba(197, 160, 89, 0.28),
-      0 0 48px rgba(197, 160, 89, 0.12);
+      0 0 0 1px rgba(197, 160, 89, 0.12),
+      0 0 16px rgba(197, 160, 89, 0.14);
     outline: none;
   }
 
   /* Outline / secondary CTA glow */
   .btn-outline-glow {
-    border-color: rgba(197, 160, 89, 0.35);
-    box-shadow: 0 0 16px rgba(197, 160, 89, 0.18);
+    border-color: rgba(197, 160, 89, 0.32);
+    box-shadow: 0 0 10px rgba(197, 160, 89, 0.1);
     transition:
       border-color 0.2s ease,
       box-shadow 0.2s ease,
@@ -473,20 +485,19 @@
 
   .btn-outline-glow:hover,
   .btn-outline-glow:focus-visible {
-    border-color: rgba(197, 160, 89, 0.7);
+    border-color: rgba(197, 160, 89, 0.55);
     box-shadow:
-      0 0 20px rgba(197, 160, 89, 0.35),
-      0 0 40px rgba(197, 160, 89, 0.18);
+      0 0 12px rgba(197, 160, 89, 0.18),
+      0 0 24px rgba(197, 160, 89, 0.08);
     outline: none;
   }
 
   /* Appliance / content cards — champagne rim + soft bloom */
   .card-lux-glow {
-    border-color: rgba(197, 160, 89, 0.28);
+    border-color: rgba(197, 160, 89, 0.22);
     box-shadow:
-      0 0 0 1px rgba(197, 160, 89, 0.12),
-      0 0 24px rgba(197, 160, 89, 0.18),
-      0 0 48px rgba(197, 160, 89, 0.08);
+      0 0 0 1px rgba(197, 160, 89, 0.08),
+      0 0 14px rgba(197, 160, 89, 0.1);
     transition:
       border-color 0.3s ease,
       box-shadow 0.3s ease,
@@ -495,12 +506,11 @@
 
   .card-lux-glow:hover,
   .card-lux-glow:focus-visible {
-    border-color: rgba(197, 160, 89, 0.65);
+    border-color: rgba(197, 160, 89, 0.42);
     box-shadow:
-      0 0 0 1px rgba(197, 160, 89, 0.35),
-      0 0 28px rgba(197, 160, 89, 0.45),
-      0 0 56px rgba(197, 160, 89, 0.28),
-      0 0 90px rgba(197, 160, 89, 0.14);
+      0 0 0 1px rgba(197, 160, 89, 0.16),
+      0 0 16px rgba(197, 160, 89, 0.18),
+      0 0 28px rgba(197, 160, 89, 0.08);
     outline: none;
   }
 
@@ -536,12 +546,12 @@
     transition: background-color 99999s ease-out;
   }
 
-  /* Champagne glow for lead CTAs — same look as before, toned down */
+  /* Champagne glow for lead CTAs */
   .btn-lead-glow {
     box-shadow:
-      0 0 0 2px rgba(197, 160, 89, 0.28),
-      0 0 18px rgba(197, 160, 89, 0.38),
-      0 0 36px rgba(197, 160, 89, 0.18);
+      0 0 0 1px rgba(197, 160, 89, 0.22),
+      0 0 12px rgba(197, 160, 89, 0.2),
+      0 0 24px rgba(197, 160, 89, 0.08);
     transition:
       box-shadow 0.22s ease,
       filter 0.22s ease,
@@ -549,22 +559,20 @@
   }
 
   .btn-lead-glow:hover {
-    filter: brightness(1.08);
+    filter: brightness(1.05);
     box-shadow:
-      0 0 0 2px rgba(197, 160, 89, 0.5),
-      0 0 16px rgba(226, 193, 154, 0.55),
-      0 0 32px rgba(197, 160, 89, 0.45),
-      0 0 52px rgba(197, 160, 89, 0.22);
+      0 0 0 1px rgba(197, 160, 89, 0.35),
+      0 0 14px rgba(226, 193, 154, 0.28),
+      0 0 28px rgba(197, 160, 89, 0.16);
   }
 
   .btn-lead-glow:focus-visible {
     outline: none;
-    filter: brightness(1.06);
+    filter: brightness(1.04);
     box-shadow:
-      0 0 0 2px rgba(197, 160, 89, 0.55),
-      0 0 16px rgba(226, 193, 154, 0.55),
-      0 0 32px rgba(197, 160, 89, 0.45),
-      0 0 52px rgba(197, 160, 89, 0.22);
+      0 0 0 1px rgba(197, 160, 89, 0.4),
+      0 0 14px rgba(226, 193, 154, 0.28),
+      0 0 28px rgba(197, 160, 89, 0.16);
   }
 
   @media (prefers-reduced-motion: reduce) {
